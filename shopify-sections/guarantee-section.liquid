@@ -1,0 +1,113 @@
+{% comment %} ═══ GUARANTEE SECTION ═══ {% endcomment %}
+
+<style>
+  .cl-guarantee-section {
+    background: #f8f2ed;
+    color: #2a1a0e;
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .cl-guarantee-box {
+    border: 2px solid #e8dbd3;
+    padding: 45px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.7);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .cl-g-icon {
+    font-size: 4rem;
+    margin-bottom: 18px;
+    color: #ad6639;
+  }
+  .cl-guarantee-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2a1a0e;
+    margin-bottom: 18px;
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+  .cl-guarantee-box p {
+    font-size: 1.02rem;
+    color: #555;
+    margin-bottom: 18px;
+  }
+
+  @media (max-width: 600px) {
+    .cl-guarantee-box { padding: 30px 20px; }
+    .cl-guarantee-box h2 { font-size: 1.5rem; }
+  }
+</style>
+
+<section class="cl-guarantee-section">
+  <div class="container">
+    <div class="cl-guarantee-box">
+      <div class="cl-g-icon">
+        <i class="fa-solid fa-{{ section.settings.icon }}"></i>
+      </div>
+      <h2>{{ section.settings.headline }}</h2>
+      <p>
+        {{ section.settings.body_before }}
+        <strong style="color:#ad6639;">{{ section.settings.body_highlight }}</strong>
+        {{ section.settings.body_after }}
+      </p>
+      <p><em>{{ section.settings.closing_text }}</em></p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Garantía",
+  "settings": [
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Ícono Font Awesome (sin fa-)",
+      "default": "shield-halved"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título",
+      "default": "La Garantía \"Cero Estrés y Cero Vergüenza\" — 7 Días"
+    },
+    {
+      "type": "text",
+      "id": "body_before",
+      "label": "Párrafo 1 — texto antes del highlight"
+    },
+    {
+      "type": "text",
+      "id": "body_highlight",
+      "label": "Párrafo 1 — texto destacado (color rojo)",
+      "default": "te devuelvo el 100% de tus $14.999 sin preguntas"
+    },
+    {
+      "type": "text",
+      "id": "body_after",
+      "label": "Párrafo 1 — texto después del highlight",
+      "default": "— y te quedás con todo."
+    },
+    {
+      "type": "text",
+      "id": "closing_text",
+      "label": "Párrafo de cierre",
+      "default": "El riesgo lo asumo yo. Vos solo tenés que animarte a acampar."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Garantía",
+      "settings": {
+        "icon": "shield-halved",
+        "headline": "La Garantía \"Cero Estrés y Cero Vergüenza\" — 7 Días",
+        "body_before": "Probá la guía 7 días. Si sentís que no te aportó lo que esperabas,",
+        "body_highlight": "te devuelvo el 100% de tus $14.999 sin preguntas",
+        "body_after": "— y te quedás con todo.",
+        "closing_text": "El riesgo lo asumo yo. Vos solo tenés que animarte a acampar."
+      }
+    }
+  ]
+}
+{% endschema %}

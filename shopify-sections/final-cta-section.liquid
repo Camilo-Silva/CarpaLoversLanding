@@ -1,0 +1,158 @@
+{% comment %} ═══ FINAL CTA SECTION ═══ {% endcomment %}
+
+<style>
+  .cl-final-cta {
+    background: linear-gradient(135deg, #7a4520, #ad6639);
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .cl-final-cta h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.3rem;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .cl-final-cta p {
+    font-size: 1.08rem;
+    color: rgba(255,255,255,.85);
+    margin-bottom: 28px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cl-final-cta-img {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 16px -50vw 16px calc(50% - 50vw);
+    display: block;
+    border-radius: 0;
+  }
+
+  /* ── CTA button ── */
+  .cl-final-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #c97a46, #ad6639);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 42px;
+    border-radius: 50px;
+    box-shadow: 0 8px 0 #5a3010;
+    position: relative;
+    overflow: hidden;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .cl-final-cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: rgba(255,255,255,.18);
+    transform: skewX(-20deg);
+    animation: cl-shimmer-fcta 2.8s infinite;
+  }
+  @keyframes cl-shimmer-fcta { 0%{left:-100%} 100%{left:200%} }
+  .cl-final-cta-btn:hover {
+    transform: translateY(3px);
+    box-shadow: 0 5px 0 #5a3010;
+  }
+  .cl-final-cta-sub {
+    font-size: .78rem;
+    color: rgba(255,255,255,.6);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .cl-final-cta h2 { font-size: 1.75rem; }
+    .cl-final-cta-btn { font-size: 1rem; padding: 18px 28px; }
+  }
+</style>
+
+<section class="cl-final-cta">
+  <div class="container">
+    <h2>{{ section.settings.headline }}</h2>
+
+    {%- if section.settings.image != blank -%}
+      <img
+        src="{{ section.settings.image | img_url: 'master' }}"
+        alt="{{ section.settings.image_alt }}"
+        class="cl-final-cta-img">
+    {%- endif -%}
+
+    <p>{{ section.settings.body }}</p>
+
+    <div style="text-align:center;">
+      <a href="{{ section.settings.cta_url }}" class="cl-final-cta-btn">
+        <i class="fa-solid fa-{{ section.settings.cta_icon }}"></i>
+        {{ section.settings.cta_text }}
+      </a>
+      <p class="cl-final-cta-sub">{{ section.settings.cta_sub }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título",
+      "default": "¿Seguís esperando el momento perfecto?"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen de sección (Bonos2)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Alt de la imagen",
+      "default": "Bonos VIP"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Párrafo",
+      "default": "El momento perfecto es ahora. Con $14.999 pesos eliminás todos los miedos y vivís la experiencia que siempre quisiste. El riesgo es cero — la garantía lo cubre todo."
+    },
+    {
+      "type": "text",
+      "id": "cta_icon",
+      "label": "Ícono botón (FA sin fa-)",
+      "default": "campground"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto botón",
+      "default": "SÍ, QUIERO MI GUÍA + BONOS VIP AHORA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón"
+    },
+    {
+      "type": "text",
+      "id": "cta_sub",
+      "label": "Texto bajo el botón",
+      "default": "Solo $14.999 ARS · Acceso en segundos · Garantía 7 días sin preguntas"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA"
+    }
+  ]
+}
+{% endschema %}

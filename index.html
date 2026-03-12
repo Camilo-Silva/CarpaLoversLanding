@@ -35,8 +35,9 @@
             display:none;
             position:fixed;
             bottom:20px;
-            left:50%;
-            transform:translateX(-50%);
+            right:28px;
+            left:auto;
+            transform:none;
             z-index:9999;
             background:linear-gradient(135deg,#1e9e4f,#27ae60);
             color:#fff;
@@ -51,10 +52,24 @@
             letter-spacing:.5px;
             align-items:center;
             gap:10px;
-            animation:floatBounce 2.2s ease-in-out infinite;
+            animation:floatBounce-right 2.2s ease-in-out infinite;
         }
-        .float-cta:hover { animation:none; transform:translateX(-50%) translateY(-2px) scale(1.04); box-shadow:0 10px 28px rgba(0,0,0,0.4); }
-        @media(max-width:768px) { .float-cta { display:flex; } }
+        @keyframes floatBounce-right {
+            0%,100% { transform:translateY(0) scale(1); box-shadow:0 6px 24px rgba(0,0,0,0.35); }
+            40%      { transform:translateY(-6px) scale(1.06); box-shadow:0 14px 32px rgba(0,0,0,0.3); }
+            60%      { transform:translateY(-3px) scale(1.03); }
+        }
+        .float-cta:hover { animation:none; transform:translateY(-2px) scale(1.04); box-shadow:0 10px 28px rgba(0,0,0,0.4); }
+        .float-cta { display:flex; }
+        @media(max-width:768px) {
+            .float-cta {
+                right:auto;
+                left:50%;
+                transform:translateX(-50%);
+                animation:floatBounce 2.2s ease-in-out infinite;
+            }
+            .float-cta:hover { transform:translateX(-50%) translateY(-2px) scale(1.04); }
+        }
 
         /* ===== RESET ===== */
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }

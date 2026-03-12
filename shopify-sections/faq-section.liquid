@@ -1,0 +1,201 @@
+{% comment %} ═══ FAQ SECTION ═══ {% endcomment %}
+
+<style>
+  .cl-faq-section {
+    padding: 70px 20px;
+    background: #d1ccec;
+  }
+  .cl-faq-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 38px;
+    font-family: 'Montserrat', sans-serif;
+    color: #2a1a0e;
+  }
+  .cl-faq-item {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc7e0;
+    overflow: hidden;
+  }
+  .cl-faq-q {
+    padding: 17px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .97rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2a1a0e;
+    user-select: none;
+  }
+  .cl-faq-q .cl-arr {
+    transition: transform .3s;
+    font-size: .75rem;
+    color: #ad6639;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .cl-faq-a {
+    padding: 0 22px;
+    font-size: .93rem;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease, padding .3s ease;
+  }
+  .cl-faq-item.cl-open .cl-faq-a { max-height: 400px; padding: 0 22px 18px; }
+  .cl-faq-item.cl-open .cl-arr   { transform: rotate(180deg); }
+</style>
+
+<section class="cl-faq-section">
+  <div class="container">
+    <h2>
+      <i class="fa-solid fa-{{ section.settings.title_icon }}"></i>
+      {{ section.settings.title }}
+    </h2>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'faq_item' -%}
+        <div class="cl-faq-item" {{ block.shopify_attributes }}>
+          <div class="cl-faq-q">
+            {{ block.settings.question }}
+            <span class="cl-arr">▼</span>
+          </div>
+          <div class="cl-faq-a">{{ block.settings.answer }}</div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.cl-faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      var item   = q.parentElement;
+      var isOpen = item.classList.contains('cl-open');
+      document.querySelectorAll('.cl-faq-item').forEach(function (i) { i.classList.remove('cl-open'); });
+      if (!isOpen) { item.classList.add('cl-open'); }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_icon",
+      "label": "Ícono título (FA sin fa-)",
+      "default": "circle-question"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Preguntas Frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo recibo la guía después de comprar?",
+            "answer": "Inmediatamente después del pago recibís un email con el link de descarga. Acceso instantáneo, 24/7, desde cualquier dispositivo."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Sirve si nunca acampé en mi vida?",
+            "answer": "Es exactamente para vos. La guía fue diseñada pensando en la persona que nunca acampó y tiene miedo a quedar expuesto. Arrancamos desde cero, sin dar nada por sabido."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Y si ya acampé antes, igual me sirve?",
+            "answer": "Sí. Aunque ya tengas salidas encima, la guía te da una estructura que quizás nunca tuviste: cómo elegir bien el terreno, qué revisar antes de salir, cómo anticiparte a imprevistos y cómo optimizar tu equipo. Muchos campistas \"con experiencia\" la leen y dicen que ojalá la hubieran tenido desde el principio."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿La guía incluye listas prácticas o es solo teoría?",
+            "answer": "Es todo práctica. Incluye checklists organizados, recomendaciones concretas y consejos paso a paso para que puedas planificar tu salida sin olvidar nada. Sin teoría de relleno."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Sirve para cualquier tipo de camping?",
+            "answer": "Está orientada principalmente a camping recreativo tradicional — carpa en campings habilitados o entornos naturales seguros. Si tu primera salida es en un camping, esta guía es perfecta para vos."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Necesito comprar equipo caro para aplicar lo que enseña?",
+            "answer": "Para nada. La guía te orienta sobre lo esencial y cómo priorizar lo que realmente importa sin gastar de más. También te dice qué podés improvisar y qué sí conviene tener desde el primer día."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿En qué formato viene la guía?",
+            "answer": "La guía principal viene en PDF de alta calidad — podés leerla en tu celular, tablet, computadora o imprimirla, y funciona sin internet una vez descargada. Los bonos incluyen también material en video, accesible desde cualquier dispositivo."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuánto tarda en leerse?",
+            "answer": "La guía completa con todos los bonos se lee en menos de 2 horas. Está escrita de forma directa y práctica, sin teoría de relleno."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo pagar en la moneda de mi país?",
+            "answer": "Sí. El precio se cobra en la moneda local de tu país. Si estás en Argentina, son $14.999 pesos argentinos. Si estás en otro país, verás el equivalente en tu moneda al momento del pago. Aceptamos tarjeta, Mercado Pago y otros medios según tu región."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿La garantía de 7 días es real? ¿Cómo pido el reembolso?",
+            "answer": "100% real. Dentro de los 7 días mandás un email a nuestro soporte y te devolvemos el dinero completo sin preguntas. Sin excusas, sin letra chica."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
