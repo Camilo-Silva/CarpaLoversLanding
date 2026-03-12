@@ -1,0 +1,541 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Sección ── */
+  .cl-testimonials-section {
+    padding: 70px 0;
+    background: {{ section.settings.background_color }};
+    overflow: hidden;
+  }
+
+  .cl-testimonials-section .cl-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+
+  /* ── Encabezado ── */
+  .cl-testimonials-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(173,102,57,.1);
+    color: {{ section.settings.accent_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cl-testimonials-section .cl-section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: {{ section.settings.headline_color }};
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .cl-testimonials-section .cl-section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 0;
+    font-size: .97rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── Carousel wrapper ── */
+  .cl-carousel-wrapper {
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .cl-carousel-wrapper.cl-is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  /* ── Filas de scroll ── */
+  .cl-carousel-row {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    padding: 20px 10px 20px;
+    animation: cl-scroll-left 38s linear infinite;
+  }
+
+  .cl-carousel-row--right {
+    animation: cl-scroll-right 38s linear infinite;
+  }
+
+  @keyframes cl-scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes cl-scroll-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .cl-carousel-wrapper:hover .cl-carousel-row {
+    animation-play-state: paused;
+  }
+
+  /* ── Tarjeta de testimonio ── */
+  .cl-t-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #f5d8dc;
+    position: relative;
+    width: 360px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 14px rgba(173,102,57,.08);
+  }
+
+  .cl-t-card::before {
+    content: '"';
+    position: absolute;
+    top: -8px;
+    left: 18px;
+    font-size: 4.5rem;
+    color: {{ section.settings.accent_color }};
+    font-family: Georgia, serif;
+    line-height: 1;
+    opacity: .15;
+  }
+
+  .cl-stars {
+    color: #ffd60a;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .cl-t-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .93rem;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .cl-t-author {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .cl-t-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .cl-t-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .cl-t-name  { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .88rem; color: #222; }
+  .cl-t-city  { font-family: 'Open Sans', sans-serif; font-size: .78rem; color: #888; }
+
+  .cl-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 3px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .cl-testimonials-section { padding: 52px 0; }
+    .cl-testimonials-section .cl-section-title { font-size: 1.75rem; }
+    .cl-t-card { width: 290px; }
+  }
+</style>
+
+<div class="cl-testimonials-section">
+  <div class="cl-container">
+
+    {% if section.settings.label != blank %}
+      <div style="text-align:center;">
+        <div class="cl-testimonials-label">
+          <i class="fa-solid {{ section.settings.label_icon }}"></i> {{ section.settings.label }}
+        </div>
+      </div>
+    {% endif %}
+
+    <h2 class="cl-section-title">{{ section.settings.headline }}</h2>
+
+    {% if section.settings.subtitle != blank %}
+      <p class="cl-section-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+  </div>
+
+  <div class="cl-carousel-wrapper">
+
+    <!-- ── Fila 1: izquierda ── -->
+    <div class="cl-carousel-row">
+      {% assign row1 = section.blocks | where: 'type', 'testimonial_row1' %}
+      {% for block in row1 %}
+        <div class="cl-t-card" {{ block.shopify_attributes }}>
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-t-text">"{{ block.settings.text }}"</p>
+          <div class="cl-t-author">
+            <div class="cl-t-avatar">
+              <img src="{{ block.settings.avatar }}" alt="{{ block.settings.name }}">
+            </div>
+            <div>
+              <div class="cl-t-name">{{ block.settings.name }}</div>
+              <div class="cl-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row1 %}
+        <div class="cl-t-card">
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-t-text">"{{ block.settings.text }}"</p>
+          <div class="cl-t-author">
+            <div class="cl-t-avatar">
+              <img src="{{ block.settings.avatar }}" alt="{{ block.settings.name }}">
+            </div>
+            <div>
+              <div class="cl-t-name">{{ block.settings.name }}</div>
+              <div class="cl-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── Fila 2: derecha ── -->
+    <div class="cl-carousel-row cl-carousel-row--right">
+      {% assign row2 = section.blocks | where: 'type', 'testimonial_row2' %}
+      {% for block in row2 %}
+        <div class="cl-t-card" {{ block.shopify_attributes }}>
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-t-text">"{{ block.settings.text }}"</p>
+          <div class="cl-t-author">
+            <div class="cl-t-avatar">
+              <img src="{{ block.settings.avatar }}" alt="{{ block.settings.name }}">
+            </div>
+            <div>
+              <div class="cl-t-name">{{ block.settings.name }}</div>
+              <div class="cl-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row2 %}
+        <div class="cl-t-card">
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-t-text">"{{ block.settings.text }}"</p>
+          <div class="cl-t-author">
+            <div class="cl-t-avatar">
+              <img src="{{ block.settings.avatar }}" alt="{{ block.settings.name }}">
+            </div>
+            <div>
+              <div class="cl-t-name">{{ block.settings.name }}</div>
+              <div class="cl-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var wrapper = document.querySelector('.cl-carousel-wrapper');
+  if (!wrapper) return;
+  var rows    = Array.from(wrapper.querySelectorAll('.cl-carousel-row'));
+  var DURATION = 38;
+
+  function getTranslateX(el) {
+    var t = window.getComputedStyle(el).transform;
+    if (!t || t === 'none') return 0;
+    var vals = t.replace('matrix(', '').replace(')', '').split(',');
+    return parseFloat(vals[4]) || 0;
+  }
+
+  function resumeRows(finalXArr) {
+    rows.forEach(function (row, i) {
+      var halfWidth = row.scrollWidth / 2;
+      var isRight   = row.classList.contains('cl-carousel-row--right');
+      var progress  = isRight
+        ? (finalXArr[i] + halfWidth) / halfWidth
+        : -finalXArr[i] / halfWidth;
+      progress = Math.max(0, Math.min(1, progress));
+      row.style.animationDelay     = -(progress * DURATION) + 's';
+      row.style.transform          = '';
+      row.style.animationName      = '';
+      row.style.animationPlayState = 'running';
+    });
+  }
+
+  var isDown    = false;
+  var startX    = 0;
+  var startY    = 0;
+  var startArr  = [];
+  var direction = null; // 'h' | 'v' | null
+
+  function clientX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+  function clientY(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
+
+  wrapper.addEventListener('mouseleave', function () {
+    if (isDown) return;
+    rows.forEach(function (row) { row.style.animationPlayState = ''; });
+  });
+
+  function onStart(e) {
+    isDown    = true;
+    startX    = clientX(e);
+    startY    = clientY(e);
+    direction = null;
+    startArr  = rows.map(getTranslateX);
+    // No congelamos animación ni llamamos preventDefault hasta saber la dirección
+  }
+
+  function onMove(e) {
+    if (!isDown) return;
+    var dx = clientX(e) - startX;
+    var dy = clientY(e) - startY;
+
+    if (direction === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+      direction = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+      if (direction === 'h') {
+        rows.forEach(function (row, i) {
+          row.style.animationName = 'none';
+          row.style.transform     = 'translateX(' + startArr[i] + 'px)';
+        });
+        wrapper.classList.add('cl-is-dragging');
+      }
+    }
+
+    if (direction === 'h') {
+      e.preventDefault();
+      rows.forEach(function (row, i) {
+        row.style.transform = 'translateX(' + (startArr[i] + dx) + 'px)';
+      });
+    }
+  }
+
+  function onEnd(e) {
+    if (!isDown) return;
+    isDown = false;
+    if (direction === 'h') {
+      wrapper.classList.remove('cl-is-dragging');
+      var cx    = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var delta = cx - startX;
+      resumeRows(startArr.map(function (x) { return x + delta; }));
+    }
+    direction = null;
+  }
+
+  wrapper.addEventListener('mousedown',  onStart);
+  window.addEventListener('mousemove',   onMove);
+  window.addEventListener('mouseup',     onEnd);
+  wrapper.addEventListener('touchstart', onStart, { passive: true });
+  window.addEventListener('touchmove',   onMove,  { passive: false });
+  window.addEventListener('touchend',    onEnd);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonios",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo de la sección",
+      "default": "#fed3da"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento (label y comillas)",
+      "default": "#ad6639"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Color de títulos",
+      "default": "#2a1a0e"
+    },
+    {
+      "type": "text",
+      "id": "label_icon",
+      "label": "Ícono del label (Font Awesome)",
+      "default": "fa-comments",
+      "info": "Solo el nombre: fa-comments, fa-star, etc."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta superior (vacío para ocultar)",
+      "default": "Historias reales"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título principal",
+      "default": "Gente Como Vos que Ya Lo Vivió"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo (vacío para ocultar)",
+      "default": "Del miedo al primer acampe a querer repetirlo todas las semanas"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_row1",
+      "name": "Testimonio Fila 1",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto del testimonio"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre"
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad"
+        },
+        {
+          "type": "text",
+          "id": "avatar",
+          "label": "URL del avatar (imagen)",
+          "info": "URL completa de la imagen del perfil"
+        }
+      ]
+    },
+    {
+      "type": "testimonial_row2",
+      "name": "Testimonio Fila 2",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto del testimonio"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre"
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad"
+        },
+        {
+          "type": "text",
+          "id": "avatar",
+          "label": "URL del avatar (imagen)",
+          "info": "URL completa de la imagen del perfil"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonios",
+      "blocks": [
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "Siempre admiré las fotos de camping pero nunca me animé. Leí la guía el viernes, probé armar la carpa en el patio como dice Andrea, y el sábado la monté en el camping sin problemas. Mi familia quedó impresionada. Volvimos dos veces ese mes.",
+            "name": "Marcos R.",
+            "city": "Buenos Aires",
+            "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+          }
+        },
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "El checklist antes de salir es oro puro. Nunca nos olvidamos de nada. Seguimos el consejo de empezar en un camping organizado y fue perfecto: baños, luz, proveeduría y otros campistas que nos ayudaron cuando dudamos. Dormimos abrigadísimas gracias a los tips de capas.",
+            "name": "Sofía G.",
+            "city": "Córdoba",
+            "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+          }
+        },
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "Fuimos al Camping Ayun Elum en San Rafael, Mendoza — uno de los que recomienda la guía. Armamos la carpa a orillas del río siguiendo las instrucciones de terreno y drenaje. Cayó una tormenta y no entró ni una gota. Una experiencia 10/10.",
+            "name": "Facundo H.",
+            "city": "Mendoza",
+            "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Viajé sola por primera vez a los 34 años. Tenía mil miedos. El capítulo de seguridad y emergencias me dio una tranquilidad enorme. Llegué sabiendo cómo elegir el terreno, dónde no instalar la carpa y qué hacer si cambia el clima. Ya planifiqué mi segundo viaje.",
+            "name": "Carolina V.",
+            "city": "Rosario",
+            "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Nunca había acampado y mis amigos me invitaron. Leí la guía el viernes a la noche, el sábado era yo el que les explicaba cómo evitar instalar la carpa en una depresión, cómo cavar la canaleta y cómo orientarla al viento. Me convertí en el experto del grupo.",
+            "name": "Nicolás T.",
+            "city": "Salta",
+            "avatar": "https://randomuser.me/api/portraits/men/22.jpg"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Lo que más valoro es que es la experiencia real de alguien que acampa con su familia, incluso con una nena chica. Nos animamos a llevar a nuestros hijos y fue lo mejor que hicimos. La guía de alimentación y cocina nos simplificó todo. ¡Queremos más!",
+            "name": "Diego M.",
+            "city": "Santa Fe",
+            "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

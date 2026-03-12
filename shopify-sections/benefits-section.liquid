@@ -1,0 +1,264 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl-benefits-section {
+    background: {{ section.settings.background_color }};
+    padding: 70px 20px;
+  }
+
+  .cl-benefits-section .cl-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .cl-benefits-section .cl-section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: {{ section.settings.headline_color }};
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .cl-benefits-section .cl-section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 44px;
+    font-size: .97rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .cl-benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .cl-benefit-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-left: 4px solid {{ section.settings.accent_color }};
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .cl-benefit-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    user-select: none;
+  }
+
+  .cl-b-icon {
+    font-size: 1.2rem;
+    color: {{ section.settings.accent_color }};
+    flex-shrink: 0;
+  }
+
+  .cl-benefit-card-header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    color: {{ section.settings.headline_color }};
+  }
+
+  .cl-b-arr {
+    font-size: .7rem;
+    color: {{ section.settings.accent_color }};
+    transition: transform .3s;
+    flex-shrink: 0;
+  }
+
+  .cl-benefit-card.cl-open .cl-b-arr {
+    transform: rotate(180deg);
+  }
+
+  .cl-benefit-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .3s ease;
+    padding: 0 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .88rem;
+    color: #555;
+  }
+
+  .cl-benefit-card.cl-open .cl-benefit-card-body {
+    max-height: 200px;
+    padding: 0 18px 16px;
+  }
+
+  @media (max-width: 768px) {
+    .cl-benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="cl-benefits-section">
+  <div class="cl-container">
+
+    <h2 class="cl-section-title">{{ section.settings.headline }}</h2>
+
+    {% if section.settings.subtitle != blank %}
+      <p class="cl-section-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <div class="cl-benefits-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'benefit' %}
+          <div class="cl-benefit-card" {{ block.shopify_attributes }}>
+            <div class="cl-benefit-card-header">
+              <span class="cl-b-icon"><i class="fa-solid {{ block.settings.icon }}"></i></span>
+              <h4>{{ block.settings.title }}</h4>
+              <span class="cl-b-arr">&#9660;</span>
+            </div>
+            <div class="cl-benefit-card-body">{{ block.settings.description }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var cards = document.querySelectorAll('.cl-benefit-card');
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var isOpen = card.classList.contains('cl-open');
+      cards.forEach(function (c) { c.classList.remove('cl-open'); });
+      if (!isOpen) { card.classList.add('cl-open'); }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Beneficios",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo de la sección",
+      "default": "#cdf3f6"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento (borde e íconos)",
+      "default": "#ad6639"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Color de títulos",
+      "default": "#2a1a0e"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título principal",
+      "default": "¿Qué vas a descubrir dentro de \"Sin Miedo a Acampar\"?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo (vacío para ocultar)",
+      "default": "11 capítulos de experiencia real — todo lo que aprendí salida a salida, sin teoría de relleno"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Capítulo / Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícono Font Awesome (solo el nombre)",
+          "default": "fa-campground",
+          "info": "Ej: fa-campground, fa-map, fa-bag-shopping, fa-circle-check, fa-cloud-bolt, fa-utensils"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título del capítulo",
+          "default": "Camping Organizado vs. Agreste: Cuál Elegir Primero"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción (texto desplegable)",
+          "default": "Por qué empezar en campings organizados te salva de los errores más comunes — y exactamente cuándo dar el salto al camping agreste sin miedo."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beneficios",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-campground",
+            "title": "Camping Organizado vs. Agreste: Cuál Elegir Primero",
+            "description": "Por qué empezar en campings organizados te salva de los errores más comunes — y exactamente cuándo dar el salto al camping agreste sin miedo."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-map",
+            "title": "Planificación Previa Paso a Paso",
+            "description": "Cómo elegir el destino, verificar el nivel de dificultad de acceso, consultar el clima y conocer los permisos y reglas antes de salir."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-bag-shopping",
+            "title": "Equipo Esencial que No Puede Faltar",
+            "description": "Carpa, bolsa de dormir, aislante, cocina portátil, iluminación y ropa en capas. La lista exacta que usamos en cada salida."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-circle-check",
+            "title": "Checklist + Prueba Antes de Salir",
+            "description": "Armá la carpa en tu casa antes del viaje, probá el saco de dormir y revisá las baterías. Los pasos que evitan las malas sorpresas."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-cloud-bolt",
+            "title": "Tormentas, Terreno y Canaletas",
+            "description": "Cómo elegir terreno con buen drenaje, orientar la carpa al viento, usar lonas extras y cavar canaletas para que el agua nunca entre."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-utensils",
+            "title": "Comida, Seguridad y Errores Comunes",
+            "description": "Snacks sin heladera, botiquín básico y los errores que cometen casi todos los novatos — descritos para que vos no los repitas."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -183,7 +183,7 @@
         }
 
         /* ===== PAYMENT ===== */
-        .payment-section { background:var(--cream); padding:44px 20px; text-align:center; border-top:1px solid #e8dbd3; }
+        .payment-section { background:#fff; padding:44px 20px; text-align:center; border-top:1px solid #e8dbd3; }
         .payment-section h3 {
             font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:600;
             color:#999; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:22px;
@@ -354,7 +354,8 @@
         /* ===== TESTIMONIALS CAROUSEL ===== */
         .testimonials-section { padding:70px 0; background:var(--pink-light); overflow:hidden; }
         .testimonials-section > .container { padding-bottom:40px; }
-        .carousel-wrapper { overflow:hidden; }
+        .carousel-wrapper { overflow:hidden; cursor:grab; }
+        .carousel-wrapper.is-dragging { cursor:grabbing; user-select:none; }
         .carousel-row {
             display:flex;
             width:max-content;
@@ -622,8 +623,8 @@
             padding:50px 20px;
         }
         .offer-band--dark {
-            background:var(--dark);
-            color:#fff;
+            background:var(--cream);
+            color:var(--dark);
             padding:50px 20px;
         }
         .offer-divider-img {
@@ -695,34 +696,39 @@
         .bonus-desc { font-size:.88rem; color:#bbb; }
         .value-stack {
             margin-top:32px;
-            padding:24px;
-            background:var(--dark);
-            border-radius:12px;
+            padding:36px;
+            background:rgba(255,255,255,.7);
+            border:2px solid #e8dbd3;
+            border-radius:16px;
+            max-width:760px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
         }
-        .real-value { text-decoration:line-through; color:#e8a87c; font-size:1rem; font-weight:600; margin-bottom:8px; }
+        .real-value { text-decoration:line-through; color:#a07050; font-size:1rem; font-weight:600; margin-bottom:8px; }
         .big-price {
             font-family:'Montserrat',sans-serif;
             font-size:3.2rem;
             font-weight:900;
-            color:var(--yellow);
+            color:var(--red);
             line-height:1;
         }
-        .ars-price { font-size:1.1rem; color:#aaa; margin-top:6px; }
+        .ars-price { font-size:1.1rem; color:#777; margin-top:6px; }
 
         /* ===== GUARANTEE ===== */
-        .guarantee-section { background:var(--dark); color:#fff; padding:70px 20px; text-align:center; }
+        .guarantee-section { background:var(--cream); color:var(--dark); padding:70px 20px; text-align:center; }
         .guarantee-box {
-            border:2px solid #2a2a2a;
+            border:2px solid #e8dbd3;
             padding:45px;
             border-radius:16px;
-            background:rgba(255,255,255,.04);
+            background:rgba(255,255,255,.7);
             max-width:760px;
             margin:0 auto;
         }
-        .g-icon   { font-size:4rem; margin-bottom:18px; color:var(--yellow); }
+        .g-icon   { font-size:4rem; margin-bottom:18px; color:var(--red); }
         .b-icon i, .bonus-emoji i { color:var(--red); }
-        .guarantee-box h2 { color:var(--yellow); margin-bottom:18px; font-size:1.9rem; }
-        .guarantee-box p  { font-size:1.02rem; color:#ccc; margin-bottom:18px; }
+        .guarantee-box h2 { color:var(--dark); margin-bottom:18px; font-size:1.9rem; }
+        .guarantee-box p  { font-size:1.02rem; color:#555; margin-bottom:18px; }
 
         /* ===== FAQ ===== */
         .faq-section { padding:70px 20px; background:var(--violet); }
@@ -956,7 +962,7 @@
 <section class="benefits-section">
     <div class="container">
         <h2 class="section-title">¿Qué vas a descubrir dentro de<br>"Sin Miedo a Acampar"?</h2>
-        <p class="section-subtitle">11 capítulos de experiencia real — todo lo que Andrea aprendió salida a salida, sin teoría de relleno</p>
+        <p class="section-subtitle">11 capítulos de experiencia real — todo lo que aprendí salida a salida, sin teoría de relleno</p>
         <div class="benefits-grid">
             <div class="benefit-card">
                 <div class="benefit-card-header">
@@ -1257,7 +1263,7 @@
         <div class="guarantee-box">
             <div class="g-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <h2>La Garantía "Cero Estrés y Cero Vergüenza" — 7 Días</h2>
-            <p>Probá la guía 7 días. Si sentís que no te aportó lo que esperabas, <strong style="color:var(--yellow)">te devuelvo el 100% de tus $14.999 sin preguntas</strong> — y te quedás con todo.</p>
+            <p>Probá la guía 7 días. Si sentís que no te aportó lo que esperabas, <strong style="color:var(--red)">te devuelvo el 100% de tus $14.999 sin preguntas</strong> — y te quedás con todo.</p>
             <p>El riesgo lo asumo <em>yo</em>. Vos solo tenés que animarte a acampar.</p>
         </div>
     </div>
@@ -1455,7 +1461,107 @@ document.querySelectorAll('.benefit-card').forEach(function (card) {
     });
 });
 
-/* ─── 6. BONUS ACCORDION ─── */
+/* ─── 6. CAROUSEL DRAG ─── */
+(function () {
+    var wrapper = document.querySelector('.carousel-wrapper');
+    if (!wrapper) return;
+    var rows = Array.from(wrapper.querySelectorAll('.carousel-row'));
+    var DURATION = 38; // debe coincidir con el valor CSS
+
+    function getTranslateX(el) {
+        var t = window.getComputedStyle(el).transform;
+        if (!t || t === 'none') return 0;
+        var vals = t.replace('matrix(', '').replace(')', '').split(',');
+        return parseFloat(vals[4]) || 0;
+    }
+
+    function resumeRows(finalXArr) {
+        rows.forEach(function (row, i) {
+            var halfWidth = row.scrollWidth / 2;
+            var isRight   = row.classList.contains('carousel-row--right');
+            var progress  = isRight
+                ? (finalXArr[i] + halfWidth) / halfWidth
+                : -finalXArr[i] / halfWidth;
+            progress = Math.max(0, Math.min(1, progress));
+            // Aplicar delay negativo para retomar desde la posición actual
+            row.style.animationDelay    = -(progress * DURATION) + 's';
+            row.style.transform         = '';
+            row.style.animationName     = '';        // quita override 'none'
+            row.style.animationPlayState = 'running'; // override al CSS :hover
+        });
+    }
+
+    var isDown    = false;
+    var startX    = 0;
+    var startY    = 0;
+    var startArr  = [];
+    var direction = null; // 'h' | 'v' | null (sin determinar)
+
+    function clientX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+    function clientY(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
+
+    // Al salir del wrapper (sin drag activo) limpiar el override de play-state
+    wrapper.addEventListener('mouseleave', function () {
+        if (isDown) return;
+        rows.forEach(function (row) { row.style.animationPlayState = ''; });
+    });
+
+    function onStart(e) {
+        isDown    = true;
+        startX    = clientX(e);
+        startY    = clientY(e);
+        direction = null;
+        startArr  = rows.map(getTranslateX);
+        // No congelamos la animación ni hacemos preventDefault hasta saber la dirección
+    }
+
+    function onMove(e) {
+        if (!isDown) return;
+        var dx = clientX(e) - startX;
+        var dy = clientY(e) - startY;
+
+        // Determinar dirección con el primer movimiento significativo
+        if (direction === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+            direction = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+            if (direction === 'h') {
+                // Gesto horizontal: congelar animaciones y activar drag
+                rows.forEach(function (row, i) {
+                    row.style.animationName = 'none';
+                    row.style.transform     = 'translateX(' + startArr[i] + 'px)';
+                });
+                wrapper.classList.add('is-dragging');
+            }
+        }
+
+        if (direction === 'h') {
+            e.preventDefault(); // bloquear scroll vertical solo si es arrastre horizontal
+            rows.forEach(function (row, i) {
+                row.style.transform = 'translateX(' + (startArr[i] + dx) + 'px)';
+            });
+        }
+    }
+
+    function onEnd(e) {
+        if (!isDown) return;
+        isDown = false;
+        if (direction === 'h') {
+            wrapper.classList.remove('is-dragging');
+            var cx    = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+            var delta = cx - startX;
+            resumeRows(startArr.map(function (x) { return x + delta; }));
+        }
+        direction = null;
+    }
+
+    wrapper.addEventListener('mousedown',  onStart);
+    window.addEventListener('mousemove',   onMove);
+    window.addEventListener('mouseup',     onEnd);
+    wrapper.addEventListener('touchstart', onStart, { passive: true });
+    window.addEventListener('touchmove',   onMove,  { passive: false });
+    window.addEventListener('touchend',    onEnd);
+})();
+
+/* ─── 7. BONUS ACCORDION ─── */
 document.querySelectorAll('.bonus-row').forEach(function (row) {
     row.addEventListener('click', function () {
         var isOpen = row.classList.contains('open');
