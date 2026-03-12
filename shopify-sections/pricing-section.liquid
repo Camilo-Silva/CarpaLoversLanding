@@ -17,10 +17,26 @@
   }
 
   /* ── Estrellas y reseñas ── */
-  .cl-pricing-stars {
-    color: {{ section.settings.stars_color }};
-    font-size: 1.2rem;
+  /* ── Estrellas parciales ── */
+  .cl-stars-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1;
     margin-bottom: 4px;
+  }
+  .cl-stars-bg {
+    color: #ddd;
+    letter-spacing: 2px;
+  }
+  .cl-stars-fg {
+    position: absolute;
+    top: 0; left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: {{ section.settings.stars_color }};
+    letter-spacing: 2px;
+    width: {% assign pct = section.settings.rating_value | divided_by: 50.0 | times: 100 %}{{ pct }}%;
   }
   .cl-pricing-reviews {
     font-size: .85rem;
@@ -208,7 +224,10 @@
   <div class="cl-pricing-box">
 
     <!-- Estrellas + reseñas -->
-    <div class="cl-pricing-stars">★★★★★</div>
+    <div class="cl-stars-wrapper">
+      <div class="cl-stars-bg">★★★★★</div>
+      <div class="cl-stars-fg">★★★★★</div>
+    </div>
     <div class="cl-pricing-reviews">
       <strong>{{ section.settings.rating }}</strong> de {{ section.settings.review_count }} Reseñas
     </div>
@@ -378,9 +397,18 @@
       "content": "Precio"
     },
     {
+      "type": "range",
+      "id": "rating_value",
+      "label": "Rating para estrellas (valor × 10, ej: 4.7 → 47)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 47
+    },
+    {
       "type": "text",
       "id": "rating",
-      "label": "Puntuación",
+      "label": "Puntuación (texto)",
       "default": "4.7/5"
     },
     {
