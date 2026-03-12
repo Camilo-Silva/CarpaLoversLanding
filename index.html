@@ -1,0 +1,1413 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin Miedo a Acampar | Guía Definitiva del Campista — $14.999 ARS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --red:       #ad6639;
+            --red-dark:  #7a4520;
+            --dark:      #2a1a0e;
+            --light-bg:  #f8f2ed;
+            --text:      #3a2a1e;
+            --white:     #fff;
+            --yellow:    #ffd60a;
+            --green:     #2d6a4f;
+            --green-mid: #3d9970;
+            --shadow:    0 4px 20px rgba(0,0,0,0.1);
+            --cream:     #f8f2ed;
+            --blue-light:#cdf3f6;
+            --pink-light:#fed3da;
+            --violet:    #d1ccec;
+        }
+
+        /* ===== FLOATING MOBILE CTA ===== */
+        @keyframes floatBounce {
+            0%,100% { transform:translateX(-50%) translateY(0) scale(1); box-shadow:0 6px 24px rgba(0,0,0,0.35); }
+            40%      { transform:translateX(-50%) translateY(-6px) scale(1.06); box-shadow:0 14px 32px rgba(0,0,0,0.3); }
+            60%      { transform:translateX(-50%) translateY(-3px) scale(1.03); }
+        }
+        .float-cta {
+            display:none;
+            position:fixed;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            z-index:9999;
+            background:linear-gradient(135deg,#1e9e4f,#27ae60);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1rem;
+            padding:14px 32px;
+            border-radius:50px;
+            box-shadow:0 6px 24px rgba(0,0,0,0.35);
+            text-decoration:none;
+            white-space:nowrap;
+            letter-spacing:.5px;
+            align-items:center;
+            gap:10px;
+            animation:floatBounce 2.2s ease-in-out infinite;
+        }
+        .float-cta:hover { animation:none; transform:translateX(-50%) translateY(-2px) scale(1.04); box-shadow:0 10px 28px rgba(0,0,0,0.4); }
+        @media(max-width:768px) { .float-cta { display:flex; } }
+
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Open Sans',sans-serif; color:var(--text); line-height:1.7; background:var(--cream); }
+        h1,h2,h3,h4 { font-family:'Montserrat',sans-serif; line-height:1.2; }
+        .container { max-width:900px; margin:0 auto; padding:0 20px; }
+
+        /* ===== COUNTDOWN EN PRICING BOX ===== */
+        .pricing-countdown {
+            background:linear-gradient(135deg,#fff8f0,#fdeede);
+            border:2px solid #e8a87c;
+            border-radius:12px;
+            padding:16px 18px;
+            margin:14px 0;
+            text-align:center;
+            font-family:'Montserrat',sans-serif;
+        }
+        .pricing-countdown .pc-header {
+            font-size:.85rem;
+            font-weight:700;
+            color:#7a4520;
+            margin-bottom:10px;
+        }
+        .pricing-countdown .pc-digits {
+            display:flex;
+            justify-content:center;
+            gap:6px;
+            align-items:flex-end;
+            margin-bottom:10px;
+        }
+        .pricing-countdown .pc-unit {
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:2px;
+        }
+        .pricing-countdown .pc-num {
+            background:#7a4520;
+            color:#fff;
+            font-size:1.8rem;
+            font-weight:900;
+            padding:6px 14px;
+            border-radius:8px;
+            min-width:52px;
+            line-height:1;
+        }
+        .pricing-countdown .pc-lbl {
+            font-size:.65rem;
+            font-weight:700;
+            color:#ad6639;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+        .pricing-countdown .pc-sep {
+            font-size:1.8rem;
+            font-weight:900;
+            color:#ad6639;
+            line-height:1;
+            padding-bottom:6px;
+        }
+        .pricing-countdown .pc-footer {
+            font-size:.75rem;
+            color:#888;
+            font-family:'Open Sans',sans-serif;
+        }
+
+        /* ===== TICKER BAR ===== */
+        .ticker-bar {
+            background:#2a1a0e;
+            padding:10px 0;
+            overflow:hidden;
+            position:relative;
+            border-top:2px solid #ad6639;
+            border-bottom:2px solid #ad6639;
+        }
+        .ticker-track {
+            display:flex;
+            width:max-content;
+            animation: ticker-scroll 28s linear infinite;
+        }
+        .ticker-bar:hover .ticker-track { animation-play-state:paused; }
+        .ticker-item {
+            display:inline-flex;
+            align-items:center;
+            gap:9px;
+            white-space:nowrap;
+            padding:0 48px;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.85rem;
+            color:#fff;
+            text-transform:uppercase;
+            letter-spacing:.6px;
+        }
+        .ticker-item .t-icon {
+            font-size:.9rem;
+            flex-shrink:0;
+            width:16px;
+            text-align:center;
+            color:#ad6639;
+        }
+        @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== ML REPUTATION WIDGET ===== */
+        .ml-rep-section { background:var(--violet); padding:40px 20px; text-align:center; }
+        .ml-rep-img {
+            display:block;
+            max-width:380px;
+            width:100%;
+            margin:0 auto 16px;
+            border-radius:12px;
+            box-shadow:0 3px 14px rgba(0,0,0,.1);
+        }
+        .ml-live {
+            display:inline-flex; align-items:center; gap:8px;
+            background:#fff3e0; border:1px solid #ff9800; color:#e65100;
+            padding:7px 16px; border-radius:20px;
+            font-family:'Montserrat',sans-serif; font-weight:700; font-size:.82rem;
+        }
+        .ml-live-dot {
+            width:8px; height:8px; border-radius:50%;
+            background:#f44336; animation:blink 1s infinite; flex-shrink:0;
+        }
+
+        /* ===== PAYMENT ===== */
+        .payment-section { background:var(--cream); padding:44px 20px; text-align:center; border-top:1px solid #e8dbd3; }
+        .payment-section h3 {
+            font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:600;
+            color:#999; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:22px;
+        }
+        .pay-img {
+            display:block;
+            max-width:420px;
+            width:100%;
+            margin:0 auto 18px;
+        }
+        .cuotas-note { font-size:.88rem; color:#555; margin-top:4px; }
+        .ssl-badge {
+            display:inline-flex; align-items:center; gap:6px;
+            background:#e8f5e9; color:#2e7d32; font-size:.78rem; font-weight:700;
+            padding:6px 14px; border-radius:20px; margin-top:14px;
+            font-family:'Montserrat',sans-serif;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--cream);
+            color:var(--dark);
+            text-align:center;
+            padding:75px 20px 65px;
+        }
+        .pre-headline {
+            display:inline-block;
+            background:rgba(173,102,57,.12);
+            border:1px solid var(--red);
+            color:var(--red);
+            font-family:'Montserrat',sans-serif;
+            font-size:.82rem;
+            font-weight:700;
+            padding:6px 18px;
+            border-radius:20px;
+            margin-bottom:20px;
+            text-transform:uppercase;
+            letter-spacing:1.2px;
+        }
+        .hero h1 { font-size:2.8rem; font-weight:900; margin-bottom:20px; color:var(--dark); }
+        .hero h1 .hl  { color:var(--red); }
+        .hero h1 .red { color:#c0392b; }
+        .hero-sub {
+            font-size:1.15rem;
+            color:#5a3e2e;
+            max-width:680px;
+            margin:0 auto 8px;
+        }
+        .hero-social-proof { font-size:.9rem; color:#7a5a47; margin-bottom:38px; }
+        .hero-social-proof span { color:var(--red); font-weight:700; }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-wrap { text-align:center; }
+        .cta-btn {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            background:linear-gradient(180deg,#c97a46,#ad6639);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-size:1.2rem;
+            font-weight:900;
+            text-decoration:none;
+            padding:22px 36px;
+            border-radius:10px;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+            box-shadow:0 8px 0 #7a4520, 0 12px 30px rgba(173,102,57,.4);
+            transition:all .15s ease;
+            max-width:640px;
+            width:100%;
+            margin:10px auto;
+            position:relative;
+            overflow:hidden;
+        }
+        .cta-btn::after {
+            content:'';
+            position:absolute;
+            top:0; left:-100%;
+            width:60%; height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+            animation:shimmer 2.5s infinite;
+        }
+        @keyframes shimmer { 0%{left:-100%} 100%{left:200%} }
+        .cta-btn:hover {
+            transform:translateY(3px);
+            box-shadow:0 5px 0 #7a4520, 0 8px 18px rgba(173,102,57,.3);
+        }
+        .cta-sub { font-size:.78rem; color:#999; margin-top:8px; }
+        .cta-sub.light { color:rgba(255,255,255,.6); }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display:inline-block;
+            background:rgba(173,102,57,.12);
+            color:#ad6639;
+            font-family:'Montserrat',sans-serif;
+            font-size:.75rem;
+            font-weight:700;
+            padding:4px 14px;
+            border-radius:20px;
+            margin-bottom:12px;
+            text-transform:uppercase;
+            letter-spacing:1.2px;
+        }
+
+        /* ===== STORY ===== */
+        .story-section { padding:70px 20px; background:var(--cream); }
+        .story-section h2 { font-size:2.1rem; margin-bottom:28px; color:var(--dark); }
+        .story-content {
+            font-size:1.05rem;
+            border-left:4px solid var(--red);
+            padding-left:22px;
+        }
+        .story-content p { margin-bottom:18px; color:#444; }
+        .story-highlight {
+            background:linear-gradient(135deg,#f5ede4,#eeddd0);
+            border:1px solid #d4a07a;
+            border-radius:10px;
+            padding:18px 24px;
+            margin-top:24px;
+            font-family:'Montserrat',sans-serif;
+            font-size:1.05rem;
+            font-weight:600;
+            color:var(--dark);
+        }
+
+        /* ===== BENEFITS ===== */
+        .benefits-section { background:var(--blue-light); padding:70px 20px; }
+        .section-title { text-align:center; font-size:2.1rem; margin-bottom:8px; }
+        .section-subtitle { text-align:center; color:#666; margin-bottom:44px; font-size:.97rem; }
+        .benefits-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .benefit-card {
+            background:#fff;
+            border-radius:12px;
+            box-shadow:var(--shadow);
+            border-left:4px solid var(--red);
+            overflow:hidden;
+            cursor:pointer;
+        }
+        .benefit-card-header {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:16px 18px;
+            user-select:none;
+        }
+        .b-icon { font-size:1.2rem; color:var(--red); flex-shrink:0; }
+        .benefit-card-header h4 { font-size:.95rem; margin:0; flex:1; color:var(--dark); }
+        .b-arr {
+            font-size:.7rem;
+            color:var(--red);
+            transition:transform .3s;
+            flex-shrink:0;
+        }
+        .benefit-card.open .b-arr { transform:rotate(180deg); }
+        .benefit-card-body {
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .35s ease, padding .3s ease;
+            padding:0 18px;
+            font-size:.88rem;
+            color:#555;
+        }
+        .benefit-card.open .benefit-card-body { max-height:200px; padding:0 18px 16px; }
+
+        /* ===== TESTIMONIALS CAROUSEL ===== */
+        .testimonials-section { padding:70px 0; background:var(--pink-light); overflow:hidden; }
+        .testimonials-section > .container { padding-bottom:40px; }
+        .carousel-wrapper { overflow:hidden; }
+        .carousel-row {
+            display:flex;
+            width:max-content;
+            gap:20px;
+            padding:0 10px 20px;
+            animation: scroll-left 38s linear infinite;
+        }
+        .carousel-row--right {
+            animation: scroll-right 38s linear infinite;
+        }
+        @keyframes scroll-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .carousel-wrapper:hover .carousel-row { animation-play-state:paused; }
+        .t-card {
+            background:#fff;
+            border-radius:14px;
+            padding:24px;
+            border:1px solid #f5d8dc;
+            position:relative;
+            width:360px;
+            flex-shrink:0;
+            box-shadow:0 2px 14px rgba(173,102,57,.08);
+        }
+        .t-card::before {
+            content:'"';
+            position:absolute;
+            top:-8px; left:18px;
+            font-size:4.5rem;
+            color:var(--red);
+            font-family:Georgia,serif;
+            line-height:1;
+            opacity:.15;
+        }
+        .stars { color:var(--yellow); font-size:1rem; margin-bottom:10px; }
+        .t-text { font-size:.93rem; color:#444; font-style:italic; margin-bottom:16px; }
+        .t-author { display:flex; align-items:center; gap:11px; }
+        .t-avatar {
+            width:44px; height:44px;
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.95rem;
+            color:#fff;
+            flex-shrink:0;
+            overflow:hidden;
+        }
+        .t-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+        .t-name  { font-weight:700; font-size:.88rem; color:#222; }
+        .t-city  { font-size:.78rem; color:#888; }
+        .verified {
+            display:inline-flex; align-items:center; gap:3px;
+            background:#e8f5e9; color:#2e7d32;
+            font-size:.7rem; font-weight:700;
+            padding:2px 8px; border-radius:10px; margin-top:3px;
+        }
+
+        /* ===== PRODUCT CARD ===== */
+        .product-card-section { background:var(--cream); padding:50px 20px; }
+        .product-card {
+            background:#fff;
+            border:1px solid #dde0e7;
+            border-radius:14px;
+            max-width:420px;
+            margin:0 auto;
+            overflow:hidden;
+            box-shadow:0 4px 20px rgba(0,0,0,.09);
+        }
+        .product-card-img {
+            width:100%;
+            display:block;
+            background:#eef3fb;
+        }
+        .product-card-body { padding:22px 24px 28px; }
+        .product-card-title {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:1.35rem;
+            color:#111;
+            margin-bottom:14px;
+            line-height:1.25;
+        }
+        .product-price-row {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:14px;
+            flex-wrap:wrap;
+        }
+        .product-price-old {
+            font-size:.95rem;
+            color:#999;
+            text-decoration:line-through;
+        }
+        .product-price-new {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:1.6rem;
+            color:#111;
+        }
+        .product-off-badge {
+            background:var(--red);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.75rem;
+            padding:4px 10px;
+            border-radius:6px;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+        .product-stock {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            font-size:.82rem;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            color:#e65100;
+            margin-bottom:18px;
+        }
+        .product-stock-dot {
+            width:7px; height:7px; border-radius:50%;
+            background:#f44336; animation:blink 1s infinite; flex-shrink:0;
+        }
+        .product-cta {
+            display:block;
+            background:linear-gradient(180deg,#1e9e4f,#178040);
+            color:#fff;
+            text-align:center;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:1rem;
+            padding:14px;
+            border-radius:8px;
+            text-decoration:none;
+            transition:opacity .15s;
+        }
+        .product-cta:hover { opacity:.88; }
+
+        /* ===== PRICING BOX ===== */
+        .pricing-section { background:var(--cream); padding:44px 20px; border-top:1px solid #e8dbd3; }
+        .pricing-box {
+            max-width:480px;
+            margin:0 auto;
+            text-align:center;
+        }
+        .pricing-stars {
+            color:#f5a623;
+            font-size:1.2rem;
+            margin-bottom:4px;
+        }
+        .pricing-reviews {
+            font-size:.85rem; color:#777; margin-bottom:22px;
+        }
+        .pricing-reviews strong { color:#333; }
+        .pricing-main-price {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:2.5rem;
+            color:#111;
+            line-height:1;
+            margin-bottom:6px;
+        }
+        .pricing-old-price {
+            font-size:1rem;
+            color:#aaa;
+            text-decoration:line-through;
+            margin-bottom:16px;
+        }
+        .pricing-savings-btn {
+            display:inline-block;
+            background:linear-gradient(135deg,#00b140,#007d2e);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1rem;
+            padding:13px 28px;
+            border-radius:30px;
+            margin-bottom:10px;
+            box-shadow:0 4px 14px rgba(0,177,64,.35);
+        }
+        .pricing-launch {
+            font-size:.82rem; color:#666; margin-bottom:24px;
+        }
+        .pricing-launch i { color:#f5a623; }
+        .pricing-offer-btn {
+            display:block;
+            border:2px solid var(--red);
+            color:var(--red);
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1.05rem;
+            padding:15px;
+            border-radius:10px;
+            text-decoration:none;
+            margin-bottom:24px;
+            transition:background .15s, color .15s;
+        }
+        .pricing-offer-btn:hover { background:var(--red); color:#fff; }
+        .pricing-trust-list {
+            list-style:none;
+            text-align:left;
+            display:inline-block;
+            margin-bottom:22px;
+        }
+        .pricing-trust-list li {
+            font-size:.88rem;
+            color:#444;
+            margin-bottom:8px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+        .pricing-live {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            font-size:.88rem;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            color:#333;
+            margin-bottom:10px;
+        }
+        .pricing-live-dot {
+            width:10px; height:10px; border-radius:50%;
+            background:#3483fa; flex-shrink:0;
+        }
+        .pricing-urgency {
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:.85rem;
+            color:var(--red);
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+
+        /* ===== OFFER STACK ===== */
+        .offer-section {
+            padding:70px 20px;
+            background:linear-gradient(180deg,#2a1a0e,#3d2410);
+            color:#fff;
+            text-align:center;
+        }
+        .offer-section .section-label { background:rgba(255,214,10,.15); color:var(--yellow); }
+        .offer-section .section-title  { color:#fff; }
+        .offer-section .section-subtitle { color:#aaa; }
+        .offer-box {
+            background:rgba(255,255,255,.05);
+            border:2px solid rgba(255,214,10,.3);
+            border-radius:16px;
+            padding:40px;
+        }
+        .offer-box h3 { font-size:1.7rem; margin-bottom:28px; color:var(--yellow); }
+        .bonus-row {
+            background:rgba(255,255,255,.07);
+            border-radius:10px;
+            margin-bottom:14px;
+            text-align:left;
+            border-left:4px solid var(--yellow);
+            overflow:hidden;
+            cursor:pointer;
+        }
+        .bonus-row-header {
+            display:flex;
+            align-items:center;
+            gap:14px;
+            padding:16px 20px;
+            user-select:none;
+        }
+        .bonus-row.open .bonus-b-arr { transform:rotate(180deg); }
+        .bonus-b-arr {
+            font-size:.7rem;
+            color:var(--yellow);
+            transition:transform .3s;
+            margin-left:auto;
+            flex-shrink:0;
+        }
+        .bonus-row-body {
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .35s ease, padding .3s ease;
+            padding:0 20px;
+            font-size:.88rem;
+            color:#bbb;
+        }
+        .bonus-row.open .bonus-row-body { max-height:120px; padding:0 20px 16px; }
+        .bonus-emoji { font-size:1.9rem; flex-shrink:0; }
+        .bonus-name {
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:1rem;
+            margin-bottom:5px;
+            color:#fff;
+        }
+        .bonus-val {
+            display:inline-block;
+            background:rgba(255,214,10,.15);
+            color:var(--yellow);
+            font-size:.72rem;
+            font-weight:700;
+            padding:2px 10px;
+            border-radius:10px;
+            margin-bottom:7px;
+        }
+        .bonus-desc { font-size:.88rem; color:#bbb; }
+        .value-stack {
+            margin-top:32px;
+            padding:24px;
+            background:rgba(255,255,255,.05);
+            border-radius:12px;
+        }
+        .real-value { text-decoration:line-through; color:#e8a87c; font-size:1rem; font-weight:600; margin-bottom:8px; }
+        .big-price {
+            font-family:'Montserrat',sans-serif;
+            font-size:3.2rem;
+            font-weight:900;
+            color:var(--yellow);
+            line-height:1;
+        }
+        .ars-price { font-size:1.1rem; color:#999; margin-top:6px; }
+
+        /* ===== GUARANTEE ===== */
+        .guarantee-section { background:var(--dark); color:#fff; padding:70px 20px; text-align:center; }
+        .guarantee-box {
+            border:2px solid #2a2a2a;
+            padding:45px;
+            border-radius:16px;
+            background:rgba(255,255,255,.04);
+            max-width:760px;
+            margin:0 auto;
+        }
+        .g-icon   { font-size:4rem; margin-bottom:18px; color:var(--yellow); }
+        .b-icon i, .bonus-emoji i { color:var(--red); }
+        .guarantee-box h2 { color:var(--yellow); margin-bottom:18px; font-size:1.9rem; }
+        .guarantee-box p  { font-size:1.02rem; color:#ccc; margin-bottom:18px; }
+
+        /* ===== FAQ ===== */
+        .faq-section { padding:70px 20px; background:var(--violet); }
+        .faq-section h2 { text-align:center; font-size:2rem; margin-bottom:38px; }
+        .faq-item { background:#fff; border-radius:10px; margin-bottom:10px; border:1px solid #ccc7e0; overflow:hidden; }
+        .faq-q {
+            padding:17px 22px;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.97rem;
+            cursor:pointer;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            color:var(--dark);
+            user-select:none;
+        }
+        .faq-q .arr { transition:transform .3s; font-size:.75rem; color:var(--red); }
+        .faq-a {
+            padding:0 22px;
+            font-size:.93rem;
+            color:#555;
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .4s ease, padding .3s ease;
+        }
+        .faq-item.open .faq-a  { max-height:400px; padding:0 22px 18px; }
+        .faq-item.open .arr    { transform:rotate(180deg); }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background:linear-gradient(135deg,#7a4520,#ad6639);
+            color:#fff;
+            padding:70px 20px;
+            text-align:center;
+        }
+        .final-cta h2 { font-size:2.3rem; margin-bottom:14px; }
+        .final-cta p  { font-size:1.08rem; color:rgba(255,255,255,.85); margin-bottom:28px; max-width:680px; margin-left:auto; margin-right:auto; }
+
+        /* ===== FOOTER ===== */
+        footer { background:#0d0d0d; color:#555; text-align:center; padding:28px 20px; font-size:.78rem; }
+        footer a { color:#777; text-decoration:none; }
+        footer a:hover { color:#fff; }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position:fixed;
+            top:60px; right:14px;
+            z-index:10000;
+            display:flex;
+            flex-direction:column;
+            gap:7px;
+            pointer-events:none;
+        }
+        .toast {
+            background:#fff;
+            border-left:3px solid var(--green-mid);
+            border-radius:8px;
+            padding:8px 11px;
+            box-shadow:0 4px 16px rgba(0,0,0,.14);
+            display:flex;
+            align-items:center;
+            gap:8px;
+            max-width:240px;
+            font-size:.75rem;
+            animation:toastIn .3s ease forwards;
+            font-family:'Open Sans',sans-serif;
+        }
+        .toast.out { animation:toastOut .3s ease forwards; }
+        .t-av {
+            width:30px; height:30px;
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.78rem;
+            color:#fff;
+            flex-shrink:0;
+        }
+        .toast-body strong { display:block; color:#111; font-size:.78rem; line-height:1.2; }
+        .toast-body span   { color:#666; font-size:.72rem; }
+        .toast-check { color:var(--green-mid); font-size:.95rem; margin-left:auto; flex-shrink:0; }
+        @keyframes toastIn  { from{opacity:0;transform:translateX(28px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes toastOut { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(28px)} }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px){
+            .hero h1          { font-size:2rem; }
+            .benefits-grid    { grid-template-columns:1fr; }
+            .t-card           { width:290px; }
+            .offer-box        { padding:22px 16px; }
+            .guarantee-box    { padding:24px 16px; }
+            .cta-btn          { font-size:1rem; padding:18px 18px; }
+            .big-price        { font-size:2.4rem; }
+            .final-cta h2     { font-size:1.7rem; }
+            .section-title    { font-size:1.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ BARRA DE URGENCIA ═══════════════════ -->
+<!-- ═══════════════════ TICKER BAR ═══════════════════ -->
+<div class="ticker-bar" aria-label="Información de compra" role="marquee">
+    <div class="ticker-track">
+        <!-- Primer set -->
+        <span class="ticker-item"><i class="t-icon fa-solid fa-shield-halved"></i> Pago 100% Seguro con Mercado Pago</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-bolt"></i> 50% OFF por Tiempo Limitado</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-envelope"></i> Acceso Inmediato por Mail</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-globe"></i> COMPRA DESDE TODA LATAM PAGANDO EN TU MONEDA LOCAL</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-lock"></i> PAGO 100% SEGURO: ACEPTAMOS TARJETAS DE TODO EL MUNDO</span>
+        <!-- Duplicado para loop seamless -->
+        <span class="ticker-item"><i class="t-icon fa-solid fa-shield-halved"></i> Pago 100% Seguro con Mercado Pago</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-bolt"></i> 50% OFF por Tiempo Limitado</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-envelope"></i> Acceso Inmediato por Mail</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-globe"></i> COMPRA DESDE TODA LATAM PAGANDO EN TU MONEDA LOCAL</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-lock"></i> PAGO 100% SEGURO: ACEPTAMOS TARJETAS DE TODO EL MUNDO</span>
+    </div>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+    <div class="container">
+        <p class="pre-headline"><i class="fa-solid fa-campground"></i> Para todos los que quieren acampar pero no saben por dónde empezar</p>
+        <h1>
+            La guía rápida para tu primera aventura en camping<br>
+            <span class="red">(sin errores de principiante ni gastar de más)</span>
+        </h1>
+        <p class="hero-sub">Aprendé en 2 horas todo lo que necesitás para acampar por primera vez con seguridad, incluso si nunca armaste una carpa.</p>
+        <p class="hero-social-proof">Ya la descargaron <span>+2.000 campistas</span> en toda América Latina &nbsp;★★★★★</p>
+        <div class="cta-wrap">
+            <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-arrow-right"></i> ¡SÍ! QUIERO MI GUÍA + BONOS VIP POR SOLO $14.999</a>
+            <p class="cta-sub"><i class="fa-solid fa-lock"></i> Compra segura &nbsp;·&nbsp; <i class="fa-solid fa-bolt"></i> Acceso instantáneo &nbsp;·&nbsp; <i class="fa-solid fa-shield-halved"></i> Garantía 7 días sin preguntas</p>
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════ PRODUCT SHOWCASE ═══════════════════ -->
+<section class="product-card-section">
+    <div class="container">
+        <div class="product-card">
+            <img src="image/Ebook.png" alt="De Cero a Campista — Guía Rápida para Campistas" class="product-card-img">
+            <div class="product-card-body">
+                <div class="product-card-title">De Cero a Campista<br>+ 3 bonos VIP</div>
+                <div class="product-price-row">
+                    <span class="product-price-old">$30.000</span>
+                    <span class="product-price-new">$14.999</span>
+                    <span class="product-off-badge">OFERTA -50% OFF</span>
+                </div>
+                <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="product-cta">COMPRAR AHORA</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ PRICING BOX ═══════════════════ -->
+<section class="pricing-section">
+    <div class="pricing-box">
+        <div class="pricing-stars">★★★★★</div>
+        <div class="pricing-reviews"><strong>4.7/5</strong> de 1564 Reseñas</div>
+
+        <div class="pricing-main-price">$14.999</div>
+        <div class="pricing-old-price">$30.000</div>
+        <div class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $15.001</div>
+
+        <div class="pricing-countdown">
+            <div class="pc-header"><i class="fa-regular fa-bell"></i> Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!</div>
+            <div class="pc-digits">
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-h">01</span>
+                    <span class="pc-lbl">horas</span>
+                </div>
+                <span class="pc-sep">:</span>
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-m">00</span>
+                    <span class="pc-lbl">minutos</span>
+                </div>
+                <span class="pc-sep">:</span>
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-s">00</span>
+                    <span class="pc-lbl">segundos</span>
+                </div>
+            </div>
+            <div class="pc-footer">Después de que el contador llegue a cero, esta oferta desaparecerá.</div>
+        </div>
+
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-offer-btn"><i class="fa-solid fa-fire"></i> ¡OFERTA TERMINA HOY!</a>
+
+        <ul class="pricing-trust-list">
+            <li><i class="fa-solid fa-bolt" style="color:#f5a623"></i> Acceso inmediato por mail</li>
+            <li><i class="fa-solid fa-lock" style="color:#555"></i> Pago seguro mediante Mercado Pago</li>
+            <li><i class="fa-solid fa-square-check" style="color:#00b140"></i> Garantía de satisfacción 7 días</li>
+        </ul>
+
+        <div class="pricing-live">
+            <div class="pricing-live-dot"></div>
+            <span><span id="pricing-live-count">10</span> personas viendo este producto</span>
+        </div>
+        <div class="pricing-urgency"><i class="fa-solid fa-fire"></i> El precio está a punto de aumentar</div>
+    </div>
+</section>
+
+<!-- ═══════════════════ HISTORIA / EPIPHANY BRIDGE ═══════════════════ -->
+<section class="story-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-book-open"></i> La historia detrás de esta guía</div>
+        <h2>"Durante años pensé que acampar no era para mí."</h2>
+        <div class="story-content">
+            
+            <p><strong>Hasta que me animé.</strong></p>
+            <p>Después de tormentas, carpas mal armadas y muchos errores de principiante, descubrí algo:</p>
+            <p><em>Acampar puede ser simple si alguien te explica lo esencial.</em></p>
+            <p>Por eso creé esta guía.</p>
+            <p><strong>Para que puedas salir este mismo fin de semana sin miedo.</strong></p>
+        </div>
+        <div class="story-highlight">
+            <i class="fa-solid fa-lightbulb"></i> No es teoría — es lo que funciona de verdad en el campo, probado en cada salida.
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ BENEFICIOS ═══════════════════ -->
+<section class="benefits-section">
+    <div class="container">
+        <h2 class="section-title">¿Qué vas a descubrir dentro de<br>"Sin Miedo a Acampar"?</h2>
+        <p class="section-subtitle">11 capítulos de experiencia real — todo lo que Andrea aprendió salida a salida, sin teoría de relleno</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-campground"></i></span>
+                    <h4>Camping Organizado vs. Agreste: Cuál Elegir Primero</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Por qué empezar en campings organizados te salva de los errores más comunes — y exactamente cuándo dar el salto al camping agreste sin miedo.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-map"></i></span>
+                    <h4>Planificación Previa Paso a Paso</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Cómo elegir el destino, verificar el nivel de dificultad de acceso, consultar el clima y conocer los permisos y reglas antes de salir.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+                    <h4>Equipo Esencial que No Puede Faltar</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Carpa, bolsa de dormir, aislante, cocina portátil, iluminación y ropa en capas. La lista exacta que usamos en cada salida.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-circle-check"></i></span>
+                    <h4>Checklist + Prueba Antes de Salir</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Armá la carpa en tu casa antes del viaje, probá el saco de dormir y revisá las baterías. Los pasos que evitan las malas sorpresas.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-cloud-bolt"></i></span>
+                    <h4>Tormentas, Terreno y Canaletas</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Cómo elegir terreno con buen drenaje, orientar la carpa al viento, usar lonas extras y cavar canaletas para que el agua nunca entre.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-card-header">
+                    <span class="b-icon"><i class="fa-solid fa-utensils"></i></span>
+                    <h4>Comida, Seguridad y Errores Comunes</h4>
+                    <span class="b-arr">▼</span>
+                </div>
+                <div class="benefit-card-body">Snacks sin heladera, botiquín básico y los errores que cometen casi todos los novatos — descritos para que vos no los repitas.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ TESTIMONIOS ═══════════════════ -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-comments"></i> Historias reales</div>
+        <h2 class="section-title">Gente Como Vos que Ya Lo Vivió</h2>
+        <p class="section-subtitle">Del miedo al primer acampe a querer repetirlo todas las semanas</p>
+    </div>
+    <div class="carousel-wrapper">
+
+        <!-- ── Fila 1: desplazamiento hacia la izquierda ── -->
+        <div class="carousel-row">
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Siempre admiré las fotos de camping pero nunca me animé. Leí la guía el viernes, probé armar la carpa en el patio como dice Andrea, y el sábado la monté en el camping sin problemas. Mi familia quedó impresionada. Volvimos dos veces ese mes."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcos R."></div>
+                    <div><div class="t-name">Marcos R.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Buenos Aires</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El checklist antes de salir es oro puro. Nunca nos olvidamos de nada. Seguimos el consejo de empezar en un camping organizado y fue perfecto: baños, luz, proveeduría y otros campistas que nos ayudaron cuando dudamos. Dormimos abrigadísimas gracias a los tips de capas."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sofía G."></div>
+                    <div><div class="t-name">Sofía G.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Córdoba</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Fuimos al Camping Ayun Elum en San Rafael, Mendoza — uno de los que recomienda la guía. Armamos la carpa a orillas del río siguiendo las instrucciones de terreno y drenaje. Cayó una tormenta y no entró ni una gota. Una experiencia 10/10."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Facundo H."></div>
+                    <div><div class="t-name">Facundo H.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Mendoza</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <!-- duplicado para loop seamless -->
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Siempre admiré las fotos de camping pero nunca me animé. Leí la guía el viernes, probé armar la carpa en el patio como dice Andrea, y el sábado la monté en el camping sin problemas. Mi familia quedó impresionada. Volvimos dos veces ese mes."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcos R."></div>
+                    <div><div class="t-name">Marcos R.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Buenos Aires</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El checklist antes de salir es oro puro. Nunca nos olvidamos de nada. Seguimos el consejo de empezar en un camping organizado y fue perfecto: baños, luz, proveeduría y otros campistas que nos ayudaron cuando dudamos. Dormimos abrigadísimas gracias a los tips de capas."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sofía G."></div>
+                    <div><div class="t-name">Sofía G.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Córdoba</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Fuimos al Camping Ayun Elum en San Rafael, Mendoza — uno de los que recomienda la guía. Armamos la carpa a orillas del río siguiendo las instrucciones de terreno y drenaje. Cayó una tormenta y no entró ni una gota. Una experiencia 10/10."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Facundo H."></div>
+                    <div><div class="t-name">Facundo H.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Mendoza</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Fila 2: desplazamiento hacia la derecha ── -->
+        <div class="carousel-row carousel-row--right">
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Viajé sola por primera vez a los 34 años. Tenía mil miedos. El capítulo de seguridad y emergencias me dio una tranquilidad enorme. Llegué sabiendo cómo elegir el terreno, dónde no instalar la carpa y qué hacer si cambia el clima. Ya planifiqué mi segundo viaje."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Carolina V."></div>
+                    <div><div class="t-name">Carolina V.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Rosario</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Nunca había acampado y mis amigos me invitaron. Leí la guía el viernes a la noche, el sábado era yo el que les explicaba cómo evitar instalar la carpa en una depresión, cómo cavar la canaleta y cómo orientarla al viento. Me convertí en el experto del grupo."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Nicolás T."></div>
+                    <div><div class="t-name">Nicolás T.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Salta</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Lo que más valoro es que es la experiencia real de alguien que acampa con su familia, incluso con una nena chica. Nos animamos a llevar a nuestros hijos y fue lo mejor que hicimos. La guía de alimentación y cocina nos simplificó todo. ¡Queremos más!"</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Diego M."></div>
+                    <div><div class="t-name">Diego M.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Santa Fe</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <!-- duplicado para loop seamless -->
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Viajé sola por primera vez a los 34 años. Tenía mil miedos. El capítulo de seguridad y emergencias me dio una tranquilidad enorme. Llegué sabiendo cómo elegir el terreno, dónde no instalar la carpa y qué hacer si cambia el clima. Ya planifiqué mi segundo viaje."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Carolina V."></div>
+                    <div><div class="t-name">Carolina V.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Rosario</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Nunca había acampado y mis amigos me invitaron. Leí la guía el viernes a la noche, el sábado era yo el que les explicaba cómo evitar instalar la carpa en una depresión, cómo cavar la canaleta y cómo orientarla al viento. Me convertí en el experto del grupo."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Nicolás T."></div>
+                    <div><div class="t-name">Nicolás T.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Salta</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Lo que más valoro es que es la experiencia real de alguien que acampa con su familia, incluso con una nena chica. Nos animamos a llevar a nuestros hijos y fue lo mejor que hicimos. La guía de alimentación y cocina nos simplificó todo. ¡Queremos más!"</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Diego M."></div>
+                    <div><div class="t-name">Diego M.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Santa Fe</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════ MID CTA ═══════════════════ -->
+<section style="background:var(--cream);padding:32px 20px;text-align:center;border-top:3px solid var(--pink-light);border-bottom:3px solid var(--pink-light);">
+    <div class="container">
+        <p style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);margin-bottom:6px;">¿Ya te convenciste?</p>
+        <p style="color:#777;margin-bottom:20px;font-size:.95rem;">La guía completa + 3 bonos VIP por un único pago de <strong style="color:var(--red);">$14.999</strong></p>
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn" style="display:inline-flex;"><i class="fa-solid fa-campground"></i> QUIERO MI GUÍA AHORA</a>
+        <p style="margin-top:14px;font-size:.8rem;color:#aaa;"><i class="fa-solid fa-shield-halved"></i> Garantía 7 días sin preguntas &nbsp;·&nbsp; <i class="fa-solid fa-bolt"></i> Acceso instantáneo</p>
+    </div>
+</section>
+
+<!-- ═══════════════════ ML REPUTATION ═══════════════════ -->
+<div class="ml-rep-section">
+    <div class="container">
+        <img src="image/ML.png" alt="MercadoLíder Platinum - Reputación del vendedor" class="ml-rep-img">
+        <div class="ml-live">
+            <div class="ml-live-dot"></div>
+            <span id="live-count">7</span>&nbsp;personas mirando esto ahora
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ OFERTA STACK ═══════════════════ -->
+<section class="offer-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-gift"></i> La oferta completa</div>
+        <h2 class="section-title">Esto No Es Solo un Ebook.</h2>
+        <p class="section-subtitle">Hoy te llevás el Paquete <strong style="color:var(--yellow)">"EXPEDICIÓN VIP"</strong> 100% GRATIS con tu compra.</p>
+
+        <div class="offer-box">
+            <h3><i class="fa-solid fa-box-open"></i> Todo lo que recibís hoy:</h3>
+
+            <div class="bonus-row">
+                <div class="bonus-row-header">
+                    <div class="bonus-emoji"><i class="fa-solid fa-book-open"></i></div>
+                    <div>
+                        <div class="bonus-name">Guía Principal: "Sin Miedo a Acampar"</div>
+                        <div class="bonus-val">INCLUIDO EN TU COMPRA</div>
+                    </div>
+                    <span class="bonus-b-arr">▼</span>
+                </div>
+                <div class="bonus-row-body">El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés.</div>
+            </div>
+
+            <div class="bonus-row">
+                <div class="bonus-row-header">
+                    <div class="bonus-emoji"><i class="fa-solid fa-map"></i></div>
+                    <div>
+                        <div class="bonus-name">Bono #1 — El Radar del Campista</div>
+                        <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                    </div>
+                    <span class="bonus-b-arr">▼</span>
+                </div>
+                <div class="bonus-row-body">La experiencia real de cada camping que visitamos: ruta, clima, terreno y secretos del lugar. Vas a la segura, siempre.</div>
+            </div>
+
+            <div class="bonus-row">
+                <div class="bonus-row-header">
+                    <div class="bonus-emoji"><i class="fa-solid fa-star"></i></div>
+                    <div>
+                        <div class="bonus-name">Bono #2 — Reviews Sin Filtro</div>
+                        <div class="bonus-val">VALOR: $24.000 ARS — HOY GRATIS</div>
+                    </div>
+                    <span class="bonus-b-arr">▼</span>
+                </div>
+                <div class="bonus-row-body">Análisis crudos y honestos de cada sitio. Cuáles valen cada peso y de cuáles tenés que huir sí o sí.</div>
+            </div>
+
+            <div class="bonus-row">
+                <div class="bonus-row-header">
+                    <div class="bonus-emoji"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <div class="bonus-name">Bono #3 — Checklist de Supervivencia de Lujo</div>
+                        <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                    </div>
+                    <span class="bonus-b-arr">▼</span>
+                </div>
+                <div class="bonus-row-body">La lista exacta que usamos antes de cada viaje. Tildá cada ítem y garantizá que nunca más vas a decir "¡Uh, me olvidé de...!"</div>
+            </div>
+
+            <div class="value-stack">
+                <div class="real-value">Valor Total Real: $60.000 ARS — hoy lo llevás todo por solo:</div>
+                <div class="big-price">Solo $14.999</div>
+                <div class="ars-price">pesos argentinos</div>
+            </div>
+
+            <div class="cta-wrap" style="margin-top:28px">
+                <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-arrow-right"></i> QUIERO ACCESO INMEDIATO AHORA</a>
+                <p class="cta-sub" style="color:#aaa"><i class="fa-solid fa-bolt"></i> Descarga instantánea &nbsp;·&nbsp; <i class="fa-solid fa-lock"></i> Pago 100% seguro &nbsp;·&nbsp; <i class="fa-solid fa-shield-halved"></i> Garantía 7 días</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FORMAS DE PAGO ═══════════════════ -->
+<section class="payment-section">
+    <div class="container">
+        <h3>Métodos de pago</h3>
+        <img src="image/MetodosPago.png" alt="Métodos de pago: Mercado Pago, Visa, Mastercard" class="pay-img">
+        <div><span class="ssl-badge"><i class="fa-solid fa-lock"></i> Sitio protegido con SSL — Tus datos nunca se comparten con terceros</span></div>
+    </div>
+</section>
+
+<!-- ═══════════════════ GARANTÍA ═══════════════════ -->
+<section class="guarantee-section">
+    <div class="container">
+        <div class="guarantee-box">
+            <div class="g-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2>La Garantía "Cero Estrés y Cero Vergüenza" — 7 Días</h2>
+            <p>Probá la guía 7 días. Si sentís que no te aportó lo que esperabas, <strong style="color:var(--yellow)">te devuelvo el 100% de tus $14.999 sin preguntas</strong> — y te quedás con todo.</p>
+            <p>El riesgo lo asumo <em>yo</em>. Vos solo tenés que animarte a acampar.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="faq-section">
+    <div class="container">
+        <h2><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">¿Cómo recibo la guía después de comprar? <span class="arr">▼</span></div>
+            <div class="faq-a">Inmediatamente después del pago recibís un email con el link de descarga. Acceso instantáneo, 24/7, desde cualquier dispositivo.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Sirve si nunca acampé en mi vida? <span class="arr">▼</span></div>
+            <div class="faq-a">Es exactamente para vos. La guía fue diseñada pensando en la persona que nunca acampó y tiene miedo a quedar expuesto. Arrancamos desde cero, sin dar nada por sabido.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Y si ya acampé antes, igual me sirve? <span class="arr">▼</span></div>
+            <div class="faq-a">Sí. Aunque ya tengas salidas encima, la guía te da una estructura que quizás nunca tuviste: cómo elegir bien el terreno, qué revisar antes de salir, cómo anticiparte a imprevistos y cómo optimizar tu equipo. Muchos campistas "con experiencia" la leen y dicen que ojalá la hubieran tenido desde el principio.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿La guía incluye listas prácticas o es solo teoría? <span class="arr">▼</span></div>
+            <div class="faq-a">Es todo práctica. Incluye checklists organizados, recomendaciones concretas y consejos paso a paso para que puedas planificar tu salida sin olvidar nada. Sin teoría de relleno.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Sirve para cualquier tipo de camping? <span class="arr">▼</span></div>
+            <div class="faq-a">Está orientada principalmente a camping recreativo tradicional — carpa en campings habilitados o entornos naturales seguros. Si tu primera salida es en un camping, esta guía es perfecta para vos.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Necesito comprar equipo caro para aplicar lo que enseña? <span class="arr">▼</span></div>
+            <div class="faq-a">Para nada. La guía te orienta sobre lo esencial y cómo priorizar lo que realmente importa sin gastar de más. También te dice qué podés improvisar y qué sí conviene tener desde el primer día.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿En qué formato viene la guía? <span class="arr">▼</span></div>
+            <div class="faq-a">La guía principal viene en PDF de alta calidad — podés leerla en tu celular, tablet, computadora o imprimirla, y funciona sin internet una vez descargada. Los bonos incluyen también material en video, accesible desde cualquier dispositivo.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Cuánto tarda en leerse? <span class="arr">▼</span></div>
+            <div class="faq-a">La guía completa con todos los bonos se lee en menos de 2 horas. Está escrita de forma directa y práctica, sin teoría de relleno.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Puedo pagar en la moneda de mi país? <span class="arr">▼</span></div>
+            <div class="faq-a">Sí. El precio se cobra en la moneda local de tu país. Si estás en Argentina, son $14.999 pesos argentinos. Si estás en otro país, verás el equivalente en tu moneda al momento del pago. Aceptamos tarjeta, Mercado Pago y otros medios según tu región.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿La garantía de 7 días es real? ¿Cómo pido el reembolso? <span class="arr">▼</span></div>
+            <div class="faq-a">100% real. Dentro de los 7 días mandás un email a nuestro soporte y te devolvemos el dinero completo sin preguntas. Sin excusas, sin letra chica.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+<section class="final-cta">
+    <div class="container">
+        <h2>¿Seguís esperando el momento perfecto?</h2>
+        <p>El momento perfecto es ahora. Con $14.999 pesos eliminás todos los miedos y vivís la experiencia que siempre quisiste. El riesgo es cero — la garantía lo cubre todo.</p>
+        <div class="cta-wrap">
+            <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-campground"></i> SÍ, QUIERO MI GUÍA + BONOS VIP AHORA</a>
+            <p class="cta-sub light">Solo $14.999 ARS &nbsp;·&nbsp; Acceso en segundos &nbsp;·&nbsp; Garantía 7 días sin preguntas</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+    <div class="container">
+        <p>© 2026 CarpaLovers · Todos los derechos reservados</p>
+        <p style="margin-top:8px">
+            <a href="#">Términos y Condiciones</a> &nbsp;·&nbsp;
+            <a href="#">Política de Privacidad</a> &nbsp;·&nbsp;
+            <a href="#">Contacto y Soporte</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Botón flotante mobile -->
+<a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="float-cta"><i class="fa-solid fa-fire"></i> DESCARGAR AHORA</a>
+
+<!-- ═══════════════════ TOAST CONTAINER ═══════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+/* ─── 1. COUNTDOWN TIMER ─── */
+(function () {
+    var KEY = 'cl_countdown_end_v2';
+    var end = +sessionStorage.getItem(KEY);
+    if (!end || end < Date.now()) {
+        end = Date.now() + (60 * 60) * 1000;
+        sessionStorage.setItem(KEY, end);
+    }
+    function tick() {
+        var diff = Math.max(0, end - Date.now());
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('ub-h').textContent = String(h).padStart(2, '0');
+        document.getElementById('ub-m').textContent = String(m).padStart(2, '0');
+        document.getElementById('ub-s').textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+})();
+
+/* ─── 2. LIVE VIEWERS COUNTER ─── */
+(function () {
+    var pool = [4, 5, 6, 7, 8, 10, 11, 17];
+    function pickRandom() { return pool[Math.floor(Math.random() * pool.length)]; }
+
+    var els = [
+        document.getElementById('live-count'),
+        document.getElementById('pricing-live-count')
+    ];
+    var cur = pickRandom();
+    els.forEach(function(el){ if(el) el.textContent = cur; });
+
+    setInterval(function () {
+        cur = pickRandom();
+        els.forEach(function(el){ if(el) el.textContent = cur; });
+    }, 4500);
+})();
+
+/* ─── 3. PURCHASE TOAST NOTIFICATIONS ─── */
+(function () {
+    var buyers = [
+        { name: 'Valentina M.',  city: 'Buenos Aires', ini: 'VM', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Lucas R.',      city: 'Córdoba',       ini: 'LR', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+        { name: 'Sofía P.',      city: 'Rosario',       ini: 'SP', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+        { name: 'Matías G.',     city: 'Mendoza',       ini: 'MG', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+        { name: 'Camila F.',     city: 'Mar del Plata', ini: 'CF', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+        { name: 'Nicolás T.',    city: 'Salta',         ini: 'NT', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' },
+        { name: 'Florencia B.',  city: 'La Plata',      ini: 'FB', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Diego A.',      city: 'Tucumán',       ini: 'DA', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+        { name: 'Martina C.',    city: 'Santa Fe',      ini: 'MC', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+        { name: 'Agustín L.',    city: 'Bahía Blanca',  ini: 'AL', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+        { name: 'Carolina V.',   city: 'San Juan',      ini: 'CV', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+        { name: 'Facundo H.',    city: 'Neuquén',       ini: 'FH', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' },
+        { name: 'Julieta S.',    city: 'Paraná',        ini: 'JS', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Emiliano R.',   city: 'Posadas',       ini: 'ER', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+        { name: 'Paula M.',      city: 'Tandil',        ini: 'PM', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+        { name: 'Rodrigo N.',    city: 'San Luis',      ini: 'RN', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+        { name: 'Micaela G.',    city: 'Resistencia',   ini: 'MG2', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+        { name: 'Gonzalo P.',    city: 'Formosa',       ini: 'GP', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' },
+        { name: 'Natalia Q.',    city: 'La Rioja',      ini: 'NQ', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Sebastián K.',  city: 'Zárate',        ini: 'SK', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' }
+    ];
+    var times = ['hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min', 'recién ahora', 'hace 8 min'];
+    var container = document.getElementById('toastContainer');
+    var idx = Math.floor(Math.random() * buyers.length);
+
+    function showToast() {
+        var b   = buyers[idx % buyers.length]; idx++;
+        var t   = times[Math.floor(Math.random() * times.length)];
+        var div = document.createElement('div');
+        div.className = 'toast';
+        div.innerHTML =
+            '<div class="t-av" style="background:' + b.bg + '">' + b.ini + '</div>' +
+            '<div class="toast-body">' +
+            '<strong>' + b.name + ' de ' + b.city + '</strong>' +
+            '<span>acaba de comprar la guía — ' + t + '</span>' +
+            '</div>' +
+            '<div class="toast-check">✔</div>';
+        container.appendChild(div);
+        setTimeout(function () {
+            div.classList.add('out');
+            setTimeout(function () { div.remove(); }, 380);
+        }, 4800);
+    }
+
+    setTimeout(function () {
+        showToast();
+        setInterval(showToast, 25000 + Math.random() * 15000);
+    }, 30000);
+})();
+
+/* ─── 4. FAQ ACCORDION ─── */
+document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+        var item   = q.parentElement;
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+        if (!isOpen) { item.classList.add('open'); }
+    });
+});
+
+/* ─── 5. BENEFITS ACCORDION ─── */
+document.querySelectorAll('.benefit-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+        var isOpen = card.classList.contains('open');
+        document.querySelectorAll('.benefit-card').forEach(function (c) { c.classList.remove('open'); });
+        if (!isOpen) { card.classList.add('open'); }
+    });
+});
+
+/* ─── 6. BONUS ACCORDION ─── */
+document.querySelectorAll('.bonus-row').forEach(function (row) {
+    row.addEventListener('click', function () {
+        var isOpen = row.classList.contains('open');
+        document.querySelectorAll('.bonus-row').forEach(function (r) { r.classList.remove('open'); });
+        if (!isOpen) { row.classList.add('open'); }
+    });
+});
+</script>
+</body>
+</html>
