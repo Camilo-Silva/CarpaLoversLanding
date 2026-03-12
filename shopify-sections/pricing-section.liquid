@@ -1,0 +1,570 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl-pricing-section {
+    background: {{ section.settings.background_color }};
+    padding: 44px 20px;
+    border-top: 1px solid #e8dbd3;
+  }
+
+  .cl-pricing-box {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ── Estrellas y reseñas ── */
+  .cl-pricing-stars {
+    color: {{ section.settings.stars_color }};
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  .cl-pricing-reviews {
+    font-size: .85rem;
+    color: #777;
+    margin-bottom: 22px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .cl-pricing-reviews strong { color: #333; }
+
+  /* ── Precio ── */
+  .cl-pricing-main-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .cl-pricing-old-price {
+    font-size: 1rem;
+    color: #aaa;
+    text-decoration: line-through;
+    margin-bottom: 16px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── Badge ahorro ── */
+  .cl-pricing-savings-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, {{ section.settings.savings_color_from }}, {{ section.settings.savings_color_to }});
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 13px 28px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 14px rgba(0,177,64,.35);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .cl-pricing-savings-btn:hover {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,177,64,.55);
+  }
+
+  /* ── Countdown ── */
+  .cl-pricing-countdown {
+    background: linear-gradient(135deg, #fff8f0, #fdeede);
+    border: 2px solid #e8a87c;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .cl-pc-header {
+    font-size: .85rem;
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 10px;
+  }
+  .cl-pc-digits {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+  .cl-pc-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .cl-pc-num {
+    background: {{ section.settings.accent_color }};
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    padding: 6px 14px;
+    border-radius: 8px;
+    min-width: 52px;
+    line-height: 1;
+  }
+  .cl-pc-lbl {
+    font-size: .65rem;
+    font-weight: 700;
+    color: {{ section.settings.cta_color }};
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .cl-pc-sep {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: {{ section.settings.cta_color }};
+    line-height: 1;
+    padding-bottom: 6px;
+  }
+  .cl-pc-footer {
+    font-size: .75rem;
+    color: #888;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── Botón oferta ── */
+  .cl-pricing-offer-btn {
+    display: block;
+    border: 2px solid {{ section.settings.cta_color }};
+    color: {{ section.settings.cta_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: background .15s, color .15s, transform .18s ease, box-shadow .18s ease;
+  }
+  .cl-pricing-offer-btn:hover {
+    background: {{ section.settings.cta_color }};
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(173,102,57,.35);
+  }
+
+  /* ── Trust list ── */
+  .cl-pricing-trust-list {
+    list-style: none;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 0;
+  }
+  .cl-pricing-trust-list li {
+    font-size: .88rem;
+    color: #444;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── Live counter ── */
+  .cl-pricing-live {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: .88rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .cl-pricing-live-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3483fa;
+    flex-shrink: 0;
+  }
+
+  /* ── Urgencia ── */
+  .cl-pricing-urgency {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: .85rem;
+    color: {{ section.settings.cta_color }};
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  /* ── Mobile full-bleed ── */
+  @media (max-width: 768px) {
+    .cl-pricing-section { padding: 32px 0; border-top: none; }
+    .cl-pricing-box     { max-width: 100%; padding: 0 20px; }
+  }
+</style>
+
+<div class="cl-pricing-section">
+  <div class="cl-pricing-box">
+
+    <!-- Estrellas + reseñas -->
+    <div class="cl-pricing-stars">★★★★★</div>
+    <div class="cl-pricing-reviews">
+      <strong>{{ section.settings.rating }}</strong> de {{ section.settings.review_count }} Reseñas
+    </div>
+
+    <!-- Precio -->
+    <div class="cl-pricing-main-price">{{ section.settings.price_current }}</div>
+    <div class="cl-pricing-old-price">{{ section.settings.price_old }}</div>
+    <a href="{{ section.settings.cta_url }}" class="cl-pricing-savings-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.savings_label }}
+    </a>
+
+    <!-- Countdown -->
+    {% if section.settings.show_countdown %}
+    <div class="cl-pricing-countdown">
+      <div class="cl-pc-header">
+        <i class="fa-regular fa-bell"></i> {{ section.settings.countdown_header }}
+      </div>
+      <div class="cl-pc-digits">
+        <div class="cl-pc-unit">
+          <span class="cl-pc-num" id="cl-ub-h">01</span>
+          <span class="cl-pc-lbl">horas</span>
+        </div>
+        <span class="cl-pc-sep">:</span>
+        <div class="cl-pc-unit">
+          <span class="cl-pc-num" id="cl-ub-m">00</span>
+          <span class="cl-pc-lbl">minutos</span>
+        </div>
+        <span class="cl-pc-sep">:</span>
+        <div class="cl-pc-unit">
+          <span class="cl-pc-num" id="cl-ub-s">00</span>
+          <span class="cl-pc-lbl">segundos</span>
+        </div>
+      </div>
+      <div class="cl-pc-footer">{{ section.settings.countdown_footer }}</div>
+    </div>
+    {% endif %}
+
+    <!-- Botón CTA -->
+    <a href="{{ section.settings.cta_url }}" class="cl-pricing-offer-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.cta_text }}
+    </a>
+
+    <!-- Trust list -->
+    <ul class="cl-pricing-trust-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'trust_item' %}
+          <li {{ block.shopify_attributes }}>
+            <i class="fa-solid {{ block.settings.icon }}" style="color:{{ block.settings.icon_color }}"></i>
+            {{ block.settings.text }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <!-- Live counter -->
+    {% if section.settings.show_live_counter %}
+    <div class="cl-pricing-live">
+      <div class="cl-pricing-live-dot"></div>
+      <span><span id="cl-pricing-live-count">{{ section.settings.live_count_start }}</span> {{ section.settings.live_count_label }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Urgencia -->
+    {% if section.settings.urgency_text != blank %}
+    <div class="cl-pricing-urgency">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.urgency_text }}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- Countdown JS -->
+{% if section.settings.show_countdown %}
+<script>
+(function () {
+  var KEY = 'cl_countdown_end_v2';
+  var HOURS = {{ section.settings.countdown_hours }};
+  var end = +sessionStorage.getItem(KEY);
+  if (!end || end < Date.now()) {
+    end = Date.now() + HOURS * 3600 * 1000;
+    sessionStorage.setItem(KEY, end);
+  }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var diff = end - Date.now();
+    if (diff <= 0) { diff = 0; }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var elH = document.getElementById('cl-ub-h');
+    var elM = document.getElementById('cl-ub-m');
+    var elS = document.getElementById('cl-ub-s');
+    if (elH) elH.textContent = pad(h);
+    if (elM) elM.textContent = pad(m);
+    if (elS) elS.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+{% endif %}
+
+<!-- Live counter JS -->
+{% if section.settings.show_live_counter %}
+<script>
+(function () {
+  var el = document.getElementById('cl-pricing-live-count');
+  if (!el) return;
+  var base = {{ section.settings.live_count_start }};
+  setInterval(function () {
+    base = base + Math.floor(Math.random() * 3) - 1;
+    base = Math.max({{ section.settings.live_count_min }}, Math.min({{ section.settings.live_count_max }}, base));
+    el.textContent = base;
+  }, 7000);
+})();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Pricing Box",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo de la sección",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color acento (fondo dígitos countdown)",
+      "default": "#7a4520"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "Color botón y texto urgente",
+      "default": "#ad6639"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Color estrellas",
+      "default": "#f5a623"
+    },
+    {
+      "type": "color",
+      "id": "savings_color_from",
+      "label": "Gradiente badge ahorro (inicio)",
+      "default": "#00b140"
+    },
+    {
+      "type": "color",
+      "id": "savings_color_to",
+      "label": "Gradiente badge ahorro (fin)",
+      "default": "#007d2e"
+    },
+    {
+      "type": "header",
+      "content": "Precio"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Puntuación",
+      "default": "4.7/5"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Cantidad de reseñas",
+      "default": "1564"
+    },
+    {
+      "type": "text",
+      "id": "price_current",
+      "label": "Precio actual",
+      "default": "$14.999"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado",
+      "default": "$30.000"
+    },
+    {
+      "type": "text",
+      "id": "savings_label",
+      "label": "Texto badge ahorro",
+      "default": "AHORRÁS $15.001"
+    },
+    {
+      "type": "header",
+      "content": "Botón CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "¡OFERTA TERMINA HOY!"
+    },
+    {
+      "type": "text",
+      "id": "cta_url",
+      "label": "URL del botón (checkout)",
+      "default": "https://sinmiedoacampar.com/cart/43132623224966:1"
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Mostrar countdown",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "countdown_hours",
+      "label": "Duración del countdown (horas)",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "countdown_header",
+      "label": "Texto cabecera countdown",
+      "default": "Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!"
+    },
+    {
+      "type": "text",
+      "id": "countdown_footer",
+      "label": "Texto pie countdown",
+      "default": "Después de que el contador llegue a cero, esta oferta desaparecerá."
+    },
+    {
+      "type": "header",
+      "content": "Contador en vivo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_live_counter",
+      "label": "Mostrar contador de personas en vivo",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "live_count_start",
+      "label": "Valor inicial",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "live_count_min",
+      "label": "Mínimo",
+      "min": 3,
+      "max": 20,
+      "step": 1,
+      "default": 7
+    },
+    {
+      "type": "range",
+      "id": "live_count_max",
+      "label": "Máximo",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "live_count_label",
+      "label": "Texto junto al contador",
+      "default": "personas viendo este producto"
+    },
+    {
+      "type": "header",
+      "content": "Urgencia"
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Texto de urgencia (dejar vacío para ocultar)",
+      "default": "El precio está a punto de aumentar"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Item de confianza",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícono Font Awesome",
+          "default": "fa-bolt",
+          "info": "Solo el nombre, ej: fa-bolt, fa-lock, fa-square-check"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Color del ícono",
+          "default": "#f5a623"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Acceso inmediato por mail"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Box",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "fa-bolt",
+            "icon_color": "#f5a623",
+            "text": "Acceso inmediato por mail"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "fa-lock",
+            "icon_color": "#555555",
+            "text": "Pago seguro mediante Mercado Pago"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "fa-square-check",
+            "icon_color": "#00b140",
+            "text": "Garantía de satisfacción 7 días"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -123,7 +123,7 @@
 
         /* ===== TICKER BAR ===== */
         .ticker-bar {
-            background:#2a1a0e;
+            background:#ad6639;
             padding:10px 0;
             overflow:hidden;
             position:relative;
@@ -542,6 +542,13 @@
             border-radius:30px;
             margin-bottom:10px;
             box-shadow:0 4px 14px rgba(0,177,64,.35);
+            text-decoration:none;
+            cursor:pointer;
+            transition:transform .18s ease, box-shadow .18s ease;
+        }
+        .pricing-savings-btn:hover {
+            transform:scale(1.06) translateY(-2px);
+            box-shadow:0 8px 24px rgba(0,177,64,.55);
         }
         .pricing-launch {
             font-size:.82rem; color:#666; margin-bottom:24px;
@@ -558,9 +565,15 @@
             border-radius:10px;
             text-decoration:none;
             margin-bottom:24px;
-            transition:background .15s, color .15s;
+            cursor:pointer;
+            transition:background .15s, color .15s, transform .18s ease, box-shadow .18s ease;
         }
-        .pricing-offer-btn:hover { background:var(--red); color:#fff; }
+        .pricing-offer-btn:hover {
+            background:var(--red);
+            color:#fff;
+            transform:translateY(-2px);
+            box-shadow:0 6px 18px rgba(173,102,57,.35);
+        }
         .pricing-trust-list {
             list-style:none;
             text-align:left;
@@ -601,27 +614,39 @@
 
         /* ===== OFFER STACK ===== */
         .offer-section {
-            padding:70px 20px;
-            background:linear-gradient(180deg,#2a1a0e,#3d2410);
-            color:#fff;
+            background:var(--cream);
+            color:var(--text);
             text-align:center;
         }
-        .offer-section .section-label { background:rgba(255,214,10,.15); color:var(--yellow); }
-        .offer-section .section-title  { color:#fff; }
-        .offer-section .section-subtitle { color:#aaa; }
+        .offer-band {
+            padding:50px 20px;
+        }
+        .offer-band--dark {
+            background:var(--dark);
+            color:#fff;
+            padding:50px 20px;
+        }
+        .offer-divider-img {
+            width:100%;
+            display:block;
+        }
+        .offer-section .section-label { background:rgba(173,102,57,.12); color:var(--red-dark); }
+        .offer-section .section-title  { color:var(--dark); }
+        .offer-section .section-subtitle { color:#555; }
         .offer-box {
-            background:rgba(255,255,255,.05);
-            border:2px solid rgba(255,214,10,.3);
+            background:#fff;
+            border:2px solid rgba(173,102,57,.25);
             border-radius:16px;
             padding:40px;
         }
         .offer-box h3 { font-size:1.7rem; margin-bottom:28px; color:var(--yellow); }
+        .offer-box-img { width:calc(100% + 80px);margin-left:-40px;margin-right:-40px;display:block;border-radius:0; }
         .bonus-row {
-            background:rgba(255,255,255,.07);
+            background:rgba(173,102,57,.07);
             border-radius:10px;
             margin-bottom:14px;
             text-align:left;
-            border-left:4px solid var(--yellow);
+            border-left:4px solid var(--red);
             overflow:hidden;
             cursor:pointer;
         }
@@ -635,7 +660,7 @@
         .bonus-row.open .bonus-b-arr { transform:rotate(180deg); }
         .bonus-b-arr {
             font-size:.7rem;
-            color:var(--yellow);
+            color:var(--red);
             transition:transform .3s;
             margin-left:auto;
             flex-shrink:0;
@@ -646,21 +671,21 @@
             transition:max-height .35s ease, padding .3s ease;
             padding:0 20px;
             font-size:.88rem;
-            color:#bbb;
+            color:#555;
         }
-        .bonus-row.open .bonus-row-body { max-height:120px; padding:0 20px 16px; }
+        .bonus-row.open .bonus-row-body { max-height:160px; padding:0 20px 16px; }
         .bonus-emoji { font-size:1.9rem; flex-shrink:0; }
         .bonus-name {
             font-family:'Montserrat',sans-serif;
             font-weight:700;
             font-size:1rem;
             margin-bottom:5px;
-            color:#fff;
+            color:var(--dark);
         }
         .bonus-val {
             display:inline-block;
-            background:rgba(255,214,10,.15);
-            color:var(--yellow);
+            background:rgba(173,102,57,.12);
+            color:var(--red-dark);
             font-size:.72rem;
             font-weight:700;
             padding:2px 10px;
@@ -671,7 +696,7 @@
         .value-stack {
             margin-top:32px;
             padding:24px;
-            background:rgba(255,255,255,.05);
+            background:var(--dark);
             border-radius:12px;
         }
         .real-value { text-decoration:line-through; color:#e8a87c; font-size:1rem; font-weight:600; margin-bottom:8px; }
@@ -682,7 +707,7 @@
             color:var(--yellow);
             line-height:1;
         }
-        .ars-price { font-size:1.1rem; color:#999; margin-top:6px; }
+        .ars-price { font-size:1.1rem; color:#aaa; margin-top:6px; }
 
         /* ===== GUARANTEE ===== */
         .guarantee-section { background:var(--dark); color:#fff; padding:70px 20px; text-align:center; }
@@ -789,11 +814,19 @@
             .benefits-grid    { grid-template-columns:1fr; }
             .t-card           { width:290px; }
             .offer-box        { padding:22px 16px; }
+            .offer-box-img  { width:calc(100% + 32px);margin-left:-16px;margin-right:-16px; }
             .guarantee-box    { padding:24px 16px; }
             .cta-btn          { font-size:1rem; padding:18px 18px; }
             .big-price        { font-size:2.4rem; }
             .final-cta h2     { font-size:1.7rem; }
             .section-title    { font-size:1.75rem; }
+
+            /* Product card: imagen full-bleed en mobile */
+            .product-card-section   { padding:0 0 32px; }
+            .product-card-section .container { padding:0; }
+            .product-card           { max-width:100%; border-radius:0; box-shadow:none; border-left:none; border-right:none; }
+            .product-card-img       { border-radius:0; }
+            .product-card-body      { padding:20px 20px 24px; }
         }
     </style>
 </head>
@@ -861,7 +894,7 @@
 
         <div class="pricing-main-price">$14.999</div>
         <div class="pricing-old-price">$30.000</div>
-        <div class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $15.001</div>
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $15.001</a>
 
         <div class="pricing-countdown">
             <div class="pc-header"><i class="fa-regular fa-bell"></i> Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!</div>
@@ -1118,74 +1151,95 @@
 
 <!-- ═══════════════════ OFERTA STACK ═══════════════════ -->
 <section class="offer-section">
-    <div class="container">
-        <div class="section-label"><i class="fa-solid fa-gift"></i> La oferta completa</div>
-        <h2 class="section-title">Esto No Es Solo un Ebook.</h2>
-        <p class="section-subtitle">Hoy te llevás el Paquete <strong style="color:var(--yellow)">"EXPEDICIÓN VIP"</strong> 100% GRATIS con tu compra.</p>
 
-        <div class="offer-box">
-            <h3><i class="fa-solid fa-box-open"></i> Todo lo que recibís hoy:</h3>
+    <!-- BANDA 1: encabezado -->
+    <div class="offer-band">
+        <div class="container">
+            <div class="section-label"><i class="fa-solid fa-gift"></i> La oferta completa</div>
+            <h2 class="section-title">Esto No Es Solo un Ebook.</h2>
+            <p class="section-subtitle">Hoy te llevás el Paquete <strong style="color:var(--red)">"EXPEDICIÓN VIP"</strong> 100% GRATIS con tu compra.</p>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.2rem;color:var(--dark);margin-top:28px;"><i class="fa-solid fa-box-open"></i> Todo lo que recibís hoy:</p>
+        </div>
+    </div>
 
-            <div class="bonus-row">
-                <div class="bonus-row-header">
-                    <div class="bonus-emoji"><i class="fa-solid fa-book-open"></i></div>
-                    <div>
-                        <div class="bonus-name">Guía Principal: "Sin Miedo a Acampar"</div>
-                        <div class="bonus-val">INCLUIDO EN TU COMPRA</div>
+    <!-- IMAGEN DIVISORA 1 -->
+    <img src="image/Bonos3.jpeg" alt="Bonos incluidos" class="offer-divider-img">
+
+    <!-- BANDA 2: bonus rows -->
+    <div class="offer-band">
+        <div class="container">
+            <div class="offer-box">
+
+                <div class="bonus-row">
+                    <div class="bonus-row-header">
+                        <div class="bonus-emoji"><i class="fa-solid fa-book-open"></i></div>
+                        <div>
+                            <div class="bonus-name">Guía Principal: "Sin Miedo a Acampar"</div>
+                            <div class="bonus-val">INCLUIDO EN TU COMPRA</div>
+                        </div>
+                        <span class="bonus-b-arr">▼</span>
                     </div>
-                    <span class="bonus-b-arr">▼</span>
+                    <div class="bonus-row-body">El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés.</div>
                 </div>
-                <div class="bonus-row-body">El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés.</div>
-            </div>
 
-            <div class="bonus-row">
-                <div class="bonus-row-header">
-                    <div class="bonus-emoji"><i class="fa-solid fa-map"></i></div>
-                    <div>
-                        <div class="bonus-name">Bono #1 — El Radar del Campista</div>
-                        <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                <div class="bonus-row">
+                    <div class="bonus-row-header">
+                        <div class="bonus-emoji"><i class="fa-solid fa-map"></i></div>
+                        <div>
+                            <div class="bonus-name">Bono #1 — Ruta Patagónica</div>
+                            <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                        </div>
+                        <span class="bonus-b-arr">▼</span>
                     </div>
-                    <span class="bonus-b-arr">▼</span>
+                    <div class="bonus-row-body">Vivencias y tips de campings patagónicos: cómo prepararte para el frío y el viento, los mejores rincones y consejos filmados en el lugar.</div>
                 </div>
-                <div class="bonus-row-body">La experiencia real de cada camping que visitamos: ruta, clima, terreno y secretos del lugar. Vas a la segura, siempre.</div>
-            </div>
 
-            <div class="bonus-row">
-                <div class="bonus-row-header">
-                    <div class="bonus-emoji"><i class="fa-solid fa-star"></i></div>
-                    <div>
-                        <div class="bonus-name">Bono #2 — Reviews Sin Filtro</div>
-                        <div class="bonus-val">VALOR: $24.000 ARS — HOY GRATIS</div>
+                <div class="bonus-row">
+                    <div class="bonus-row-header">
+                        <div class="bonus-emoji"><i class="fa-solid fa-star"></i></div>
+                        <div>
+                            <div class="bonus-name">Bono #2 — Ruta del Interior Natural</div>
+                            <div class="bonus-val">VALOR: $24.000 ARS — HOY GRATIS</div>
+                        </div>
+                        <span class="bonus-b-arr">▼</span>
                     </div>
-                    <span class="bonus-b-arr">▼</span>
+                    <div class="bonus-row-body">Los mejores campings en ríos, sierras y bosques del interior: videos de cada salida con los tips que más nos funcionaron en cada destino.</div>
                 </div>
-                <div class="bonus-row-body">Análisis crudos y honestos de cada sitio. Cuáles valen cada peso y de cuáles tenés que huir sí o sí.</div>
-            </div>
 
-            <div class="bonus-row">
-                <div class="bonus-row-header">
-                    <div class="bonus-emoji"><i class="fa-solid fa-circle-check"></i></div>
-                    <div>
-                        <div class="bonus-name">Bono #3 — Checklist de Supervivencia de Lujo</div>
-                        <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                <div class="bonus-row">
+                    <div class="bonus-row-header">
+                        <div class="bonus-emoji"><i class="fa-solid fa-circle-check"></i></div>
+                        <div>
+                            <div class="bonus-name">Bono #3 — Ruta de la Costa y Naturaleza</div>
+                            <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                        </div>
+                        <span class="bonus-b-arr">▼</span>
                     </div>
-                    <span class="bonus-b-arr">▼</span>
+                    <div class="bonus-row-body">Campings costeros y entornos naturales únicos: cómo manejar la humedad marina, los lugares que más nos sorprendieron y consejos prácticos en video.</div>
                 </div>
-                <div class="bonus-row-body">La lista exacta que usamos antes de cada viaje. Tildá cada ítem y garantizá que nunca más vas a decir "¡Uh, me olvidé de...!"</div>
-            </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGEN DIVISORA 2 -->
+    <img src="image/Bonos1.png" alt="Bono Ruta Patagónica" class="offer-divider-img">
+
+    <!-- BANDA 3: precio + CTA -->
+    <div class="offer-band--dark">
+        <div class="container">
             <div class="value-stack">
                 <div class="real-value">Valor Total Real: $60.000 ARS — hoy lo llevás todo por solo:</div>
                 <div class="big-price">Solo $14.999</div>
                 <div class="ars-price">pesos argentinos</div>
             </div>
-
             <div class="cta-wrap" style="margin-top:28px">
                 <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-arrow-right"></i> QUIERO ACCESO INMEDIATO AHORA</a>
                 <p class="cta-sub" style="color:#aaa"><i class="fa-solid fa-bolt"></i> Descarga instantánea &nbsp;·&nbsp; <i class="fa-solid fa-lock"></i> Pago 100% seguro &nbsp;·&nbsp; <i class="fa-solid fa-shield-halved"></i> Garantía 7 días</p>
             </div>
         </div>
     </div>
+
 </section>
 
 <!-- ═══════════════════ FORMAS DE PAGO ═══════════════════ -->
@@ -1261,6 +1315,7 @@
 <section class="final-cta">
     <div class="container">
         <h2>¿Seguís esperando el momento perfecto?</h2>
+        <img src="image/Bonos2.jpeg" alt="Bonos VIP" style="width:100vw;max-width:100vw;margin:16px -50vw 16px calc(50% - 50vw);display:block;border-radius:0;">
         <p>El momento perfecto es ahora. Con $14.999 pesos eliminás todos los miedos y vivís la experiencia que siempre quisiste. El riesgo es cero — la garantía lo cubre todo.</p>
         <div class="cta-wrap">
             <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-campground"></i> SÍ, QUIERO MI GUÍA + BONOS VIP AHORA</a>
