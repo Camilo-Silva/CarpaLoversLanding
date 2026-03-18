@@ -1,0 +1,612 @@
+{% comment %} ═══ OFFER STACK SECTION — v2 (Carousel) ═══ {% endcomment %}
+
+<style>
+  .cl-offer-section {
+    background: {{ section.settings.bg_color }};
+    color: var(--text, #3a2a1e);
+    text-align: center;
+  }
+  .cl-offer-band {
+    padding: 50px 5px;
+  }
+  .cl-offer-band--dark {
+    background: {{ section.settings.price_band_bg }};
+    color: var(--dark, #2a1a0e);
+    padding: 50px 20px;
+  }
+  .cl-offer-divider-img {
+    width: 100%;
+    display: block;
+  }
+  .cl-offer-section .cl-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(173,102,57,.12);
+    color: #7a4520;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+  .cl-offer-section .cl-section-title {
+    text-align: center;
+    font-size: 2.1rem;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+    color: #2a1a0e;
+  }
+  .cl-offer-section .cl-section-subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 16px;
+    font-size: .97rem;
+  }
+  .cl-offer-intro {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #2a1a0e;
+    margin-top: 28px;
+  }
+
+  /* ── Bonus Carousel ── */
+  .cl-bonus-carousel {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cl-bc-track-wrapper {
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  .cl-bc-track {
+    display: flex;
+    transition: transform .5s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .cl-bc-slide { min-width: 100%; }
+  .cl-bc-card {
+    background: #fff;
+    border: 2px solid rgba(173,102,57,.25);
+    border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 18px rgba(173,102,57,.10);
+    overflow: hidden;
+  }
+  /* Área de imagen mockup */
+  .cl-bc-mockup {
+    width: 100%;
+    background: #f0ebe6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 2px solid rgba(173,102,57,.15);
+    min-height: 200px;
+  }
+  .cl-bc-mockup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cl-bc-mockup-placeholder {
+    color: rgba(173,102,57,.35);
+    font-size: 3.5rem;
+  }
+  /* Contenido inferior */
+  .cl-bc-body {
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .cl-bc-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2a1a0e;
+    margin-bottom: 12px;
+    line-height: 1.35;
+    max-width: 70%;
+  }
+  .cl-bc-badge {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    color: #7a4520;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .cl-bc-desc {
+    font-size: .88rem;
+    color: #666;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  /* Flechas */
+  .cl-bc-arrow {
+    position: absolute;
+    top: calc(50% - 22px);
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid rgba(173,102,57,.5);
+    color: #ad6639;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, border-color .2s, transform .2s;
+    z-index: 5;
+    line-height: 1;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    padding: 0;
+  }
+  .cl-bc-arrow:hover {
+    background: rgba(173,102,57,.12);
+    border-color: #ad6639;
+    transform: translateY(-50%) scale(1.08);
+  }
+  .cl-bc-prev { left: 5px; }
+  .cl-bc-next { right: 5px; }
+  /* Dots */
+  .cl-bc-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .cl-bc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(173,102,57,.25);
+    border: none;
+    cursor: pointer;
+    transition: background .25s, transform .25s;
+    padding: 0;
+  }
+  .cl-bc-dot.cl-bc-dot--active {
+    background: #ad6639;
+    transform: scale(1.3);
+  }
+
+  /* ── Value stack ── */
+  .cl-value-stack {
+    margin-top: 32px;
+    padding: 36px;
+    background: rgba(255,255,255,.7);
+    border: 2px solid #e8dbd3;
+    border-radius: 16px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .cl-real-value {
+    text-decoration: line-through;
+    color: #a07050;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cl-big-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #ad6639;
+    line-height: 1;
+  }
+  .cl-ars-price { font-size: 1.1rem; color: #777; margin-top: 6px; }
+
+  /* ── CTA button ── */
+  .cl-offer-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #c97a46, #ad6639);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 42px;
+    border-radius: 50px;
+    box-shadow: 0 8px 0 #7a4520;
+    position: relative;
+    overflow: hidden;
+    transition: transform .15s, box-shadow .15s;
+    margin-top: 28px;
+  }
+  .cl-offer-cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: rgba(255,255,255,.18);
+    transform: skewX(-20deg);
+    animation: cl-shimmer 2.8s infinite;
+  }
+  @keyframes cl-shimmer { 0%{left:-100%} 100%{left:200%} }
+  .cl-offer-cta-btn:hover {
+    transform: translateY(3px);
+    box-shadow: 0 5px 0 #7a4520;
+  }
+  .cl-offer-cta-sub {
+    font-size: .78rem;
+    color: #999;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .cl-offer-cta-btn { font-size: 1rem; padding: 18px 28px; }
+    .cl-big-price { font-size: 2.6rem; }
+  }
+</style>
+
+<section class="cl-offer-section">
+
+  {%- comment -%} ── BANDA 1: encabezado ── {%- endcomment -%}
+  <div class="cl-offer-band">
+    <div class="container">
+      <div class="cl-section-label">
+        <i class="fa-solid fa-gift"></i> {{ section.settings.label_text }}
+      </div>
+      <h2 class="cl-section-title">{{ section.settings.headline }}</h2>
+      <p class="cl-section-subtitle">
+        {{ section.settings.subtitle_before }}
+        <strong style="color:#ad6639;">{{ section.settings.subtitle_highlight }}</strong>
+        {{ section.settings.subtitle_after }}
+      </p>
+      <p class="cl-offer-intro">
+        <i class="fa-solid fa-box-open"></i> {{ section.settings.intro_text }}
+      </p>
+    </div>
+  </div>
+
+  {%- comment -%} ── IMAGEN DIVISORA 1 ── {%- endcomment -%}
+  {%- if section.settings.divider_img_1 != blank -%}
+    <img src="{{ section.settings.divider_img_1 | img_url: 'master' }}"
+         alt="{{ section.settings.divider_img_1_alt }}"
+         class="cl-offer-divider-img">
+  {%- endif -%}
+
+  {%- comment -%} ── BANDA 2: carousel de bonos ── {%- endcomment -%}
+  <div class="cl-offer-band">
+    <div class="container">
+
+      <div class="cl-bonus-carousel" id="cl-bonus-carousel">
+        <div class="cl-bc-track-wrapper">
+          <div class="cl-bc-track" id="cl-bc-track">
+
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'bonus_item' -%}
+                <div class="cl-bc-slide" {{ block.shopify_attributes }}>
+                  <div class="cl-bc-card">
+                    <div class="cl-bc-mockup">
+                      {%- if block.settings.mockup_image != blank -%}
+                        <img src="{{ block.settings.mockup_image | img_url: 'master' }}"
+                             alt="{{ block.settings.name }}">
+                      {%- else -%}
+                        <div class="cl-bc-mockup-placeholder">
+                          <i class="fa-solid fa-{{ block.settings.icon }}"></i>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    <div class="cl-bc-body">
+                      <div class="cl-bc-name">{{ block.settings.name }}</div>
+                      <div class="cl-bc-badge">{{ block.settings.value_badge }}</div>
+                      {%- if block.settings.description != blank -%}
+                        <p class="cl-bc-desc">{{ block.settings.description }}</p>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+
+          </div>
+        </div>
+        <button class="cl-bc-arrow cl-bc-prev" aria-label="Anterior">&#8249;</button>
+        <button class="cl-bc-arrow cl-bc-next" aria-label="Siguiente">&#8250;</button>
+        <div class="cl-bc-dots" id="cl-bc-dots"></div>
+      </div>
+
+    </div>
+  </div>
+
+  {%- comment -%} ── IMAGEN DIVISORA 2 ── {%- endcomment -%}
+  {%- if section.settings.divider_img_2 != blank -%}
+    <img src="{{ section.settings.divider_img_2 | img_url: 'master' }}"
+         alt="{{ section.settings.divider_img_2_alt }}"
+         class="cl-offer-divider-img">
+  {%- endif -%}
+
+  {%- comment -%} ── BANDA 3: precio + CTA ── {%- endcomment -%}
+  <div class="cl-offer-band--dark">
+    <div class="container">
+      <div class="cl-value-stack">
+        <div class="cl-real-value">{{ section.settings.real_value_text }}</div>
+        <div class="cl-big-price">{{ section.settings.price_display }}</div>
+        <div class="cl-ars-price">{{ section.settings.price_currency_label }}</div>
+      </div>
+      <div style="text-align:center;">
+        <a href="{{ section.settings.cta_url }}" class="cl-offer-cta-btn">
+          <i class="fa-solid fa-arrow-right"></i> {{ section.settings.cta_text }}
+        </a>
+        <p class="cl-offer-cta-sub">
+          <i class="fa-solid fa-bolt"></i> {{ section.settings.trust_text }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function () {
+  var carousel = document.getElementById('cl-bonus-carousel');
+  if (!carousel) return;
+  var track    = document.getElementById('cl-bc-track');
+  var slides   = Array.from(carousel.querySelectorAll('.cl-bc-slide'));
+  var dotsWrap = document.getElementById('cl-bc-dots');
+  var total    = slides.length;
+  var current  = 0;
+  var autoTimer;
+  var INTERVAL = 4000;
+
+  /* Crear dots */
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'cl-bc-dot' + (i === 0 ? ' cl-bc-dot--active' : '');
+    dot.setAttribute('aria-label', 'Ir a ' + (i + 1));
+    dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    carousel.querySelectorAll('.cl-bc-dot').forEach(function (d, i) {
+      d.classList.toggle('cl-bc-dot--active', i === current);
+    });
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function resetTimer() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(next, INTERVAL);
+  }
+
+  carousel.querySelector('.cl-bc-prev').addEventListener('click', function () { prev(); resetTimer(); });
+  carousel.querySelector('.cl-bc-next').addEventListener('click', function () { next(); resetTimer(); });
+
+  /* Swipe táctil */
+  var touchStartX = 0;
+  carousel.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  carousel.addEventListener('touchend', function (e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); resetTimer(); }
+  }, { passive: true });
+
+  /* Pausar en hover */
+  carousel.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+  carousel.addEventListener('mouseleave', resetTimer);
+
+  resetTimer();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Offer Stack v2",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo sección",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "color",
+      "id": "price_band_bg",
+      "label": "Fondo banda de precio",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Etiqueta superior",
+      "default": "La oferta completa"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título principal",
+      "default": "Esto No Es Solo un Ebook."
+    },
+    {
+      "type": "text",
+      "id": "subtitle_before",
+      "label": "Subtítulo (antes del highlight)",
+      "default": "Hoy te llevás el Paquete"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_highlight",
+      "label": "Texto destacado del subtítulo",
+      "default": "\"EXPEDICIÓN VIP\""
+    },
+    {
+      "type": "text",
+      "id": "subtitle_after",
+      "label": "Subtítulo (después del highlight)",
+      "default": "100% GRATIS con tu compra."
+    },
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Texto intro bonos",
+      "default": "Todo lo que recibís hoy:"
+    },
+    {
+      "type": "image_picker",
+      "id": "divider_img_1",
+      "label": "Imagen divisora 1 (Bonos3)"
+    },
+    {
+      "type": "text",
+      "id": "divider_img_1_alt",
+      "label": "Alt imagen divisora 1",
+      "default": "Bonos incluidos"
+    },
+    {
+      "type": "image_picker",
+      "id": "divider_img_2",
+      "label": "Imagen divisora 2 (Bonos1)"
+    },
+    {
+      "type": "text",
+      "id": "divider_img_2_alt",
+      "label": "Alt imagen divisora 2",
+      "default": "Bono Ruta Patagónica"
+    },
+    {
+      "type": "text",
+      "id": "real_value_text",
+      "label": "Texto valor tachado",
+      "default": "Valor Total Real: $60.000 ARS — hoy lo llevás todo por solo:"
+    },
+    {
+      "type": "text",
+      "id": "price_display",
+      "label": "Precio grande",
+      "default": "Solo $14.999"
+    },
+    {
+      "type": "text",
+      "id": "price_currency_label",
+      "label": "Moneda / descripción precio",
+      "default": "pesos argentinos"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto botón CTA",
+      "default": "QUIERO ACCESO INMEDIATO AHORA"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Texto de confianza bajo botón",
+      "default": "Descarga instantánea · 🔒 Pago 100% seguro · 🛡 Garantía 7 días"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bonus_item",
+      "name": "Bonus / Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "mockup_image",
+          "label": "Imagen mockup del bono"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícono Font Awesome (placeholder si no hay imagen)",
+          "default": "book-open"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre del bonus",
+          "default": "Guía Principal"
+        },
+        {
+          "type": "text",
+          "id": "value_badge",
+          "label": "Badge de valor",
+          "default": "INCLUIDO EN TU COMPRA"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offer Stack v2",
+      "blocks": [
+        {
+          "type": "bonus_item",
+          "settings": {
+            "icon": "book-open",
+            "name": "Guía Principal: \"Sin Miedo a Acampar\"",
+            "value_badge": "INCLUIDO EN TU COMPRA",
+            "description": "El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés."
+          }
+        },
+        {
+          "type": "bonus_item",
+          "settings": {
+            "icon": "map",
+            "name": "Bono #1 — Ruta Patagónica",
+            "value_badge": "VALOR: $18.000 ARS — HOY GRATIS",
+            "description": "Vivencias y tips de campings patagónicos: cómo prepararte para el frío y el viento, los mejores rincones y consejos filmados en el lugar."
+          }
+        },
+        {
+          "type": "bonus_item",
+          "settings": {
+            "icon": "star",
+            "name": "Bono #2 — Ruta del Interior Natural",
+            "value_badge": "VALOR: $24.000 ARS — HOY GRATIS",
+            "description": "Los mejores campings en ríos, sierras y bosques del interior: videos de cada salida con los tips que más nos funcionaron en cada destino."
+          }
+        },
+        {
+          "type": "bonus_item",
+          "settings": {
+            "icon": "circle-check",
+            "name": "Bono #3 — Ruta de la Costa y Naturaleza",
+            "value_badge": "VALOR: $18.000 ARS — HOY GRATIS",
+            "description": "Campings costeros y entornos naturales únicos: cómo manejar la humedad marina, los lugares que más nos sorprendieron y consejos prácticos en video."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

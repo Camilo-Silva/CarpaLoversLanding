@@ -635,7 +635,7 @@
             text-align:center;
         }
         .offer-band {
-            padding:50px 20px;
+            padding:50px 5px;
         }
         .offer-band--dark {
             background:var(--cream);
@@ -649,66 +649,142 @@
         .offer-section .section-label { background:rgba(173,102,57,.12); color:var(--red-dark); }
         .offer-section .section-title  { color:var(--dark); }
         .offer-section .section-subtitle { color:#555; }
-        .offer-box {
+        /* ── Bonus Carousel ── */
+        .bonus-carousel {
+            position:relative;
+            max-width:100%;
+            margin:0 auto;
+            padding:0;
+        }
+        .bc-track-wrapper {
+            overflow:hidden;
+            border-radius:16px;
+        }
+        .bc-track {
+            display:flex;
+            transition:transform .5s cubic-bezier(.4,0,.2,1);
+            will-change:transform;
+        }
+        .bc-slide { min-width:100%; }
+        .bc-card {
             background:#fff;
             border:2px solid rgba(173,102,57,.25);
             border-radius:16px;
-            padding:40px;
-        }
-        .offer-box h3 { font-size:1.7rem; margin-bottom:28px; color:var(--yellow); }
-        .offer-box-img { width:calc(100% + 80px);margin-left:-40px;margin-right:-40px;display:block;border-radius:0; }
-        .bonus-row {
-            background:rgba(173,102,57,.07);
-            border-radius:10px;
-            margin-bottom:14px;
-            text-align:left;
-            border-left:4px solid var(--red);
+            text-align:center;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            box-shadow:0 4px 18px rgba(173,102,57,.10);
             overflow:hidden;
-            cursor:pointer;
         }
-        .bonus-row-header {
+        /* Área de imagen mockup */
+        .bc-mockup {
+            width:100%;
+            background:#f0ebe6;
             display:flex;
             align-items:center;
-            gap:14px;
-            padding:16px 20px;
-            user-select:none;
-        }
-        .bonus-row.open .bonus-b-arr { transform:rotate(180deg); }
-        .bonus-b-arr {
-            font-size:.7rem;
-            color:var(--red);
-            transition:transform .3s;
-            margin-left:auto;
-            flex-shrink:0;
-        }
-        .bonus-row-body {
-            max-height:0;
+            justify-content:center;
             overflow:hidden;
-            transition:max-height .35s ease, padding .3s ease;
-            padding:0 20px;
-            font-size:.88rem;
-            color:#555;
+            border-bottom:2px solid rgba(173,102,57,.15);
+            min-height:200px;
         }
-        .bonus-row.open .bonus-row-body { max-height:160px; padding:0 20px 16px; }
-        .bonus-emoji { font-size:1.9rem; flex-shrink:0; }
-        .bonus-name {
+        .bc-mockup img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+        }
+        .bc-mockup-placeholder {
+            color:rgba(173,102,57,.35);
+            font-size:3.5rem;
+        }
+        /* Contenido inferior */
+        .bc-body {
+            padding:28px 28px 32px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            width:100%;
+        }
+        .bc-icon {
+            font-size:2.8rem;
+            color:var(--red);
+            margin-bottom:14px;
+        }
+        .bc-name {
             font-family:'Montserrat',sans-serif;
             font-weight:700;
-            font-size:1rem;
-            margin-bottom:5px;
+            font-size:1.1rem;
             color:var(--dark);
+            margin-bottom:12px;
+            line-height:1.35;
+            max-width:70%;
         }
-        .bonus-val {
+        .bc-badge {
             display:inline-block;
             background:rgba(173,102,57,.12);
             color:var(--red-dark);
             font-size:.72rem;
             font-weight:700;
-            padding:2px 10px;
+            padding:4px 14px;
             border-radius:10px;
-            margin-bottom:7px;
+            margin-bottom:10px;
         }
-        .bonus-desc { font-size:.88rem; color:#bbb; }
+        .bc-desc {
+            font-size:.88rem;
+            color:#666;
+            margin-top:8px;
+            line-height:1.6;
+        }
+        /* Flechas superpuestas sobre la card */
+        .bc-arrow {
+            position:absolute;
+            top:calc(50% - 22px); /* centrado sobre la zona de imagen */
+            transform:translateY(-50%);
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background:#fff;
+            border:2px solid rgba(173,102,57,.5);
+            color:var(--red);
+            font-size:1.5rem;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:background .2s, border-color .2s, transform .2s;
+            z-index:5;
+            line-height:1;
+            box-shadow:0 2px 10px rgba(0,0,0,.15);
+            padding:0;
+        }
+        .bc-arrow:hover {
+            background:rgba(173,102,57,.12);
+            border-color:var(--red);
+            transform:translateY(-50%) scale(1.08);
+        }
+        .bc-prev { left:5px; }
+        .bc-next { right:5px; }
+        .bc-dots {
+            display:flex;
+            gap:8px;
+            justify-content:center;
+            margin-top:16px;
+        }
+        .bc-dot {
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background:rgba(173,102,57,.25);
+            border:none;
+            cursor:pointer;
+            transition:background .25s, transform .25s;
+            padding:0;
+        }
+        .bc-dot.bc-dot--active {
+            background:var(--red);
+            transform:scale(1.3);
+        }
         .value-stack {
             margin-top:32px;
             padding:36px;
@@ -1184,62 +1260,75 @@
     </div>
 
     <!-- IMAGEN DIVISORA 1 -->
-    <img src="image/Bonos3.jpeg" alt="Bonos incluidos" class="offer-divider-img">
+    <img src="image/Bonos3.png" alt="Bonos incluidos" class="offer-divider-img">
 
-    <!-- BANDA 2: bonus rows -->
+    <!-- BANDA 2: carousel de bonos -->
     <div class="offer-band">
         <div class="container">
-            <div class="offer-box">
 
-                <div class="bonus-row">
-                    <div class="bonus-row-header">
-                        <div class="bonus-emoji"><i class="fa-solid fa-book-open"></i></div>
-                        <div>
-                            <div class="bonus-name">Guía Principal: "Sin Miedo a Acampar"</div>
-                            <div class="bonus-val">INCLUIDO EN TU COMPRA</div>
+            <div class="bonus-carousel" id="bonus-carousel">
+                <div class="bc-track-wrapper">
+                    <div class="bc-track" id="bc-track">
+
+                        <div class="bc-slide">
+                            <div class="bc-card">
+                                <div class="bc-mockup">
+                                    <img src="image/Ebook.png" alt="Guía Sin Miedo a Acampar">
+                                </div>
+                                <div class="bc-body">
+                                    <div class="bc-name">Guía Principal: "Sin Miedo a Acampar"</div>
+                                    <div class="bc-badge">INCLUIDO EN TU COMPRA</div>
+                                    <p class="bc-desc">El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="bonus-b-arr">▼</span>
-                    </div>
-                    <div class="bonus-row-body">El paso a paso completo para tu acampe de lujo. Desde elegir y armar la carpa hasta llegar con todo listo y disfrutar sin estrés.</div>
-                </div>
 
-                <div class="bonus-row">
-                    <div class="bonus-row-header">
-                        <div class="bonus-emoji"><i class="fa-solid fa-map"></i></div>
-                        <div>
-                            <div class="bonus-name">Bono #1 — Ruta Patagónica</div>
-                            <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                        <div class="bc-slide">
+                            <div class="bc-card">
+                                <div class="bc-mockup">
+                                    <img src="image/Patagonica.png" alt="Bono Ruta Patagónica">
+                                </div>
+                                <div class="bc-body">
+                                    <div class="bc-name">Bono #1 — Ruta Patagónica</div>
+                                    <div class="bc-badge">VALOR: $18.000 ARS — HOY GRATIS</div>
+                                    <p class="bc-desc">Vivencias y tips de campings patagónicos: cómo prepararte para el frío y el viento, los mejores rincones y consejos filmados en el lugar.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="bonus-b-arr">▼</span>
-                    </div>
-                    <div class="bonus-row-body">Vivencias y tips de campings patagónicos: cómo prepararte para el frío y el viento, los mejores rincones y consejos filmados en el lugar.</div>
-                </div>
 
-                <div class="bonus-row">
-                    <div class="bonus-row-header">
-                        <div class="bonus-emoji"><i class="fa-solid fa-star"></i></div>
-                        <div>
-                            <div class="bonus-name">Bono #2 — Ruta del Interior Natural</div>
-                            <div class="bonus-val">VALOR: $24.000 ARS — HOY GRATIS</div>
+                        <div class="bc-slide">
+                            <div class="bc-card">
+                                <div class="bc-mockup">
+                                    <img src="image/InteriorNatural.png" alt="Bono Ruta del Interior Natural">
+                                </div>
+                                <div class="bc-body">
+                                    <div class="bc-name">Bono #2 — Ruta del Interior Natural</div>
+                                    <div class="bc-badge">VALOR: $24.000 ARS — HOY GRATIS</div>
+                                    <p class="bc-desc">Los mejores campings en ríos, sierras y bosques del interior: videos de cada salida con los tips que más nos funcionaron en cada destino.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="bonus-b-arr">▼</span>
-                    </div>
-                    <div class="bonus-row-body">Los mejores campings en ríos, sierras y bosques del interior: videos de cada salida con los tips que más nos funcionaron en cada destino.</div>
-                </div>
 
-                <div class="bonus-row">
-                    <div class="bonus-row-header">
-                        <div class="bonus-emoji"><i class="fa-solid fa-circle-check"></i></div>
-                        <div>
-                            <div class="bonus-name">Bono #3 — Ruta de la Costa y Naturaleza</div>
-                            <div class="bonus-val">VALOR: $18.000 ARS — HOY GRATIS</div>
+                        <div class="bc-slide">
+                            <div class="bc-card">
+                                <div class="bc-mockup">
+                                    <img src="image/DeLaCosta.png" alt="Bono Ruta de la Costa y Naturaleza">
+                                </div>
+                                <div class="bc-body">
+                                    <div class="bc-name">Bono #3 — Ruta de la Costa y Naturaleza</div>
+                                    <div class="bc-badge">VALOR: $18.000 ARS — HOY GRATIS</div>
+                                    <p class="bc-desc">Campings costeros y entornos naturales únicos: cómo manejar la humedad marina, los lugares que más nos sorprendieron y consejos prácticos en video.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="bonus-b-arr">▼</span>
-                    </div>
-                    <div class="bonus-row-body">Campings costeros y entornos naturales únicos: cómo manejar la humedad marina, los lugares que más nos sorprendieron y consejos prácticos en video.</div>
-                </div>
 
+                    </div>
+                </div>
+                <button class="bc-arrow bc-prev" aria-label="Anterior">&#8249;</button>
+                <button class="bc-arrow bc-next" aria-label="Siguiente">&#8250;</button>
+                <div class="bc-dots" id="bc-dots"></div>
             </div>
+
         </div>
     </div>
 
@@ -1576,14 +1665,59 @@ document.querySelectorAll('.benefit-card').forEach(function (card) {
     window.addEventListener('touchend',    onEnd);
 })();
 
-/* ─── 7. BONUS ACCORDION ─── */
-document.querySelectorAll('.bonus-row').forEach(function (row) {
-    row.addEventListener('click', function () {
-        var isOpen = row.classList.contains('open');
-        document.querySelectorAll('.bonus-row').forEach(function (r) { r.classList.remove('open'); });
-        if (!isOpen) { row.classList.add('open'); }
+/* ─── 7. BONUS CAROUSEL ─── */
+(function () {
+    var carousel = document.getElementById('bonus-carousel');
+    if (!carousel) return;
+    var track    = document.getElementById('bc-track');
+    var slides   = Array.from(carousel.querySelectorAll('.bc-slide'));
+    var dotsWrap = document.getElementById('bc-dots');
+    var total    = slides.length;
+    var current  = 0;
+    var autoTimer;
+    var INTERVAL = 4000;
+
+    slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'bc-dot' + (i === 0 ? ' bc-dot--active' : '');
+        dot.setAttribute('aria-label', 'Ir a ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+        dotsWrap.appendChild(dot);
     });
-});
+
+    function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        carousel.querySelectorAll('.bc-dot').forEach(function (d, i) {
+            d.classList.toggle('bc-dot--active', i === current);
+        });
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function resetTimer() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, INTERVAL);
+    }
+
+    carousel.querySelector('.bc-prev').addEventListener('click', function () { prev(); resetTimer(); });
+    carousel.querySelector('.bc-next').addEventListener('click', function () { next(); resetTimer(); });
+
+    var touchStartX = 0;
+    carousel.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); resetTimer(); }
+    }, { passive: true });
+
+    carousel.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+    carousel.addEventListener('mouseleave', resetTimer);
+
+    resetTimer();
+})();
 </script>
 </body>
 </html>
