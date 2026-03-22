@@ -1,0 +1,1490 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo Elegir el Terreno Perfecto | Evitá Inundaciones — CarpaLovers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --red:       #ad6639;
+            --red-dark:  #7a4520;
+            --dark:      #2a1a0e;
+            --light-bg:  #f8f2ed;
+            --text:      #3a2a1e;
+            --white:     #fff;
+            --yellow:    #ffd60a;
+            --green:     #2d6a4f;
+            --green-mid: #3d9970;
+            --shadow:    0 4px 20px rgba(0,0,0,0.1);
+            --cream:     #f8f2ed;
+            --blue-light:#cdf3f6;
+            --pink-light:#fed3da;
+            --violet:    #d1ccec;
+        }
+
+        /* ===== FLOATING MOBILE CTA ===== */
+        @keyframes floatBounce {
+            0%,100% { transform:translateX(-50%) translateY(0) scale(1); box-shadow:0 6px 24px rgba(0,0,0,0.35); }
+            40%      { transform:translateX(-50%) translateY(-6px) scale(1.06); box-shadow:0 14px 32px rgba(0,0,0,0.3); }
+            60%      { transform:translateX(-50%) translateY(-3px) scale(1.03); }
+        }
+        .float-cta {
+            display:none;
+            position:fixed;
+            bottom:20px;
+            right:28px;
+            left:auto;
+            transform:none;
+            z-index:9999;
+            background:linear-gradient(135deg,#1e9e4f,#27ae60);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1rem;
+            padding:14px 32px;
+            border-radius:50px;
+            box-shadow:0 6px 24px rgba(0,0,0,0.35);
+            text-decoration:none;
+            white-space:nowrap;
+            letter-spacing:.5px;
+            align-items:center;
+            gap:10px;
+            animation:floatBounce-right 2.2s ease-in-out infinite;
+        }
+        @keyframes floatBounce-right {
+            0%,100% { transform:translateY(0) scale(1); box-shadow:0 6px 24px rgba(0,0,0,0.35); }
+            40%      { transform:translateY(-6px) scale(1.06); box-shadow:0 14px 32px rgba(0,0,0,0.3); }
+            60%      { transform:translateY(-3px) scale(1.03); }
+        }
+        .float-cta:hover { animation:none; transform:translateY(-2px) scale(1.04); box-shadow:0 10px 28px rgba(0,0,0,0.4); }
+        .float-cta { display:flex; }
+        @media(max-width:768px) {
+            .float-cta {
+                right:auto;
+                left:50%;
+                transform:translateX(-50%);
+                animation:floatBounce 2.2s ease-in-out infinite;
+            }
+            .float-cta:hover { transform:translateX(-50%) translateY(-2px) scale(1.04); }
+        }
+
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Open Sans',sans-serif; color:var(--text); line-height:1.7; background:var(--cream); }
+        h1,h2,h3,h4 { font-family:'Montserrat',sans-serif; line-height:1.2; }
+        .container { max-width:900px; margin:0 auto; padding:0 20px; }
+
+        /* ===== COUNTDOWN EN PRICING BOX ===== */
+        .pricing-countdown {
+            background:linear-gradient(135deg,#fff8f0,#fdeede);
+            border:2px solid #e8a87c;
+            border-radius:12px;
+            padding:16px 18px;
+            margin:14px 0;
+            text-align:center;
+            font-family:'Montserrat',sans-serif;
+        }
+        .pricing-countdown .pc-header {
+            font-size:.85rem;
+            font-weight:700;
+            color:#7a4520;
+            margin-bottom:10px;
+        }
+        .pricing-countdown .pc-digits {
+            display:flex;
+            justify-content:center;
+            gap:6px;
+            align-items:flex-end;
+            margin-bottom:10px;
+        }
+        .pricing-countdown .pc-unit {
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:2px;
+        }
+        .pricing-countdown .pc-num {
+            background:#7a4520;
+            color:#fff;
+            font-size:1.8rem;
+            font-weight:900;
+            padding:6px 14px;
+            border-radius:8px;
+            min-width:52px;
+            line-height:1;
+        }
+        .pricing-countdown .pc-lbl {
+            font-size:.65rem;
+            font-weight:700;
+            color:#ad6639;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+        .pricing-countdown .pc-sep {
+            font-size:1.8rem;
+            font-weight:900;
+            color:#ad6639;
+            line-height:1;
+            padding-bottom:6px;
+        }
+        .pricing-countdown .pc-footer {
+            font-size:.75rem;
+            color:#888;
+            font-family:'Open Sans',sans-serif;
+        }
+
+        /* ===== TICKER BAR ===== */
+        .ticker-bar {
+            background:#ad6639;
+            padding:10px 0;
+            overflow:hidden;
+            position:relative;
+            border-top:2px solid #ad6639;
+            border-bottom:2px solid #ad6639;
+        }
+        .ticker-track {
+            display:flex;
+            width:max-content;
+            animation: ticker-scroll 28s linear infinite;
+        }
+        .ticker-bar:hover .ticker-track { animation-play-state:paused; }
+        .ticker-item {
+            display:inline-flex;
+            align-items:center;
+            gap:9px;
+            white-space:nowrap;
+            padding:0 48px;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.85rem;
+            color:#fff;
+            text-transform:uppercase;
+            letter-spacing:.6px;
+        }
+        .ticker-item .t-icon {
+            font-size:.9rem;
+            flex-shrink:0;
+            width:16px;
+            text-align:center;
+            color:#ad6639;
+        }
+        @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== PAYMENT ===== */
+        .payment-section { background:#fff; padding:44px 20px; text-align:center; border-top:1px solid #e8dbd3; }
+        .payment-section h3 {
+            font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:600;
+            color:#999; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:22px;
+        }
+        .pay-img {
+            display:block;
+            max-width:420px;
+            width:100%;
+            margin:0 auto 18px;
+        }
+        .ssl-badge {
+            display:inline-flex; align-items:center; gap:6px;
+            background:#e8f5e9; color:#2e7d32; font-size:.78rem; font-weight:700;
+            padding:6px 14px; border-radius:20px; margin-top:14px;
+            font-family:'Montserrat',sans-serif;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--cream);
+            color:var(--dark);
+            text-align:center;
+            padding:75px 20px 65px;
+        }
+        .pre-headline {
+            display:inline-block;
+            background:rgba(173,102,57,.12);
+            border:1px solid var(--red);
+            color:var(--red);
+            font-family:'Montserrat',sans-serif;
+            font-size:.82rem;
+            font-weight:700;
+            padding:6px 18px;
+            border-radius:20px;
+            margin-bottom:20px;
+            text-transform:uppercase;
+            letter-spacing:1.2px;
+        }
+        .hero h1 { font-size:2.8rem; font-weight:900; margin-bottom:20px; color:var(--dark); }
+        .hero h1 .hl  { color:var(--red); }
+        .hero h1 .red { color:#c0392b; }
+        .hero-sub {
+            font-size:1.15rem;
+            color:#5a3e2e;
+            max-width:680px;
+            margin:0 auto 8px;
+        }
+        .hero-social-proof { font-size:.9rem; color:#7a5a47; margin-bottom:38px; }
+        .hero-social-proof span { color:var(--red); font-weight:700; }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-wrap { text-align:center; }
+        .cta-btn {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            background:linear-gradient(180deg,#c97a46,#ad6639);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-size:1.2rem;
+            font-weight:900;
+            text-decoration:none;
+            padding:22px 36px;
+            border-radius:10px;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+            box-shadow:0 8px 0 #7a4520, 0 12px 30px rgba(173,102,57,.4);
+            transition:all .15s ease;
+            max-width:640px;
+            width:100%;
+            margin:10px auto;
+            position:relative;
+            overflow:hidden;
+        }
+        .cta-btn::after {
+            content:'';
+            position:absolute;
+            top:0; left:-100%;
+            width:60%; height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+            animation:shimmer 2.5s infinite;
+        }
+        @keyframes shimmer { 0%{left:-100%} 100%{left:200%} }
+        .cta-btn:hover {
+            transform:translateY(3px);
+            box-shadow:0 5px 0 #7a4520, 0 8px 18px rgba(173,102,57,.3);
+        }
+        .cta-sub { font-size:.78rem; color:#999; margin-top:8px; }
+        .cta-sub.light { color:rgba(255,255,255,.6); }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display:inline-block;
+            background:rgba(173,102,57,.12);
+            color:#ad6639;
+            font-family:'Montserrat',sans-serif;
+            font-size:.75rem;
+            font-weight:700;
+            padding:4px 14px;
+            border-radius:20px;
+            margin-bottom:12px;
+            text-transform:uppercase;
+            letter-spacing:1.2px;
+        }
+
+        /* ===== STORY / INTRO ===== */
+        .story-section { padding:70px 20px; background:var(--cream); }
+        .story-section h2 { font-size:2.1rem; margin-bottom:28px; color:var(--dark); }
+        .story-content {
+            font-size:1.05rem;
+            border-left:4px solid var(--red);
+            padding-left:22px;
+        }
+        .story-content p { margin-bottom:18px; color:#444; }
+        .story-highlight {
+            background:linear-gradient(135deg,#f5ede4,#eeddd0);
+            border:1px solid #d4a07a;
+            border-radius:10px;
+            padding:18px 24px;
+            margin-top:24px;
+            font-family:'Montserrat',sans-serif;
+            font-size:1.05rem;
+            font-weight:600;
+            color:var(--dark);
+        }
+
+        /* ===== CHAPTERS INDEX ===== */
+        .chapters-section { background:var(--blue-light); padding:70px 20px; }
+        .section-title { text-align:center; font-size:2.1rem; margin-bottom:8px; }
+        .section-subtitle { text-align:center; color:#666; margin-bottom:44px; font-size:.97rem; }
+        .chapters-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .chapter-card {
+            background:#fff;
+            border-radius:12px;
+            box-shadow:var(--shadow);
+            border-left:4px solid var(--red);
+            overflow:hidden;
+            transition:transform .15s ease, box-shadow .15s ease;
+        }
+        .chapter-card:hover {
+            transform:translateY(-2px);
+            box-shadow:0 8px 28px rgba(173,102,57,.15);
+        }
+        .chapter-card-header {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:18px 20px;
+        }
+        .ch-num {
+            background:var(--red);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:.85rem;
+            min-width:32px;
+            height:32px;
+            border-radius:8px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-shrink:0;
+        }
+        .chapter-card-header h4 { font-size:.95rem; margin:0; flex:1; color:var(--dark); }
+        .ch-arr {
+            font-size:.7rem;
+            color:var(--red);
+            transition:transform .3s;
+            flex-shrink:0;
+        }
+        .chapter-card.open .ch-arr { transform:rotate(180deg); }
+        .chapter-card-body {
+            max-height:0;
+            overflow:hidden;
+            transition:max-height .35s ease, padding .3s ease;
+            padding:0 18px;
+            font-size:.88rem;
+            color:#555;
+        }
+        .chapter-card.open .chapter-card-body { max-height:250px; padding:0 18px 16px; }
+        .chapter-card-body ul { padding-left:16px; }
+        .chapter-card-body li { margin-bottom:6px; }
+
+        /* ===== TOOLS SECTION ===== */
+        /* ===== TOOLS TEASER ===== */
+        .tools-section { background:var(--cream); padding:70px 20px; }
+        .tools-teaser-grid {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+            margin-top:36px;
+            margin-bottom:36px;
+        }
+        .tool-teaser-card {
+            background:#fff;
+            border-radius:14px;
+            padding:28px 24px;
+            box-shadow:var(--shadow);
+            border-top:4px solid var(--red);
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        }
+        .tool-teaser-icon {
+            font-size:1.8rem;
+            color:var(--red);
+        }
+        .tool-teaser-card h4 {
+            font-family:'Montserrat',sans-serif;
+            font-size:1rem;
+            font-weight:700;
+            color:var(--dark);
+            line-height:1.3;
+        }
+        .tool-teaser-card p {
+            font-size:.9rem;
+            color:#555;
+            flex:1;
+        }
+        .tool-teaser-tag {
+            display:inline-block;
+            background:rgba(45,106,79,.1);
+            color:var(--green);
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.72rem;
+            padding:4px 12px;
+            border-radius:20px;
+            align-self:flex-start;
+        }
+        .tools-teaser-bottom {
+            background:linear-gradient(135deg,#f5ede4,#eeddd0);
+            border:1px solid #d4a07a;
+            border-radius:14px;
+            padding:28px 32px;
+            text-align:center;
+        }
+        .tools-teaser-bottom p {
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            color:var(--dark);
+            font-size:1rem;
+            margin-bottom:4px;
+        }
+        @media(max-width:600px) { .tools-teaser-grid { grid-template-columns:1fr; } }
+
+        /* ===== INSIDE SECTION ===== */
+        .inside-section { background:var(--violet); padding:70px 20px; }
+        .inside-grid {
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:18px;
+            margin-top:36px;
+        }
+        .inside-card {
+            background:#fff;
+            border-radius:14px;
+            padding:26px 22px;
+            box-shadow:var(--shadow);
+            position:relative;
+            overflow:hidden;
+        }
+        .inside-card--highlight {
+            border:2px solid var(--red);
+        }
+        .inside-card--cta {
+            background:linear-gradient(135deg,#7a4520,#ad6639);
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            justify-content:center;
+        }
+        .inside-card--cta h4 { color:#fff; }
+        .inside-card--cta p  { color:rgba(255,255,255,.85); }
+        .inside-num {
+            font-family:'Montserrat',sans-serif;
+            font-size:1.8rem;
+            font-weight:900;
+            color:var(--red);
+            margin-bottom:12px;
+            line-height:1;
+        }
+        .inside-card--cta .inside-num { color:rgba(255,255,255,.4); }
+        .inside-card h4 {
+            font-family:'Montserrat',sans-serif;
+            font-size:.97rem;
+            font-weight:700;
+            color:var(--dark);
+            margin-bottom:10px;
+            line-height:1.35;
+        }
+        .inside-card p {
+            font-size:.88rem;
+            color:#555;
+        }
+        @media(max-width:768px) {
+            .inside-grid { grid-template-columns:1fr 1fr; }
+        }
+        @media(max-width:500px) {
+            .inside-grid { grid-template-columns:1fr; }
+        }
+
+        /* ===== TESTIMONIALS CAROUSEL ===== */
+        .testimonials-section { padding:70px 0; background:var(--pink-light); overflow:hidden; }
+        .testimonials-section > .container { padding-bottom:40px; }
+        .carousel-wrapper { overflow:hidden; cursor:grab; }
+        .carousel-wrapper.is-dragging { cursor:grabbing; user-select:none; }
+        .carousel-row {
+            display:flex;
+            width:max-content;
+            gap:20px;
+            padding:0 10px 20px;
+            animation: scroll-left 38s linear infinite;
+        }
+        .carousel-row--right {
+            animation: scroll-right 38s linear infinite;
+        }
+        @keyframes scroll-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .carousel-wrapper:hover .carousel-row { animation-play-state:paused; }
+        .t-card {
+            background:#fff;
+            border-radius:14px;
+            padding:24px;
+            border:1px solid #f5d8dc;
+            position:relative;
+            width:360px;
+            flex-shrink:0;
+            box-shadow:0 2px 14px rgba(173,102,57,.08);
+        }
+        .t-card::before {
+            content:'"';
+            position:absolute;
+            top:-8px; left:18px;
+            font-size:4.5rem;
+            color:var(--red);
+            font-family:Georgia,serif;
+            line-height:1;
+            opacity:.15;
+        }
+        .stars { color:var(--yellow); font-size:1rem; margin-bottom:10px; }
+        .t-text { font-size:.93rem; color:#444; font-style:italic; margin-bottom:16px; }
+        .t-author { display:flex; align-items:center; gap:11px; }
+        .t-avatar {
+            width:44px; height:44px;
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.95rem;
+            color:#fff;
+            flex-shrink:0;
+            overflow:hidden;
+        }
+        .t-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+        .t-name  { font-weight:700; font-size:.88rem; color:#222; }
+        .t-city  { font-size:.78rem; color:#888; }
+        .verified {
+            display:inline-flex; align-items:center; gap:3px;
+            background:#e8f5e9; color:#2e7d32;
+            font-size:.7rem; font-weight:700;
+            padding:2px 8px; border-radius:10px; margin-top:3px;
+        }
+
+        /* ===== PRODUCT CARD ===== */
+        .product-card-section { background:var(--cream); padding:50px 20px; }
+        .product-card {
+            background:#fff;
+            border:1px solid #dde0e7;
+            border-radius:14px;
+            max-width:420px;
+            margin:0 auto;
+            overflow:hidden;
+            box-shadow:0 4px 20px rgba(0,0,0,.09);
+        }
+        .product-card-img {
+            width:100%;
+            display:block;
+            background:#eef3fb;
+        }
+        .product-card-body { padding:22px 24px 28px; }
+        .product-card-title {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:1.35rem;
+            color:#111;
+            margin-bottom:14px;
+            line-height:1.25;
+        }
+        .product-price-row {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:14px;
+            flex-wrap:wrap;
+        }
+        .product-price-old {
+            font-size:.95rem;
+            color:#999;
+            text-decoration:line-through;
+        }
+        .product-price-new {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:1.6rem;
+            color:#111;
+        }
+        .product-off-badge {
+            background:var(--red);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:.75rem;
+            padding:4px 10px;
+            border-radius:6px;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+        .product-stock {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            font-size:.82rem;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            color:#e65100;
+            margin-bottom:18px;
+        }
+        .product-stock-dot {
+            width:7px; height:7px; border-radius:50%;
+            background:#f44336; animation:blink 1s infinite; flex-shrink:0;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .product-cta {
+            display:block;
+            background:linear-gradient(180deg,#1e9e4f,#178040);
+            color:#fff;
+            text-align:center;
+            font-family:'Montserrat',sans-serif;
+            font-weight:700;
+            font-size:1rem;
+            padding:14px;
+            border-radius:8px;
+            text-decoration:none;
+            transition:opacity .15s;
+        }
+        .product-cta:hover { opacity:.88; }
+
+        /* ===== PRICING BOX ===== */
+        .pricing-section { background:var(--cream); padding:44px 20px; border-top:1px solid #e8dbd3; }
+        .pricing-box {
+            max-width:480px;
+            margin:0 auto;
+            text-align:center;
+        }
+        .pricing-stars { color:#f5a623; font-size:1.2rem; margin-bottom:4px; }
+        .pricing-reviews { font-size:.85rem; color:#777; margin-bottom:22px; }
+        .pricing-reviews strong { color:#333; }
+        .pricing-main-price {
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size:2.5rem;
+            color:#111;
+            line-height:1;
+            margin-bottom:6px;
+        }
+        .pricing-old-price { font-size:1rem; color:#aaa; text-decoration:line-through; margin-bottom:16px; }
+        .pricing-savings-btn {
+            display:inline-block;
+            background:linear-gradient(135deg,#00b140,#007d2e);
+            color:#fff;
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1rem;
+            padding:13px 28px;
+            border-radius:30px;
+            margin-bottom:10px;
+            box-shadow:0 4px 14px rgba(0,177,64,.35);
+            text-decoration:none;
+            cursor:pointer;
+            transition:transform .18s ease, box-shadow .18s ease;
+        }
+        .pricing-savings-btn:hover { transform:scale(1.06) translateY(-2px); box-shadow:0 8px 24px rgba(0,177,64,.55); }
+        .pricing-launch { font-size:.82rem; color:#666; margin-bottom:24px; }
+        .pricing-launch i { color:#f5a623; }
+        .pricing-offer-btn {
+            display:block;
+            border:2px solid var(--red);
+            color:var(--red);
+            font-family:'Montserrat',sans-serif;
+            font-weight:800;
+            font-size:1.05rem;
+            padding:15px;
+            border-radius:10px;
+            text-decoration:none;
+            margin-bottom:24px;
+            cursor:pointer;
+            transition:background .15s, color .15s, transform .18s ease, box-shadow .18s ease;
+        }
+        .pricing-offer-btn:hover {
+            background:var(--red); color:#fff;
+            transform:translateY(-2px);
+            box-shadow:0 6px 18px rgba(173,102,57,.35);
+        }
+        .pricing-trust-list { list-style:none; text-align:left; display:inline-block; margin-bottom:22px; }
+        .pricing-trust-list li {
+            font-size:.88rem; color:#444; margin-bottom:8px;
+            display:flex; align-items:center; gap:8px;
+        }
+        .pricing-live {
+            display:flex; align-items:center; justify-content:center; gap:8px;
+            font-size:.88rem; font-family:'Montserrat',sans-serif; font-weight:700;
+            color:#333; margin-bottom:10px;
+        }
+        .pricing-live-dot {
+            width:10px; height:10px; border-radius:50%;
+            background:#3483fa; flex-shrink:0;
+        }
+        .pricing-urgency {
+            font-family:'Montserrat',sans-serif; font-weight:800; font-size:.85rem;
+            color:var(--red); text-transform:uppercase; letter-spacing:.5px;
+        }
+
+        /* ===== GUARANTEE ===== */
+        .guarantee-section { background:var(--cream); color:var(--dark); padding:70px 20px; text-align:center; }
+        .guarantee-box {
+            border:2px solid #e8dbd3;
+            padding:45px;
+            border-radius:16px;
+            background:rgba(255,255,255,.7);
+            max-width:760px;
+            margin:0 auto;
+        }
+        .g-icon { font-size:4rem; margin-bottom:18px; color:var(--red); }
+        .guarantee-box h2 { color:var(--dark); margin-bottom:18px; font-size:1.9rem; }
+        .guarantee-box p  { font-size:1.02rem; color:#555; margin-bottom:18px; }
+
+        /* ===== FAQ ===== */
+        .faq-section { padding:70px 20px; background:var(--violet); }
+        .faq-section h2 { text-align:center; font-size:2rem; margin-bottom:38px; }
+        .faq-item { background:#fff; border-radius:10px; margin-bottom:10px; border:1px solid #ccc7e0; overflow:hidden; }
+        .faq-q {
+            padding:17px 22px;
+            font-family:'Montserrat',sans-serif; font-weight:700; font-size:.97rem;
+            cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+            color:var(--dark); user-select:none;
+        }
+        .faq-q .arr { transition:transform .3s; font-size:.75rem; color:var(--red); }
+        .faq-a {
+            padding:0 22px; font-size:.93rem; color:#555;
+            max-height:0; overflow:hidden;
+            transition:max-height .4s ease, padding .3s ease;
+        }
+        .faq-item.open .faq-a  { max-height:400px; padding:0 22px 18px; }
+        .faq-item.open .arr    { transform:rotate(180deg); }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background:linear-gradient(135deg,#7a4520,#ad6639);
+            color:#fff; padding:70px 20px; text-align:center;
+        }
+        .final-cta h2 { font-size:2.3rem; margin-bottom:14px; }
+        .final-cta p  { font-size:1.08rem; color:rgba(255,255,255,.85); margin-bottom:28px; max-width:680px; margin-left:auto; margin-right:auto; }
+
+        /* ===== FOOTER ===== */
+        footer { background:#0d0d0d; color:#555; text-align:center; padding:28px 20px; font-size:.78rem; }
+        footer a { color:#777; text-decoration:none; }
+        footer a:hover { color:#fff; }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position:fixed; top:60px; right:14px; z-index:10000;
+            display:flex; flex-direction:column; gap:7px; pointer-events:none;
+        }
+        .toast {
+            background:#fff; border-left:3px solid var(--green-mid); border-radius:8px;
+            padding:8px 11px; box-shadow:0 4px 16px rgba(0,0,0,.14);
+            display:flex; align-items:center; gap:8px; max-width:240px;
+            font-size:.75rem; animation:toastIn .3s ease forwards;
+            font-family:'Open Sans',sans-serif;
+        }
+        .toast.out { animation:toastOut .3s ease forwards; }
+        .t-av {
+            width:30px; height:30px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Montserrat',sans-serif; font-weight:700; font-size:.78rem;
+            color:#fff; flex-shrink:0;
+        }
+        .toast-body strong { display:block; color:#111; font-size:.78rem; line-height:1.2; }
+        .toast-body span   { color:#666; font-size:.72rem; }
+        .toast-check { color:var(--green-mid); font-size:.95rem; margin-left:auto; flex-shrink:0; }
+        @keyframes toastIn  { from{opacity:0;transform:translateX(28px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes toastOut { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(28px)} }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px){
+            .hero h1      { font-size:2rem; }
+            .chapters-grid { grid-template-columns:1fr; }
+            .t-card       { width:290px; }
+            .guarantee-box { padding:24px 16px; }
+            .cta-btn      { font-size:1rem; padding:18px 18px; }
+            .final-cta h2 { font-size:1.7rem; }
+            .section-title { font-size:1.75rem; }
+            .product-card-section   { padding:0 0 32px; }
+            .product-card-section .container { padding:0; }
+            .product-card           { max-width:100%; border-radius:0; box-shadow:none; border-left:none; border-right:none; }
+            .product-card-img       { border-radius:0; }
+            .product-card-body      { padding:20px 20px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ TICKER BAR ═══════════════════ -->
+<div class="ticker-bar" aria-label="Información de compra" role="marquee">
+    <div class="ticker-track">
+        <span class="ticker-item"><i class="t-icon fa-solid fa-shield-halved"></i> Pago 100% Seguro con Mercado Pago</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-bolt"></i> 50% OFF por Tiempo Limitado</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-envelope"></i> Acceso Inmediato por Mail</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-globe"></i> COMPRA DESDE TODA LATAM PAGANDO EN TU MONEDA LOCAL</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-lock"></i> PAGO 100% SEGURO: ACEPTAMOS TARJETAS DE TODO EL MUNDO</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-shield-halved"></i> Pago 100% Seguro con Mercado Pago</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-bolt"></i> 50% OFF por Tiempo Limitado</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-envelope"></i> Acceso Inmediato por Mail</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-globe"></i> COMPRA DESDE TODA LATAM PAGANDO EN TU MONEDA LOCAL</span>
+        <span class="ticker-item"><i class="t-icon fa-solid fa-lock"></i> PAGO 100% SEGURO: ACEPTAMOS TARJETAS DE TODO EL MUNDO</span>
+    </div>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+    <div class="container">
+        <p class="pre-headline"><i class="fa-solid fa-map-location-dot"></i> La decisión más importante antes de armar tu carpa</p>
+        <h1>
+            Cómo Elegir el Terreno Perfecto<br>
+            y <span class="hl">Evitar Inundaciones</span><br>
+            <span class="red">(aunque seas principiante, elegí como un pro)</span>
+        </h1>
+        <p class="hero-sub">Aprendé a leer el terreno como un pro: las herramientas, los errores que hay que evitar y el método mental que cambia todo.</p>
+        <p class="hero-social-proof">Guía de <span>CarpaLovers</span> — Más de 4 años acampando sin mojarnos &nbsp;★★★★★</p>
+        <div class="cta-wrap">
+            <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-arrow-right"></i> ¡QUIERO ESTA GUÍA AHORA!</a>
+            <p class="cta-sub"><i class="fa-solid fa-lock"></i> Compra segura &nbsp;·&nbsp; <i class="fa-solid fa-bolt"></i> Acceso instantáneo &nbsp;·&nbsp; <i class="fa-solid fa-shield-halved"></i> Garantía 7 días sin preguntas</p>
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════ PRODUCT SHOWCASE ═══════════════════ -->
+<section class="product-card-section">
+    <div class="container">
+        <div class="product-card">
+            <img src="image/Ebook2.png" alt="Cómo Elegir el Terreno Perfecto y Evitar Inundaciones" class="product-card-img">
+            <div class="product-card-body">
+                <div class="product-card-title">Cómo Elegir el Terreno Perfecto y Evitar Inundaciones</div>
+                <div class="product-price-row">
+                    <span class="product-price-old">$20.000</span>
+                    <span class="product-price-new">$9.999</span>
+                    <span class="product-off-badge">OFERTA -50% OFF</span>
+                </div>
+                <div class="product-stock"><span class="product-stock-dot"></span> Stock limitado — oferta por tiempo limitado</div>
+                <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="product-cta"><i class="fa-solid fa-bolt"></i> COMPRAR AHORA</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ PRICING BOX ═══════════════════ -->
+<section class="pricing-section">
+    <div class="pricing-box">
+        <div class="pricing-stars">★★★★★</div>
+        <div class="pricing-reviews"><strong>4.8/5</strong> de 892 Reseñas</div>
+
+        <div class="pricing-main-price">$9.999</div>
+        <div class="pricing-old-price">$20.000</div>
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $10.001</a>
+
+        <div class="pricing-countdown">
+            <div class="pc-header"><i class="fa-regular fa-bell"></i> Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!</div>
+            <div class="pc-digits">
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-h">01</span>
+                    <span class="pc-lbl">horas</span>
+                </div>
+                <span class="pc-sep">:</span>
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-m">00</span>
+                    <span class="pc-lbl">minutos</span>
+                </div>
+                <span class="pc-sep">:</span>
+                <div class="pc-unit">
+                    <span class="pc-num" id="ub-s">00</span>
+                    <span class="pc-lbl">segundos</span>
+                </div>
+            </div>
+            <div class="pc-footer">Después de que el contador llegue a cero, esta oferta desaparecerá.</div>
+        </div>
+
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-offer-btn"><i class="fa-solid fa-fire"></i> ¡OFERTA TERMINA HOY!</a>
+
+        <ul class="pricing-trust-list">
+            <li><i class="fa-solid fa-bolt" style="color:#f5a623"></i> Acceso inmediato por mail</li>
+            <li><i class="fa-solid fa-lock" style="color:#555"></i> Pago seguro mediante Mercado Pago</li>
+            <li><i class="fa-solid fa-square-check" style="color:#00b140"></i> Garantía de satisfacción 7 días</li>
+        </ul>
+
+        <div class="pricing-live">
+            <div class="pricing-live-dot"></div>
+            <span><span id="pricing-live-count">10</span> personas viendo este producto</span>
+        </div>
+        <div class="pricing-urgency"><i class="fa-solid fa-fire"></i> El precio está a punto de aumentar</div>
+    </div>
+</section>
+
+<!-- ═══════════════════ HISTORIA / INTRO ═══════════════════ -->
+<section class="story-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-book-open"></i> La historia detrás de esta guía</div>
+        <h2>"En San Luis el río se desbordó… y nosotros no nos mojamos."</h2>
+        <div class="story-content">
+            <p>Hay algo que frena a muchas personas antes de acampar: el miedo a que todo se arruine con la lluvia.</p>
+            <p>Y no es un miedo exagerado. A muchos les pasa.</p>
+            <p>En San Luis, una vez, el río se desbordó. El agua avanzó… y varias carpas terminaron inundadas.</p>
+            <p><strong>Nosotros no.</strong></p>
+            <p>No porque elegimos el lugar "más lindo". Sino porque elegimos el lugar <em>correcto</em>.</p>
+            <p>Ahí entendimos algo clave: acampar bien no es cuestión de suerte… <strong>es estrategia.</strong></p>
+        </div>
+        <div class="story-highlight">
+            <i class="fa-solid fa-lightbulb"></i> Y hoy te la voy a enseñar — paso a paso, con las herramientas exactas que usamos en cada salida.
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ ÍNDICE DE CAPÍTULOS ═══════════════════ -->
+<section class="chapters-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-list"></i> Lo que vas a aprender</div>
+        <h2 class="section-title">10 Capítulos que te Cambian<br>la Forma de Acampar</h2>
+        <p class="section-subtitle">Sin teoría de relleno — solo lo que necesitás saber para nunca más elegir un lugar equivocado</p>
+        <div class="chapters-grid">
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">01</span>
+                    <h4>Por qué la lluvia no es el problema real</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">02</span>
+                    <h4>Cómo analizar cualquier terreno desde tu celular antes de salir</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">03</span>
+                    <h4>Leer la altura del terreno como lo hace un experto</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">04</span>
+                    <h4>Confirmar tu elección con datos de quienes ya estuvieron ahí</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">05</span>
+                    <h4>Entender lo que el paisaje te dice — y casi nadie escucha</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">06</span>
+                    <h4>Los terrenos que parecen perfectos pero te van a mojar</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">07</span>
+                    <h4>Cómo encontrar el lugar donde el agua nunca llega</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">08</span>
+                    <h4>La pregunta de 10 segundos que lo decide todo</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">09</span>
+                    <h4>El error que cometen hasta los campistas con años de experiencia</h4>
+                </div>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-card-header">
+                    <span class="ch-num">10</span>
+                    <h4>Evaluar cualquier terreno en menos de 5 minutos al llegar</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ HERRAMIENTAS ═══════════════════ -->
+<section class="tools-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-toolbox"></i> Lo que los expertos usan</div>
+        <h2 class="section-title">Tenés las Herramientas.<br>Solo Nadie te Enseñó a Usarlas.</h2>
+        <p class="section-subtitle">Dentro de la guía descubrís exactamente cómo usar 4 recursos (la mayoría gratuitos) para analizar cualquier terreno antes de llegar — desde tu celular, sin ser experto.</p>
+        <div class="tools-teaser-grid">
+            <div class="tool-teaser-card">
+                <div class="tool-teaser-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                <h4>Ver el terreno en 3D antes de salir de tu casa</h4>
+                <p>Existe una herramienta gratuita que te permite literalmente sobrevolar la zona donde vas a acampar y detectar depresiones, elevaciones y cursos de agua con solo inclinar la pantalla.</p>
+                <span class="tool-teaser-tag">Gratis · En tu celular ahora mismo</span>
+            </div>
+            <div class="tool-teaser-card">
+                <div class="tool-teaser-icon"><i class="fa-solid fa-mountain"></i></div>
+                <h4>Leer la altura del terreno como un experto</h4>
+                <p>Aprendés a interpretar datos topográficos reales — la habilidad que separa al campista que elige bien del que improvisa y reza para que no llueva.</p>
+                <span class="tool-teaser-tag">Gratis · Funciones básicas</span>
+            </div>
+            <div class="tool-teaser-card">
+                <div class="tool-teaser-icon"><i class="fa-solid fa-users"></i></div>
+                <h4>Validar tu elección con la experiencia real de otros</h4>
+                <p>Descubrís cómo acceder a información de cientos de campistas que ya estuvieron ahí — incluyendo señales de alerta que ningún mapa te va a mostrar.</p>
+                <span class="tool-teaser-tag">Gratis · Datos en tiempo real</span>
+            </div>
+            <div class="tool-teaser-card">
+                <div class="tool-teaser-icon"><i class="fa-solid fa-compass"></i></div>
+                <h4>Entender lo que no ves a simple vista al llegar</h4>
+                <p>Una herramienta que revela exactamente qué elevaciones te rodean — y por qué eso puede ser la diferencia entre dormir seco o amanecer con agua dentro de la carpa.</p>
+                <span class="tool-teaser-tag">Inversión mínima · Vale cada centavo</span>
+            </div>
+        </div>
+        <div class="tools-teaser-bottom">
+            <p><i class="fa-solid fa-lock"></i> Cada una de estas herramientas viene explicada paso a paso dentro de la guía — con capturas, ejemplos reales y qué mirar exactamente.</p>
+            <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn" style="display:inline-flex;margin-top:20px;max-width:520px;"><i class="fa-solid fa-arrow-right"></i> QUIERO ACCEDER A TODO ESTO</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ LO QUE ENCONTRÁS ADENTRO ═══════════════════ -->
+<section class="inside-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-fire"></i> Lo que te vas a llevar</div>
+        <h2 class="section-title">Esto No Lo Encontrás<br>en Ningún Otro Lado</h2>
+        <p class="section-subtitle">Momentos clave que te cambian la cabeza — y que solo están adentro</p>
+        <div class="inside-grid">
+            <div class="inside-card inside-card--highlight">
+                <div class="inside-num">?</div>
+                <h4>La pregunta que el 90% de los campistas nunca se hace</h4>
+                <p>Es simple, rápida, y cuando la incorporás no podés creer que nunca la usaste antes.</p>
+            </div>
+            <div class="inside-card">
+                <div class="inside-num">!</div>
+                <h4>El tipo de terreno que engaña a todos — incluso a los experimentados</h4>
+                <p>Parece ideal. Todos lo eligen. Y es justamente donde no tenés que estar.</p>
+            </div>
+            <div class="inside-card">
+                <div class="inside-num">↑</div>
+                <h4>Por qué estar en altura no garantiza nada</h4>
+                <p>Hay un detalle dentro de las pendientes que casi nadie conoce — y que hace toda la diferencia.</p>
+            </div>
+            <div class="inside-card">
+                <div class="inside-num">🔍</div>
+                <h4>Spots increíbles que casi nadie conoce — y cómo encontrarlos gratis</h4>
+                <p>Con coordenadas exactas, fotos reales y experiencias de otros viajeros. Sin pagar un peso.</p>
+            </div>
+            <div class="inside-card">
+                <div class="inside-num">⚡</div>
+                <h4>El hack secreto que los campistas avanzados usan en tormentas</h4>
+                <p>Con materiales de cualquier ferretería. La mayoría nunca lo descubre solo.</p>
+            </div>
+            <div class="inside-card inside-card--cta">
+                <i class="fa-solid fa-arrow-right" style="font-size:2rem;color:#fff;margin-bottom:14px;display:block;"></i>
+                <h4 style="color:#fff;">¿Querés descubrir el resto?</h4>
+                <p style="color:rgba(255,255,255,.9);">Todo esto está dentro de la guía completa.</p>
+                <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn" style="margin-top:18px;font-size:.92rem;padding:16px 20px;box-shadow:0 6px 0 rgba(0,0,0,.3);">ACCEDER A LA GUÍA</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ TESTIMONIOS ═══════════════════ -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-label"><i class="fa-solid fa-comments"></i> Historias reales</div>
+        <h2 class="section-title">Gente que Aplicó Esto y No se Mojó Más</h2>
+        <p class="section-subtitle">Del miedo a la lluvia a elegir el terreno correcto en minutos</p>
+    </div>
+    <div class="carousel-wrapper">
+
+        <!-- ── Fila 1: desplazamiento hacia la izquierda ── -->
+        <div class="carousel-row">
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Caímos en una llovizna en Merlo y yo tenía pánico. Apliqué el método de la guía antes de armar: pisé el suelo, busqué la leve pendiente y observé los cauces naturales. Resultado: el agua se fue sola y nosotros dormimos secos. Alucinante."</p>
+                <div class="t-author">
+                    <div class="t-avatar" style="background:linear-gradient(135deg,#ad6639,#7a4520)">SR</div>
+                    <div><div class="t-name">Santiago R.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Córdoba</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Nunca supe que Google Earth se podía usar así para camping. Antes de nuestra última salida a los Esteros lo apliqué en 15 minutos y encontré el único punto elevado del sector. El resto del grupo amaneció con el piso mojado. Nosotros no."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Luciana V."></div>
+                    <div><div class="t-name">Luciana V.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Corrientes</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El tip del cauce seco me voló la cabeza. Justo íbamos a armar la carpa en un lecho de piedra que se veía 'cómodo'. Lo descartamos. Esa noche cayó una tormenta fuerte y por ese cauce bajó agua. Me salvé por leer esto antes de salir."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Rodrigo M."></div>
+                    <div><div class="t-name">Rodrigo M.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Mendoza</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <!-- Duplicados para loop seamless -->
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Caímos en una llovizna en Merlo y yo tenía pánico. Apliqué el método de la guía antes de armar: pisé el suelo, busqué la leve pendiente y observé los cauces naturales. Resultado: el agua se fue sola y nosotros dormimos secos. Alucinante."</p>
+                <div class="t-author">
+                    <div class="t-avatar" style="background:linear-gradient(135deg,#ad6639,#7a4520)">SR</div>
+                    <div><div class="t-name">Santiago R.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Córdoba</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Nunca supe que Google Earth se podía usar así para camping. Antes de nuestra última salida a los Esteros lo apliqué en 15 minutos y encontré el único punto elevado del sector. El resto del grupo amaneció con el piso mojado. Nosotros no."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Luciana V."></div>
+                    <div><div class="t-name">Luciana V.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Corrientes</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El tip del cauce seco me voló la cabeza. Justo íbamos a armar la carpa en un lecho de piedra que se veía 'cómodo'. Lo descartamos. Esa noche cayó una tormenta fuerte y por ese cauce bajó agua. Me salvé por leer esto antes de salir."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Rodrigo M."></div>
+                    <div><div class="t-name">Rodrigo M.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Mendoza</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Fila 2: desplazamiento hacia la derecha ── -->
+        <div class="carousel-row carousel-row--right">
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Llevé la guía al celular y la leí en el viaje. Cuando llegamos al camping en Bariloche, fui el único del grupo que evaluó el terreno antes de clavar las estacas. El resto copió mi lógica después de que me vieron analizar tres spots. Una experiencia 10 puntos."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Ezequiel P."></div>
+                    <div><div class="t-name">Ezequiel P.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Neuquén</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Acampé toda mi vida eligiendo 'el lugar más lindo'. Esta guía me hizo entender que estaba haciendo todo mal. Ahora uso Gaia GPS antes de salir y ya no tengo ansiedad cuando llueve. Esa tranquilidad no tiene precio."</p>
+                <div class="t-author">
+                    <div class="t-avatar" style="background:linear-gradient(135deg,#3d9970,#2d6a4f)">ML</div>
+                    <div><div class="t-name">Micaela L.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Santa Fe</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El truco del tarp con las tapas de botella me dejó loco. Simple, económico y funciona perfecto. Uno de esos tips que parece obvio pero nunca lo habría pensado solo. Ahora lo comparto con todos mis compañeros de camping."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Agustín B."></div>
+                    <div><div class="t-name">Agustín B.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Buenos Aires</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <!-- Duplicados para loop seamless -->
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Llevé la guía al celular y la leí en el viaje. Cuando llegamos al camping en Bariloche, fui el único del grupo que evaluó el terreno antes de clavar las estacas. El resto copió mi lógica después de que me vieron analizar tres spots. Una experiencia 10 puntos."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Ezequiel P."></div>
+                    <div><div class="t-name">Ezequiel P.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Neuquén</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"Acampé toda mi vida eligiendo 'el lugar más lindo'. Esta guía me hizo entender que estaba haciendo todo mal. Ahora uso Gaia GPS antes de salir y ya no tengo ansiedad cuando llueve. Esa tranquilidad no tiene precio."</p>
+                <div class="t-author">
+                    <div class="t-avatar" style="background:linear-gradient(135deg,#3d9970,#2d6a4f)">ML</div>
+                    <div><div class="t-name">Micaela L.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Santa Fe</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+            <div class="t-card">
+                <div class="stars">★★★★★</div>
+                <p class="t-text">"El truco del tarp con las tapas de botella me dejó loco. Simple, económico y funciona perfecto. Uno de esos tips que parece obvio pero nunca lo habría pensado solo. Ahora lo comparto con todos mis compañeros de camping."</p>
+                <div class="t-author">
+                    <div class="t-avatar"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Agustín B."></div>
+                    <div><div class="t-name">Agustín B.</div><div class="t-city"><i class="fa-solid fa-location-dot"></i> Buenos Aires</div><div class="verified">✔ Compra verificada</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════ MID CTA ═══════════════════ -->
+<section style="background:var(--cream);padding:32px 20px;text-align:center;border-top:3px solid var(--pink-light);border-bottom:3px solid var(--pink-light);">
+    <div class="container">
+        <p style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);margin-bottom:6px;">¿Ya te convenciste?</p>
+        <p style="color:#777;margin-bottom:20px;font-size:.95rem;">La guía completa de terreno por un único pago de <strong style="color:var(--red);">$9.999</strong></p>
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn" style="display:inline-flex;"><i class="fa-solid fa-map-location-dot"></i> QUIERO MI GUÍA DE TERRENO AHORA</a>
+        <p style="margin-top:14px;font-size:.8rem;color:#aaa;"><i class="fa-solid fa-shield-halved"></i> Garantía 7 días sin preguntas &nbsp;·&nbsp; <i class="fa-solid fa-bolt"></i> Acceso instantáneo</p>
+    </div>
+</section>
+
+<!-- ═══════════════════ FORMAS DE PAGO ═══════════════════ -->
+<section class="payment-section">
+    <div class="container">
+        <h3>Métodos de pago</h3>
+        <img src="image/MetodosPago.png" alt="Métodos de pago: Mercado Pago, Visa, Mastercard" class="pay-img">
+        <div><span class="ssl-badge"><i class="fa-solid fa-lock"></i> Sitio protegido con SSL — Tus datos nunca se comparten con terceros</span></div>
+    </div>
+</section>
+
+<!-- ═══════════════════ GARANTÍA ═══════════════════ -->
+<section class="guarantee-section">
+    <div class="container">
+        <div class="guarantee-box">
+            <div class="g-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2>Garantía "Cero Riesgo" — 7 Días</h2>
+            <p>Probá la guía 7 días. Si sentís que no te aportó lo que esperabas, <strong style="color:var(--red)">te devuelvo el 100% de tu dinero sin preguntas</strong> — y te quedás con todo el contenido.</p>
+            <p>El riesgo lo asumo <em>yo</em>. Vos solo tenés que aprender a elegir el terreno correcto.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="faq-section">
+    <div class="container">
+        <h2><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">¿Cómo recibo la guía después de comprar? <span class="arr">▼</span></div>
+            <div class="faq-a">Inmediatamente después del pago recibís un email con el link de descarga. Acceso instantáneo, 24/7, desde cualquier dispositivo.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Sirve si nunca analicé el terreno antes de acampar? <span class="arr">▼</span></div>
+            <div class="faq-a">Es exactamente para vos. La guía te enseña desde cero a leer el terreno con herramientas gratuitas y un método simple que podés aplicar antes de cada salida, sin importar tu experiencia previa.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Las apps que enseña la guía son gratuitas? <span class="arr">▼</span></div>
+            <div class="faq-a">La mayoría sí. Google Earth y Google Maps son completamente gratuitas. Gaia GPS y AllTrails tienen funciones básicas gratuitas suficientes para lo que enseña la guía. PeakFinder tiene un pequeño costo único de alrededor de USD 5.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Sirve para cualquier tipo de camping o solo para agreste? <span class="arr">▼</span></div>
+            <div class="faq-a">Sirve para ambos. Tanto si vas a un camping organizado como si buscás un spot agreste, saber leer el terreno y elegir bien tu posición es igual de importante. La guía aplica a cualquier situación.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Cuánto tarda en aplicarse lo que enseña? <span class="arr">▼</span></div>
+            <div class="faq-a">Con 15-20 minutos de análisis previo usando las apps indicadas ya vas a tener información suficiente para elegir un lugar seguro. En el campo, la evaluación del terreno lleva menos de 5 minutos una vez que sabés qué buscar.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿En qué formato viene la guía? <span class="arr">▼</span></div>
+            <div class="faq-a">La guía viene en PDF de alta calidad — podés leerla en tu celular, tablet o computadora, y funciona sin internet una vez descargada. Perfecta para llevar al camping.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿Puedo pagar en la moneda de mi país? <span class="arr">▼</span></div>
+            <div class="faq-a">Sí. El precio se cobra en la moneda local de tu país. Si estás en Argentina, son $9.999 pesos argentinos. Si estás en otro país, verás el equivalente en tu moneda al momento del pago. Aceptamos tarjeta, Mercado Pago y otros medios según tu región.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">¿La garantía de 7 días es real? ¿Cómo pido el reembolso? <span class="arr">▼</span></div>
+            <div class="faq-a">100% real. Dentro de los 7 días mandás un email a nuestro soporte y te devolvemos el dinero completo sin preguntas. Sin excusas, sin letra chica.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+<section class="final-cta">
+    <div class="container">
+        <h2>Acampar bien no es suerte.</h2>
+        <p>"No gana el lugar más lindo. Gana el lugar mejor elegido." Después de más de 4 años acampando, aprendimos que las buenas experiencias no pasan por casualidad — pasan porque tomaste buenas decisiones antes. El riesgo es cero, la garantía lo cubre todo.</p>
+        <div class="cta-wrap">
+            <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-map-location-dot"></i> SÍ, QUIERO APRENDER A ELEGIR EL TERRENO PERFECTO</a>
+            <p class="cta-sub light">Solo $9.999 ARS &nbsp;·&nbsp; Acceso en segundos &nbsp;·&nbsp; Garantía 7 días sin preguntas</p>
+        </div>
+        <p style="margin-top:28px;font-size:.85rem;color:rgba(255,255,255,.6)">Seguime en <strong style="color:#fff">@CarpaLovers</strong> para más tips reales de camping</p>
+        <p style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px">www.sinmiedoacampar.com</p>
+    </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+    <div class="container">
+        <p>© 2026 CarpaLovers · Todos los derechos reservados</p>
+        <p style="margin-top:8px">
+            <a href="#">Términos y Condiciones</a> &nbsp;·&nbsp;
+            <a href="#">Política de Privacidad</a> &nbsp;·&nbsp;
+            <a href="#">Contacto y Soporte</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Botón flotante -->
+<a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="float-cta"><i class="fa-solid fa-fire"></i> DESCARGAR AHORA</a>
+
+<!-- ═══════════════════ TOAST CONTAINER ═══════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+/* ─── 1. COUNTDOWN TIMER ─── */
+(function () {
+    var KEY = 'cl_countdown_end_ebook2';
+    var end = +sessionStorage.getItem(KEY);
+    if (!end || end < Date.now()) {
+        end = Date.now() + (60 * 60) * 1000;
+        sessionStorage.setItem(KEY, end);
+    }
+    function tick() {
+        var diff = Math.max(0, end - Date.now());
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('ub-h').textContent = String(h).padStart(2, '0');
+        document.getElementById('ub-m').textContent = String(m).padStart(2, '0');
+        document.getElementById('ub-s').textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+})();
+
+/* ─── 2. LIVE VIEWERS COUNTER ─── */
+(function () {
+    var pool = [4, 5, 6, 7, 8, 10, 11, 17];
+    function pickRandom() { return pool[Math.floor(Math.random() * pool.length)]; }
+    var cur = pickRandom();
+    var el = document.getElementById('pricing-live-count');
+    if (el) el.textContent = cur;
+    setInterval(function () {
+        cur = pickRandom();
+        if (el) el.textContent = cur;
+    }, 4500);
+})();
+
+/* ─── 3. PURCHASE TOAST NOTIFICATIONS ─── */
+(function () {
+    var buyers = [
+        { name: 'Valentina M.',  city: 'Buenos Aires', ini: 'VM', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Lucas R.',      city: 'Córdoba',       ini: 'LR', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+        { name: 'Sofía P.',      city: 'Rosario',       ini: 'SP', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+        { name: 'Matías G.',     city: 'Mendoza',       ini: 'MG', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+        { name: 'Camila F.',     city: 'Mar del Plata', ini: 'CF', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+        { name: 'Nicolás T.',    city: 'Salta',         ini: 'NT', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' },
+        { name: 'Florencia B.',  city: 'La Plata',      ini: 'FB', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+        { name: 'Diego A.',      city: 'Tucumán',       ini: 'DA', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+        { name: 'Martina C.',    city: 'Santa Fe',      ini: 'MC', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+        { name: 'Agustín L.',    city: 'Bahía Blanca',  ini: 'AL', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+        { name: 'Carolina V.',   city: 'San Juan',      ini: 'CV', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+        { name: 'Facundo H.',    city: 'Neuquén',       ini: 'FH', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' }
+    ];
+    var times = ['hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min', 'recién ahora', 'hace 8 min'];
+    var container = document.getElementById('toastContainer');
+    var idx = Math.floor(Math.random() * buyers.length);
+
+    function showToast() {
+        var b   = buyers[idx % buyers.length]; idx++;
+        var t   = times[Math.floor(Math.random() * times.length)];
+        var div = document.createElement('div');
+        div.className = 'toast';
+        div.innerHTML =
+            '<div class="t-av" style="background:' + b.bg + '">' + b.ini + '</div>' +
+            '<div class="toast-body">' +
+            '<strong>' + b.name + ' de ' + b.city + '</strong>' +
+            '<span>acaba de comprar la guía — ' + t + '</span>' +
+            '</div>' +
+            '<div class="toast-check">✔</div>';
+        container.appendChild(div);
+        setTimeout(function () {
+            div.classList.add('out');
+            setTimeout(function () { div.remove(); }, 380);
+        }, 4800);
+    }
+
+    setTimeout(function () {
+        showToast();
+        setInterval(showToast, 25000 + Math.random() * 15000);
+    }, 30000);
+})();
+
+/* ─── 4. FAQ ACCORDION ─── */
+document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+        var item   = q.parentElement;
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+        if (!isOpen) { item.classList.add('open'); }
+    });
+});
+
+/* ─── 5. CHAPTERS ACCORDION ─── */
+document.querySelectorAll('.chapter-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+        var isOpen = card.classList.contains('open');
+        document.querySelectorAll('.chapter-card').forEach(function (c) { c.classList.remove('open'); });
+        if (!isOpen) { card.classList.add('open'); }
+    });
+});
+
+/* ─── 6. CAROUSEL DRAG ─── */
+(function () {
+    var wrapper = document.querySelector('.carousel-wrapper');
+    if (!wrapper) return;
+    var rows = Array.from(wrapper.querySelectorAll('.carousel-row'));
+    var DURATION = 38;
+
+    function getTranslateX(el) {
+        var t = window.getComputedStyle(el).transform;
+        if (!t || t === 'none') return 0;
+        var vals = t.replace('matrix(', '').replace(')', '').split(',');
+        return parseFloat(vals[4]) || 0;
+    }
+
+    function resumeRows(finalXArr) {
+        rows.forEach(function (row, i) {
+            var halfWidth = row.scrollWidth / 2;
+            var isRight   = row.classList.contains('carousel-row--right');
+            var progress  = isRight
+                ? (finalXArr[i] + halfWidth) / halfWidth
+                : -finalXArr[i] / halfWidth;
+            progress = Math.max(0, Math.min(1, progress));
+            row.style.animationDelay    = -(progress * DURATION) + 's';
+            row.style.transform         = '';
+            row.style.animationName     = '';
+            row.style.animationPlayState = 'running';
+        });
+    }
+
+    var isDown    = false;
+    var startX    = 0;
+    var startY    = 0;
+    var startArr  = [];
+    var direction = null;
+
+    function clientX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+    function clientY(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
+
+    wrapper.addEventListener('mouseleave', function () {
+        if (isDown) return;
+        rows.forEach(function (row) { row.style.animationPlayState = ''; });
+    });
+
+    function onStart(e) {
+        isDown    = true;
+        startX    = clientX(e);
+        startY    = clientY(e);
+        direction = null;
+        startArr  = rows.map(getTranslateX);
+    }
+
+    function onMove(e) {
+        if (!isDown) return;
+        var dx = clientX(e) - startX;
+        var dy = clientY(e) - startY;
+
+        if (direction === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+            direction = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+            if (direction === 'h') {
+                rows.forEach(function (row, i) {
+                    row.style.animationName = 'none';
+                    row.style.transform     = 'translateX(' + startArr[i] + 'px)';
+                });
+                wrapper.classList.add('is-dragging');
+            }
+        }
+
+        if (direction === 'h') {
+            e.preventDefault();
+            rows.forEach(function (row, i) {
+                row.style.transform = 'translateX(' + (startArr[i] + dx) + 'px)';
+            });
+        }
+    }
+
+    function onEnd(e) {
+        if (!isDown) return;
+        isDown = false;
+        if (direction === 'h') {
+            wrapper.classList.remove('is-dragging');
+            var cx    = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+            var delta = cx - startX;
+            resumeRows(startArr.map(function (x) { return x + delta; }));
+        }
+        direction = null;
+    }
+
+    wrapper.addEventListener('mousedown',  onStart);
+    window.addEventListener('mousemove',   onMove);
+    window.addEventListener('mouseup',     onEnd);
+    wrapper.addEventListener('touchstart', onStart, { passive: true });
+    window.addEventListener('touchmove',   onMove,  { passive: false });
+    window.addEventListener('touchend',    onEnd);
+})();
+</script>
+</body>
+</html>
