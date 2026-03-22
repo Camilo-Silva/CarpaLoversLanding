@@ -1,0 +1,201 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-product-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 50px 20px;
+  }
+
+  .cl2-product-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cl2-product-card {
+    background: #fff;
+    border: 1px solid #dde0e7;
+    border-radius: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.09);
+  }
+
+  .cl2-product-img {
+    width: 100%;
+    display: block;
+    background: #eef3fb;
+  }
+
+  .cl2-product-body {
+    padding: 22px 24px 28px;
+  }
+
+  .cl2-product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: #111;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+
+  .cl2-product-price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .cl2-price-old {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .95rem;
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  .cl2-price-new {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: #111;
+  }
+
+  .cl2-off-badge {
+    background: {{ section.settings.accent_color }};
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  .cl2-product-cta {
+    display: block;
+    background: linear-gradient(180deg, #1e9e4f, #178040);
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+
+  .cl2-product-cta:hover { opacity: .88; }
+
+  @media (max-width: 768px) {
+    .cl2-product-section { padding: 0 0 32px; }
+    .cl2-product-container { padding: 0; }
+    .cl2-product-card { max-width: 100%; border-radius: 0; box-shadow: none; border-left: none; border-right: none; }
+    .cl2-product-img { border-radius: 0; }
+    .cl2-product-body { padding: 20px; }
+  }
+</style>
+
+<section class="cl2-product-section">
+  <div class="cl2-product-container">
+    <div class="cl2-product-card">
+      <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ section.settings.product_image_alt }}" class="cl2-product-img">
+      <div class="cl2-product-body">
+        <div class="cl2-product-title">{{ section.settings.product_title }}</div>
+        <div class="cl2-product-price-row">
+          <span class="cl2-price-old">{{ section.settings.price_old }}</span>
+          <span class="cl2-price-new">{{ section.settings.price_new }}</span>
+          <span class="cl2-off-badge">{{ section.settings.off_badge }}</span>
+        </div>
+        <a href="{{ section.settings.cta_url }}" class="cl2-product-cta">
+          <i class="fa-solid {{ section.settings.cta_icon }}"></i>
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Card — Ebook2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color del badge de descuento",
+      "default": "#ad6639"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Imagen del producto (tapa del ebook)"
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "Texto alternativo de la imagen",
+      "default": "Cómo Elegir el Terreno Perfecto y Evitar Inundaciones"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Título del producto",
+      "default": "Cómo Elegir el Terreno Perfecto y Evitar Inundaciones"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado (original)",
+      "default": "$30.000"
+    },
+    {
+      "type": "text",
+      "id": "price_new",
+      "label": "Precio actual",
+      "default": "$14.990"
+    },
+    {
+      "type": "text",
+      "id": "off_badge",
+      "label": "Badge de descuento",
+      "default": "OFERTA -50% OFF"
+    },
+    {
+      "type": "text",
+      "id": "cta_icon",
+      "label": "Ícono del botón",
+      "default": "fa-bolt"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "COMPRAR AHORA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón de compra"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Card — Ebook Terreno"
+    }
+  ]
+}
+{% endschema %}

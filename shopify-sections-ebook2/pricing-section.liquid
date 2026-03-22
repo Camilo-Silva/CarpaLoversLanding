@@ -1,0 +1,322 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-pricing-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 44px 20px;
+    border-top: 1px solid #e8dbd3;
+  }
+
+  .cl2-pricing-box {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cl2-pricing-stars { color: #f5a623; font-size: 1.2rem; margin-bottom: 4px; }
+
+  .cl2-pricing-reviews {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .85rem;
+    color: #777;
+    margin-bottom: 22px;
+  }
+  .cl2-pricing-reviews strong { color: #333; }
+
+  .cl2-pricing-main-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .cl2-pricing-old-price {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #aaa;
+    text-decoration: line-through;
+    margin-bottom: 16px;
+  }
+
+  .cl2-pricing-savings-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #00b140, #007d2e);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 13px 28px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 14px rgba(0,177,64,.35);
+    text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .cl2-pricing-savings-btn:hover { transform: scale(1.06) translateY(-2px); box-shadow: 0 8px 24px rgba(0,177,64,.55); }
+
+  /* Countdown */
+  .cl2-pricing-countdown {
+    background: linear-gradient(135deg, #fff8f0, #fdeede);
+    border: 2px solid #e8a87c;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .cl2-pc-header { font-size: .85rem; font-weight: 700; color: #7a4520; margin-bottom: 10px; }
+  .cl2-pc-digits { display: flex; justify-content: center; gap: 6px; align-items: flex-end; margin-bottom: 10px; }
+  .cl2-pc-unit { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .cl2-pc-num { background: #7a4520; color: #fff; font-size: 1.8rem; font-weight: 900; padding: 6px 14px; border-radius: 8px; min-width: 52px; line-height: 1; }
+  .cl2-pc-lbl { font-size: .65rem; font-weight: 700; color: #ad6639; text-transform: uppercase; letter-spacing: .5px; }
+  .cl2-pc-sep { font-size: 1.8rem; font-weight: 900; color: #ad6639; line-height: 1; padding-bottom: 6px; }
+  .cl2-pc-footer { font-family: 'Open Sans', sans-serif; font-size: .75rem; color: #888; }
+
+  .cl2-pricing-offer-btn {
+    display: block;
+    border: 2px solid {{ section.settings.accent_color }};
+    color: {{ section.settings.accent_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: background .15s, color .15s, transform .18s ease, box-shadow .18s ease;
+  }
+  .cl2-pricing-offer-btn:hover {
+    background: {{ section.settings.accent_color }};
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(173,102,57,.35);
+  }
+
+  .cl2-pricing-trust-list {
+    list-style: none;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 0;
+  }
+  .cl2-pricing-trust-list li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .88rem;
+    color: #444;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cl2-pricing-live {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .cl2-pricing-live-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #3483fa;
+    flex-shrink: 0;
+  }
+
+  .cl2-pricing-urgency {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: .85rem;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+</style>
+
+<section class="cl2-pricing-section">
+  <div class="cl2-pricing-box">
+    <div class="cl2-pricing-stars">★★★★★</div>
+    <div class="cl2-pricing-reviews">
+      <strong>{{ section.settings.rating }}</strong> de {{ section.settings.reviews_count }} Reseñas
+    </div>
+
+    <div class="cl2-pricing-main-price">{{ section.settings.price_new }}</div>
+    <div class="cl2-pricing-old-price">{{ section.settings.price_old }}</div>
+
+    <a href="{{ section.settings.cta_url }}" class="cl2-pricing-savings-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.savings_label }}
+    </a>
+
+    {% if section.settings.show_countdown %}
+    <div class="cl2-pricing-countdown">
+      <div class="cl2-pc-header"><i class="fa-regular fa-bell"></i> {{ section.settings.countdown_label }}</div>
+      <div class="cl2-pc-digits">
+        <div class="cl2-pc-unit">
+          <span class="cl2-pc-num" id="cl2-ub-h">01</span>
+          <span class="cl2-pc-lbl">horas</span>
+        </div>
+        <span class="cl2-pc-sep">:</span>
+        <div class="cl2-pc-unit">
+          <span class="cl2-pc-num" id="cl2-ub-m">00</span>
+          <span class="cl2-pc-lbl">minutos</span>
+        </div>
+        <span class="cl2-pc-sep">:</span>
+        <div class="cl2-pc-unit">
+          <span class="cl2-pc-num" id="cl2-ub-s">00</span>
+          <span class="cl2-pc-lbl">segundos</span>
+        </div>
+      </div>
+      <div class="cl2-pc-footer">{{ section.settings.countdown_footer }}</div>
+    </div>
+    {% endif %}
+
+    <a href="{{ section.settings.cta_url }}" class="cl2-pricing-offer-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.offer_btn_text }}
+    </a>
+
+    <ul class="cl2-pricing-trust-list">
+      <li><i class="fa-solid fa-bolt" style="color:#f5a623"></i> Acceso inmediato por mail</li>
+      <li><i class="fa-solid fa-lock" style="color:#555"></i> Pago seguro mediante Mercado Pago</li>
+      <li><i class="fa-solid fa-square-check" style="color:#00b140"></i> Garantía de satisfacción 7 días</li>
+    </ul>
+
+    <div class="cl2-pricing-live">
+      <div class="cl2-pricing-live-dot"></div>
+      <span><span id="cl2-pricing-live-count">10</span> personas viendo este producto</span>
+    </div>
+    <div class="cl2-pricing-urgency"><i class="fa-solid fa-fire"></i> El precio está a punto de aumentar</div>
+  </div>
+</section>
+
+{% if section.settings.show_countdown %}
+<script>
+(function () {
+  var KEY = 'cl2_countdown_end_ebook2';
+  var end  = +sessionStorage.getItem(KEY);
+  if (!end || end < Date.now()) {
+    end = Date.now() + (60 * 60) * 1000;
+    sessionStorage.setItem(KEY, end);
+  }
+  function tick() {
+    var diff = Math.max(0, end - Date.now());
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var eh = document.getElementById('cl2-ub-h');
+    var em = document.getElementById('cl2-ub-m');
+    var es = document.getElementById('cl2-ub-s');
+    if (eh) eh.textContent = String(h).padStart(2, '0');
+    if (em) em.textContent = String(m).padStart(2, '0');
+    if (es) es.textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Pricing Box — Ebook2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#ad6639"
+    },
+    {
+      "type": "header",
+      "content": "Precios y reviews"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Calificación (ej: 4.8/5)",
+      "default": "4.8/5"
+    },
+    {
+      "type": "text",
+      "id": "reviews_count",
+      "label": "Cantidad de reseñas",
+      "default": "892"
+    },
+    {
+      "type": "text",
+      "id": "price_new",
+      "label": "Precio actual",
+      "default": "$14.990"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado",
+      "default": "$30.000"
+    },
+    {
+      "type": "text",
+      "id": "savings_label",
+      "label": "Etiqueta de ahorro",
+      "default": "AHORRÁS $15.010"
+    },
+    {
+      "type": "header",
+      "content": "Botones"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL de compra"
+    },
+    {
+      "type": "text",
+      "id": "offer_btn_text",
+      "label": "Texto botón oferta",
+      "default": "¡OFERTA TERMINA HOY!"
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Mostrar contador regresivo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Texto del countdown",
+      "default": "Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!"
+    },
+    {
+      "type": "text",
+      "id": "countdown_footer",
+      "label": "Pie del countdown",
+      "default": "Después de que el contador llegue a cero, esta oferta desaparecerá."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Box — Ebook Terreno"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-ml-rep-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .cl2-ml-rep-container { max-width: 900px; margin: 0 auto; }
+
+  .cl2-ml-rep-img {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(0,0,0,.1);
+  }
+
+  .cl2-ml-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff3e0;
+    border: 1px solid #ff9800;
+    color: #e65100;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .82rem;
+  }
+
+  .cl2-ml-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f44336;
+    animation: cl2Blink 1s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes cl2Blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>
+
+<div class="cl2-ml-rep-section">
+  <div class="cl2-ml-rep-container">
+    {% if section.settings.ml_image != blank %}
+      <img
+        src="{{ section.settings.ml_image | img_url: 'master' }}"
+        alt="{{ section.settings.ml_image_alt }}"
+        class="cl2-ml-rep-img">
+    {% endif %}
+    {% if section.settings.show_live_counter %}
+      <div class="cl2-ml-live">
+        <div class="cl2-ml-live-dot"></div>
+        <span id="cl2-live-count">{{ section.settings.live_initial }}</span>&nbsp;{{ section.settings.live_text }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ML Reputación — Ebook2",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#d1ccec"
+    },
+    {
+      "type": "image_picker",
+      "id": "ml_image",
+      "label": "Imagen MercadoLíder"
+    },
+    {
+      "type": "text",
+      "id": "ml_image_alt",
+      "label": "Texto alternativo de la imagen",
+      "default": "MercadoLíder Platinum - Reputación del vendedor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_live_counter",
+      "label": "Mostrar contador de personas mirando",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "live_initial",
+      "label": "Número inicial del contador",
+      "default": "7"
+    },
+    {
+      "type": "text",
+      "id": "live_text",
+      "label": "Texto junto al contador",
+      "default": "personas mirando esto ahora"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ML Reputación — Ebook Terreno"
+    }
+  ]
+}
+{% endschema %}

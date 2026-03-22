@@ -1,0 +1,481 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-testimonials-section {
+    padding: 70px 0;
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+  }
+
+  .cl2-testimonials-section > .cl2-test-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+
+  .cl2-section-label-test {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    color: {{ section.settings.accent_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .cl2-test-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #2a1a0e;
+    line-height: 1.2;
+  }
+
+  .cl2-test-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: #666;
+    font-size: .97rem;
+  }
+
+  .cl2-carousel-wrapper {
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .cl2-carousel-wrapper.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .cl2-carousel-row {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    padding: 0 10px 20px;
+    animation: cl2ScrollLeft {{ section.settings.speed }}s linear infinite;
+  }
+
+  .cl2-carousel-row--right {
+    animation: cl2ScrollRight {{ section.settings.speed }}s linear infinite;
+  }
+
+  @keyframes cl2ScrollLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes cl2ScrollRight {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .cl2-carousel-wrapper:hover .cl2-carousel-row { animation-play-state: paused; }
+
+  .cl2-t-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #f5d8dc;
+    position: relative;
+    width: 360px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 14px rgba(173,102,57,.08);
+  }
+
+  .cl2-t-card::before {
+    content: '"';
+    position: absolute;
+    top: -8px; left: 18px;
+    font-size: 4.5rem;
+    color: {{ section.settings.accent_color }};
+    font-family: Georgia, serif;
+    line-height: 1;
+    opacity: .15;
+  }
+
+  .cl2-stars { color: #ffd60a; font-size: 1rem; margin-bottom: 10px; }
+
+  .cl2-t-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .93rem;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .cl2-t-author { display: flex; align-items: center; gap: 11px; }
+
+  .cl2-t-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+    color: #fff;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .cl2-t-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .cl2-t-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .88rem; color: #222; }
+  .cl2-t-city { font-family: 'Open Sans', sans-serif; font-size: .78rem; color: #888; }
+
+  .cl2-verified {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: #e8f5e9; color: #2e7d32;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .7rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px; margin-top: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .cl2-t-card { width: 290px; }
+    .cl2-test-title { font-size: 1.75rem; }
+  }
+</style>
+
+<section class="cl2-testimonials-section">
+  <div class="cl2-test-container">
+    <div style="text-align:center;">
+      <div class="cl2-section-label-test">
+        <i class="fa-solid {{ section.settings.label_icon }}"></i> {{ section.settings.label_text }}
+      </div>
+    </div>
+    <h2 class="cl2-test-title">{{ section.settings.title }}</h2>
+    <p class="cl2-test-subtitle">{{ section.settings.subtitle }}</p>
+  </div>
+
+  <div class="cl2-carousel-wrapper">
+    <!-- Fila 1: izquierda -->
+    <div class="cl2-carousel-row">
+      {% assign row1 = section.blocks | where: "type", "testimonial_row1" %}
+      {% for block in row1 %}
+        <div class="cl2-t-card" {{ block.shopify_attributes }}>
+          <div class="cl2-stars">★★★★★</div>
+          <p class="cl2-t-text">"{{ block.settings.quote }}"</p>
+          <div class="cl2-t-author">
+            {% if block.settings.avatar_url != blank %}
+              <div class="cl2-t-avatar"><img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}"></div>
+            {% else %}
+              <div class="cl2-t-avatar" style="background:{{ block.settings.avatar_bg }}">{{ block.settings.initials }}</div>
+            {% endif %}
+            <div>
+              <div class="cl2-t-name">{{ block.settings.name }}</div>
+              <div class="cl2-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl2-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row1 %}
+        <div class="cl2-t-card" aria-hidden="true">
+          <div class="cl2-stars">★★★★★</div>
+          <p class="cl2-t-text">"{{ block.settings.quote }}"</p>
+          <div class="cl2-t-author">
+            {% if block.settings.avatar_url != blank %}
+              <div class="cl2-t-avatar"><img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}"></div>
+            {% else %}
+              <div class="cl2-t-avatar" style="background:{{ block.settings.avatar_bg }}">{{ block.settings.initials }}</div>
+            {% endif %}
+            <div>
+              <div class="cl2-t-name">{{ block.settings.name }}</div>
+              <div class="cl2-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl2-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Fila 2: derecha -->
+    <div class="cl2-carousel-row cl2-carousel-row--right">
+      {% assign row2 = section.blocks | where: "type", "testimonial_row2" %}
+      {% for block in row2 %}
+        <div class="cl2-t-card" {{ block.shopify_attributes }}>
+          <div class="cl2-stars">★★★★★</div>
+          <p class="cl2-t-text">"{{ block.settings.quote }}"</p>
+          <div class="cl2-t-author">
+            {% if block.settings.avatar_url != blank %}
+              <div class="cl2-t-avatar"><img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}"></div>
+            {% else %}
+              <div class="cl2-t-avatar" style="background:{{ block.settings.avatar_bg }}">{{ block.settings.initials }}</div>
+            {% endif %}
+            <div>
+              <div class="cl2-t-name">{{ block.settings.name }}</div>
+              <div class="cl2-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl2-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row2 %}
+        <div class="cl2-t-card" aria-hidden="true">
+          <div class="cl2-stars">★★★★★</div>
+          <p class="cl2-t-text">"{{ block.settings.quote }}"</p>
+          <div class="cl2-t-author">
+            {% if block.settings.avatar_url != blank %}
+              <div class="cl2-t-avatar"><img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}"></div>
+            {% else %}
+              <div class="cl2-t-avatar" style="background:{{ block.settings.avatar_bg }}">{{ block.settings.initials }}</div>
+            {% endif %}
+            <div>
+              <div class="cl2-t-name">{{ block.settings.name }}</div>
+              <div class="cl2-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="cl2-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var wrapper = document.querySelector('.cl2-carousel-wrapper');
+  if (!wrapper) return;
+  var rows = Array.from(wrapper.querySelectorAll('.cl2-carousel-row'));
+  var DURATION = {{ section.settings.speed }};
+
+  function getTranslateX(el) {
+    var t = window.getComputedStyle(el).transform;
+    if (!t || t === 'none') return 0;
+    var vals = t.replace('matrix(', '').replace(')', '').split(',');
+    return parseFloat(vals[4]) || 0;
+  }
+
+  function resumeRows(finalXArr) {
+    rows.forEach(function (row, i) {
+      var halfWidth = row.scrollWidth / 2;
+      var isRight   = row.classList.contains('cl2-carousel-row--right');
+      var progress  = isRight
+        ? (finalXArr[i] + halfWidth) / halfWidth
+        : -finalXArr[i] / halfWidth;
+      progress = Math.max(0, Math.min(1, progress));
+      row.style.animationDelay    = -(progress * DURATION) + 's';
+      row.style.transform         = '';
+      row.style.animationName     = '';
+      row.style.animationPlayState = 'running';
+    });
+  }
+
+  var isDown = false, startX = 0, startY = 0, startArr = [], direction = null;
+
+  function cX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+  function cY(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
+
+  wrapper.addEventListener('mouseleave', function () {
+    if (isDown) return;
+    rows.forEach(function (r) { r.style.animationPlayState = ''; });
+  });
+
+  function onStart(e) {
+    isDown = true; startX = cX(e); startY = cY(e);
+    direction = null; startArr = rows.map(getTranslateX);
+  }
+
+  function onMove(e) {
+    if (!isDown) return;
+    var dx = cX(e) - startX, dy = cY(e) - startY;
+    if (direction === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+      direction = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+      if (direction === 'h') {
+        rows.forEach(function (r, i) {
+          r.style.animationName = 'none';
+          r.style.transform     = 'translateX(' + startArr[i] + 'px)';
+        });
+        wrapper.classList.add('is-dragging');
+      }
+    }
+    if (direction === 'h') {
+      e.preventDefault();
+      rows.forEach(function (r, i) {
+        r.style.transform = 'translateX(' + (startArr[i] + dx) + 'px)';
+      });
+    }
+  }
+
+  function onEnd(e) {
+    if (!isDown) return;
+    isDown = false;
+    if (direction === 'h') {
+      wrapper.classList.remove('is-dragging');
+      var cx = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      resumeRows(startArr.map(function (x) { return x + (cx - startX); }));
+    }
+    direction = null;
+  }
+
+  wrapper.addEventListener('mousedown',  onStart);
+  window.addEventListener('mousemove',   onMove);
+  window.addEventListener('mouseup',     onEnd);
+  wrapper.addEventListener('touchstart', onStart, { passive: true });
+  window.addEventListener('touchmove',   onMove,  { passive: false });
+  window.addEventListener('touchend',    onEnd);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonios — Ebook2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#fed3da"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#ad6639"
+    },
+    {
+      "type": "text",
+      "id": "label_icon",
+      "label": "Ícono de la etiqueta",
+      "default": "fa-comments"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Texto de la etiqueta",
+      "default": "Historias reales"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Gente que Aplicó Esto y No se Mojó Más"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Del miedo a la lluvia a elegir el terreno correcto en minutos"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad del carrusel (segundos)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 38
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_row1",
+      "name": "Testimonio (Fila 1 →)",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Cita",
+          "default": "Texto del testimonio aquí."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Santiago R."
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad",
+          "default": "Córdoba"
+        },
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Iniciales (si no hay avatar)",
+          "default": "SR"
+        },
+        {
+          "type": "color",
+          "id": "avatar_bg",
+          "label": "Color del avatar",
+          "default": "#ad6639"
+        },
+        {
+          "type": "text",
+          "id": "avatar_url",
+          "label": "URL de foto de perfil (opcional)"
+        }
+      ]
+    },
+    {
+      "type": "testimonial_row2",
+      "name": "Testimonio (Fila 2 ←)",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Cita",
+          "default": "Texto del testimonio aquí."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Ezequiel P."
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad",
+          "default": "Neuquén"
+        },
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Iniciales (si no hay avatar)",
+          "default": "EP"
+        },
+        {
+          "type": "color",
+          "id": "avatar_bg",
+          "label": "Color del avatar",
+          "default": "#3d9970"
+        },
+        {
+          "type": "text",
+          "id": "avatar_url",
+          "label": "URL de foto de perfil (opcional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonios — Ebook Terreno",
+      "blocks": [
+        { "type": "testimonial_row1", "settings": { "quote": "Caímos en una llovizna en Merlo y yo tenía pánico. Apliqué el método de la guía antes de armar: pisé el suelo, busqué la leve pendiente y observé los cauces naturales. Resultado: el agua se fue sola y nosotros dormimos secos. Alucinante.", "name": "Santiago R.", "city": "Córdoba", "initials": "SR", "avatar_bg": "#ad6639", "avatar_url": "https://randomuser.me/api/portraits/men/32.jpg" } },
+        { "type": "testimonial_row1", "settings": { "quote": "Nunca imaginé que una herramienta gratuita que ya tenía en el celular se podía usar así para camping. Antes de nuestra última salida a los Esteros la apliqué en 15 minutos y encontré el único punto elevado del sector. El resto del grupo amaneció con el piso mojado. Nosotros no.", "name": "Luciana V.", "city": "Corrientes", "initials": "LV", "avatar_url": "https://randomuser.me/api/portraits/women/33.jpg" } },
+        { "type": "testimonial_row1", "settings": { "quote": "El tip del cauce seco me voló la cabeza. Justo íbamos a armar la carpa en un lecho de piedra que se veía 'cómodo'. Lo descartamos. Esa noche cayó una tormenta fuerte y por ese cauce bajó agua. Me salvé por leer esto antes de salir.", "name": "Rodrigo M.", "city": "Mendoza", "initials": "RM", "avatar_url": "https://randomuser.me/api/portraits/men/55.jpg" } },
+        { "type": "testimonial_row2", "settings": { "quote": "Llevé la guía al celular y la leí en el viaje. Cuando llegamos al camping en Bariloche, fui el único del grupo que evaluó el terreno antes de clavar las estacas. El resto copió mi lógica después de que me vieron analizar tres spots. Una experiencia 10 puntos.", "name": "Ezequiel P.", "city": "Neuquén", "initials": "EP", "avatar_url": "https://randomuser.me/api/portraits/men/41.jpg" } },
+        { "type": "testimonial_row2", "settings": { "quote": "Acampé toda mi vida eligiendo 'el lugar más lindo'. Esta guía me hizo entender que estaba haciendo todo mal. Ahora uso herramientas antes de salir y ya no tengo ansiedad cuando llueve. Esa tranquilidad no tiene precio.", "name": "Micaela L.", "city": "Santa Fe", "initials": "ML", "avatar_bg": "#3d9970", "avatar_url": "https://randomuser.me/api/portraits/women/65.jpg" } },
+        { "type": "testimonial_row2", "settings": { "quote": "El truco del tarp con las tapas de botella me dejó loco. Simple, económico y funciona perfecto. Uno de esos tips que parece obvio pero nunca lo habría pensado solo. Ahora lo comparto con todos mis compañeros de camping.", "name": "Agustín B.", "city": "Buenos Aires", "initials": "AB", "avatar_url": "https://randomuser.me/api/portraits/men/22.jpg" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

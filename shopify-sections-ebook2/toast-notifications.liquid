@@ -1,0 +1,134 @@
+<!-- Toast Notifications + Live Counter JS — Ebook2 -->
+<!-- Incluir este snippet UNA vez por página, idealmente antes de </body> -->
+
+<style>
+  .cl2-toast-container {
+    position: fixed;
+    top: 60px;
+    right: 14px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    pointer-events: none;
+  }
+
+  .cl2-toast {
+    background: #fff;
+    border-left: 3px solid #3d9970;
+    border-radius: 8px;
+    padding: 8px 11px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.14);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 240px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .75rem;
+    animation: cl2ToastIn .3s ease forwards;
+  }
+
+  .cl2-toast.out { animation: cl2ToastOut .3s ease forwards; }
+
+  .cl2-t-av {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .78rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .cl2-toast-body strong { display: block; color: #111; font-size: .78rem; line-height: 1.2; }
+  .cl2-toast-body span   { color: #666; font-size: .72rem; }
+  .cl2-toast-check { color: #3d9970; font-size: .95rem; margin-left: auto; flex-shrink: 0; }
+
+  @keyframes cl2ToastIn  { from{opacity:0;transform:translateX(28px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes cl2ToastOut { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(28px)} }
+</style>
+
+<div class="cl2-toast-container" id="cl2ToastContainer"></div>
+
+<script>
+/* ─── LIVE VIEWERS COUNTER (actualiza elementos de Pricing Box y ML Section) ─── */
+(function () {
+  var pool = [4, 5, 6, 7, 8, 10, 11, 17];
+  function pickRandom() { return pool[Math.floor(Math.random() * pool.length)]; }
+
+  var els = [
+    document.getElementById('cl2-live-count'),
+    document.getElementById('cl2-pricing-live-count')
+  ];
+
+  var cur = pickRandom();
+  els.forEach(function(el) { if (el) el.textContent = cur; });
+
+  setInterval(function () {
+    cur = pickRandom();
+    els.forEach(function(el) { if (el) el.textContent = cur; });
+  }, 4500);
+})();
+
+/* ─── PURCHASE TOAST NOTIFICATIONS ─── */
+(function () {
+  var buyers = [
+    { name: 'Valentina M.',  city: 'Buenos Aires', ini: 'VM', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+    { name: 'Lucas R.',      city: 'Córdoba',       ini: 'LR', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+    { name: 'Sofía P.',      city: 'Rosario',       ini: 'SP', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+    { name: 'Matías G.',     city: 'Mendoza',       ini: 'MG', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+    { name: 'Camila F.',     city: 'Mar del Plata', ini: 'CF', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+    { name: 'Nicolás T.',    city: 'Salta',         ini: 'NT', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' },
+    { name: 'Florencia B.',  city: 'La Plata',      ini: 'FB', bg: 'linear-gradient(135deg,#e63946,#c1121f)' },
+    { name: 'Diego A.',      city: 'Tucumán',       ini: 'DA', bg: 'linear-gradient(135deg,#3d9970,#2d6a4f)' },
+    { name: 'Martina C.',    city: 'Santa Fe',      ini: 'MC', bg: 'linear-gradient(135deg,#7b2d8b,#4a1060)' },
+    { name: 'Agustín L.',    city: 'Bahía Blanca',  ini: 'AL', bg: 'linear-gradient(135deg,#e07b00,#c45c00)' },
+    { name: 'Carolina V.',   city: 'San Juan',      ini: 'CV', bg: 'linear-gradient(135deg,#007bc1,#005a8e)' },
+    { name: 'Facundo H.',    city: 'Neuquén',       ini: 'FH', bg: 'linear-gradient(135deg,#1a1f71,#3546c5)' }
+  ];
+  var times = ['hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min', 'recién ahora', 'hace 8 min'];
+  var container = document.getElementById('cl2ToastContainer');
+  var idx = Math.floor(Math.random() * buyers.length);
+
+  function showToast() {
+    var b   = buyers[idx % buyers.length]; idx++;
+    var t   = times[Math.floor(Math.random() * times.length)];
+    var div = document.createElement('div');
+    div.className = 'cl2-toast';
+    div.innerHTML =
+      '<div class="cl2-t-av" style="background:' + b.bg + '">' + b.ini + '</div>' +
+      '<div class="cl2-toast-body">' +
+        '<strong>' + b.name + ' de ' + b.city + '</strong>' +
+        '<span>acaba de comprar la guía — ' + t + '</span>' +
+      '</div>' +
+      '<div class="cl2-toast-check">✔</div>';
+    container.appendChild(div);
+    setTimeout(function () {
+      div.classList.add('out');
+      setTimeout(function () { div.remove(); }, 380);
+    }, 4800);
+  }
+
+  setTimeout(function () {
+    showToast();
+    setInterval(showToast, 25000 + Math.random() * 15000);
+  }, 30000);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Toast + Counter Ebook2",
+  "tag": "div",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Toast + Counter Terreno"
+    }
+  ]
+}
+{% endschema %}

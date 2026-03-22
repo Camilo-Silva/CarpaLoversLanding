@@ -1,0 +1,250 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-chapters-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 70px 20px;
+  }
+
+  .cl2-chapters-container { max-width: 900px; margin: 0 auto; }
+
+  .cl2-section-label-ch {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    color: {{ section.settings.accent_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .cl2-chapters-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #2a1a0e;
+    line-height: 1.2;
+  }
+
+  .cl2-chapters-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: #666;
+    margin-bottom: 44px;
+    font-size: .97rem;
+  }
+
+  .cl2-chapters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .cl2-chapter-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-left: 4px solid {{ section.settings.accent_color }};
+    overflow: hidden;
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor: pointer;
+  }
+
+  .cl2-chapter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(173,102,57,.15);
+  }
+
+  .cl2-chapter-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .cl2-ch-num {
+    background: {{ section.settings.accent_color }};
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: .85rem;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cl2-chapter-card-header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    color: #2a1a0e;
+    line-height: 1.3;
+  }
+
+  .cl2-ch-arr {
+    font-size: .7rem;
+    color: {{ section.settings.accent_color }};
+    transition: transform .3s;
+    flex-shrink: 0;
+  }
+
+  .cl2-chapter-card.open .cl2-ch-arr { transform: rotate(180deg); }
+
+  .cl2-chapter-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .3s ease;
+    padding: 0 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .88rem;
+    color: #555;
+  }
+
+  .cl2-chapter-card.open .cl2-chapter-card-body {
+    max-height: 250px;
+    padding: 0 18px 16px;
+  }
+
+  .cl2-chapter-card-body ul { padding-left: 16px; }
+  .cl2-chapter-card-body li { margin-bottom: 6px; }
+
+  @media (max-width: 768px) {
+    .cl2-chapters-grid { grid-template-columns: 1fr; }
+    .cl2-chapters-title { font-size: 1.75rem; }
+  }
+</style>
+
+<section class="cl2-chapters-section">
+  <div class="cl2-chapters-container">
+    <div style="text-align:center;">
+      <div class="cl2-section-label-ch">
+        <i class="fa-solid {{ section.settings.label_icon }}"></i> {{ section.settings.label_text }}
+      </div>
+    </div>
+    <h2 class="cl2-chapters-title">{{ section.settings.title }}</h2>
+    <p class="cl2-chapters-subtitle">{{ section.settings.subtitle }}</p>
+
+    <div class="cl2-chapters-grid">
+      {% for block in section.blocks %}
+        <div class="cl2-chapter-card" {{ block.shopify_attributes }}>
+          <div class="cl2-chapter-card-header">
+            <span class="cl2-ch-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <h4>{{ block.settings.title }}</h4>
+            {% if block.settings.body != blank %}
+              <i class="fa-solid fa-chevron-down cl2-ch-arr"></i>
+            {% endif %}
+          </div>
+          {% if block.settings.body != blank %}
+            <div class="cl2-chapter-card-body">{{ block.settings.body }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.cl2-chapter-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var isOpen = card.classList.contains('open');
+    document.querySelectorAll('.cl2-chapter-card').forEach(function(c) { c.classList.remove('open'); });
+    if (!isOpen) card.classList.add('open');
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Capítulos — Ebook2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#cdf3f6"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#ad6639"
+    },
+    {
+      "type": "text",
+      "id": "label_icon",
+      "label": "Ícono de la etiqueta",
+      "default": "fa-list"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Texto de la etiqueta",
+      "default": "Lo que vas a aprender"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "10 Capítulos que te Cambian la Forma de Acampar"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Sin teoría de relleno — solo lo que necesitás saber para nunca más elegir un lugar equivocado"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Capítulo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título del capítulo",
+          "default": "Por qué la lluvia no es el problema real"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Contenido expandible (opcional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Capítulos — Ebook Terreno",
+      "blocks": [
+        { "type": "chapter", "settings": { "title": "Por qué la lluvia no es el problema real" } },
+        { "type": "chapter", "settings": { "title": "Cómo analizar cualquier terreno desde tu celular antes de salir" } },
+        { "type": "chapter", "settings": { "title": "Leer la altura del terreno como lo hace un experto" } },
+        { "type": "chapter", "settings": { "title": "Confirmar tu elección con datos de quienes ya estuvieron ahí" } },
+        { "type": "chapter", "settings": { "title": "Entender lo que el paisaje te dice — y casi nadie escucha" } },
+        { "type": "chapter", "settings": { "title": "Los terrenos que parecen perfectos pero te van a mojar" } },
+        { "type": "chapter", "settings": { "title": "Cómo encontrar el lugar donde el agua nunca llega" } },
+        { "type": "chapter", "settings": { "title": "La pregunta de 10 segundos que lo decide todo" } },
+        { "type": "chapter", "settings": { "title": "El error que cometen hasta los campistas con años de experiencia" } },
+        { "type": "chapter", "settings": { "title": "Evaluar cualquier terreno en menos de 5 minutos al llegar" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,299 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-hero {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    text-align: center;
+    padding: 75px 20px 65px;
+  }
+
+  .cl2-hero .cl2-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cl2-pre-headline {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    border: 1px solid {{ section.settings.accent_color }};
+    color: {{ section.settings.accent_color }};
+    font-family: 'Montserrat', sans-serif;
+    font-size: .82rem;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .cl2-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .cl2-hero h1 .cl2-hl {
+    color: {{ section.settings.accent_color }};
+  }
+
+  .cl2-hero h1 .cl2-red {
+    color: {{ section.settings.subtitle_color }};
+  }
+
+  .cl2-hero-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.15rem;
+    color: #5a3e2e;
+    max-width: 680px;
+    margin: 0 auto 8px;
+    line-height: 1.7;
+  }
+
+  .cl2-social-proof {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .9rem;
+    color: #7a5a47;
+    margin-bottom: 38px;
+  }
+
+  .cl2-social-proof strong {
+    color: {{ section.settings.accent_color }};
+    font-weight: 700;
+  }
+
+  .cl2-cta-wrap { text-align: center; }
+
+  .cl2-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #c97a46, #ad6639);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 22px 36px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    box-shadow: 0 8px 0 #7a4520, 0 12px 30px rgba(173,102,57,.4);
+    transition: all .15s ease;
+    max-width: 640px;
+    width: 100%;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cl2-cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+    animation: cl2Shimmer 2.5s infinite;
+  }
+
+  @keyframes cl2Shimmer { 0%{left:-100%} 100%{left:200%} }
+
+  .cl2-cta-btn:hover {
+    transform: translateY(3px);
+    box-shadow: 0 5px 0 #7a4520, 0 8px 18px rgba(173,102,57,.3);
+  }
+
+  .cl2-cta-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .78rem;
+    color: #999;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .cl2-hero h1 { font-size: 2rem; }
+    .cl2-cta-btn { font-size: 1rem; padding: 18px; }
+  }
+</style>
+
+<div class="cl2-hero">
+  <div class="cl2-container">
+
+    {% if section.settings.pre_headline != blank %}
+      <p class="cl2-pre-headline">
+        <i class="fa-solid {{ section.settings.pre_headline_icon }}"></i>
+        {{ section.settings.pre_headline }}
+      </p>
+    {% endif %}
+
+    <h1>
+      {{ section.settings.headline_line1 }}<br>
+      {% if section.settings.headline_line2 != blank %}
+        y <span class="cl2-hl">{{ section.settings.headline_line2 }}</span><br>
+      {% endif %}
+      {% if section.settings.headline_sub != blank %}
+        <span class="cl2-red">{{ section.settings.headline_sub }}</span>
+      {% endif %}
+    </h1>
+
+    {% if section.settings.subheadline != blank %}
+      <p class="cl2-hero-sub">{{ section.settings.subheadline }}</p>
+    {% endif %}
+
+    {% if section.settings.social_proof != blank %}
+      <p class="cl2-social-proof"><strong>{{ section.settings.social_proof_brand }}</strong> — {{ section.settings.social_proof }}</p>
+    {% endif %}
+
+    <div class="cl2-cta-wrap">
+      <a href="{{ section.settings.cta_url }}" class="cl2-cta-btn">
+        <i class="fa-solid {{ section.settings.cta_icon }}"></i>
+        {{ section.settings.cta_text }}
+      </a>
+      <p class="cl2-cta-sub">
+        🔒 Compra segura
+        &nbsp;·&nbsp;
+        ⚡ Acceso instantáneo
+        &nbsp;·&nbsp;
+        🔄 Garantía 7 días sin preguntas
+      </p>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero — Ebook2 Terreno",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#f8f2ed"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto principal",
+      "default": "#2a1a0e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#ad6639"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Color del subtítulo destacado (rojo)",
+      "default": "#c0392b"
+    },
+    {
+      "type": "header",
+      "content": "Pre-headline"
+    },
+    {
+      "type": "text",
+      "id": "pre_headline_icon",
+      "label": "Ícono Font Awesome",
+      "default": "fa-map-location-dot"
+    },
+    {
+      "type": "text",
+      "id": "pre_headline",
+      "label": "Texto pre-headline",
+      "default": "La decisión más importante antes de armar tu carpa"
+    },
+    {
+      "type": "header",
+      "content": "Titular H1"
+    },
+    {
+      "type": "text",
+      "id": "headline_line1",
+      "label": "Línea 1 del título",
+      "default": "Cómo Elegir el Terreno Perfecto"
+    },
+    {
+      "type": "text",
+      "id": "headline_line2",
+      "label": "Línea 2 destacada (va después de 'y')",
+      "default": "Evitar Inundaciones"
+    },
+    {
+      "type": "text",
+      "id": "headline_sub",
+      "label": "Subtítulo entre paréntesis (color rojo)",
+      "default": "(aunque seas principiante, elegí como un pro)"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Bajada del hero",
+      "default": "Aprendé a leer el terreno como un pro: las herramientas, los errores que hay que evitar y el método mental que cambia todo."
+    },
+    {
+      "type": "header",
+      "content": "Prueba social"
+    },
+    {
+      "type": "text",
+      "id": "social_proof_brand",
+      "label": "Nombre de la marca",
+      "default": "CarpaLovers"
+    },
+    {
+      "type": "text",
+      "id": "social_proof",
+      "label": "Texto de prueba social",
+      "default": "Más de 4 años acampando sin mojarnos ★★★★★"
+    },
+    {
+      "type": "header",
+      "content": "Botón CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_icon",
+      "label": "Ícono del botón",
+      "default": "fa-arrow-right"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "¡QUIERO ESTA GUÍA AHORA!"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón"
+    },
+    {
+      "type": "text",
+      "id": "cta_sub",
+      "label": "Texto bajo el botón",
+      "default": "Compra segura · Acceso instantáneo · Garantía 7 días sin preguntas"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — Ebook Terreno"
+    }
+  ]
+}
+{% endschema %}

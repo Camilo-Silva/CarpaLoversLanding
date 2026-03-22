@@ -1,0 +1,211 @@
+<!-- Font Awesome (omitir si tu tema ya lo carga) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts (omitir si tu tema ya los carga) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  .cl2-faq-section {
+    padding: 70px 20px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .cl2-faq-container { max-width: 900px; margin: 0 auto; }
+
+  .cl2-faq-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 38px;
+    color: #2a1a0e;
+    line-height: 1.2;
+  }
+
+  .cl2-faq-item {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc7e0;
+    overflow: hidden;
+  }
+
+  .cl2-faq-q {
+    padding: 17px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .97rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2a1a0e;
+    user-select: none;
+  }
+
+  .cl2-faq-q .cl2-arr {
+    transition: transform .3s;
+    font-size: .75rem;
+    color: {{ section.settings.accent_color }};
+    flex-shrink: 0;
+  }
+
+  .cl2-faq-a {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 22px;
+    font-size: .93rem;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease, padding .3s ease;
+    line-height: 1.7;
+  }
+
+  .cl2-faq-item.open .cl2-faq-a {
+    max-height: 400px;
+    padding: 0 22px 18px;
+  }
+
+  .cl2-faq-item.open .cl2-arr { transform: rotate(180deg); }
+
+  @media (max-width: 768px) {
+    .cl2-faq-section h2 { font-size: 1.6rem; }
+  }
+</style>
+
+<section class="cl2-faq-section">
+  <div class="cl2-faq-container">
+    <h2>
+      <i class="fa-solid {{ section.settings.title_icon }}"></i> {{ section.settings.title }}
+    </h2>
+
+    {% for block in section.blocks %}
+      <div class="cl2-faq-item" {{ block.shopify_attributes }}>
+        <div class="cl2-faq-q">
+          {{ block.settings.question }}
+          <span class="cl2-arr">▼</span>
+        </div>
+        <div class="cl2-faq-a">{{ block.settings.answer }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.cl2-faq-q').forEach(function(q) {
+  q.addEventListener('click', function() {
+    var item   = q.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.cl2-faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "FAQ — Ebook2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#d1ccec"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento (flecha)",
+      "default": "#ad6639"
+    },
+    {
+      "type": "text",
+      "id": "title_icon",
+      "label": "Ícono del título",
+      "default": "fa-circle-question"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Preguntas Frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Pregunta y Respuesta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "¿Cómo recibo la guía después de comprar?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "Inmediatamente después del pago recibís un email con el link de descarga. Acceso instantáneo, 24/7, desde cualquier dispositivo."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ — Ebook Terreno",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿Cómo recibo la guía después de comprar?",
+            "answer": "Inmediatamente después del pago recibís un email con el link de descarga. Acceso instantáneo, 24/7, desde cualquier dispositivo."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿Sirve si nunca analicé el terreno antes de acampar?",
+            "answer": "Es exactamente para vos. La guía te enseña desde cero a leer el terreno con herramientas gratuitas y un método simple que podés aplicar antes de cada salida, sin importar tu experiencia previa."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿Las herramientas que enseña la guía son gratuitas?",
+            "answer": "La mayoría sí. Las herramientas principales que usamos son completamente gratuitas y están disponibles para cualquier celular. Algunas tienen versiones premium opcionales, pero con las funciones básicas gratuitas ya tenés todo lo que necesitás para aplicar la guía."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿Sirve para cualquier tipo de camping o solo para agreste?",
+            "answer": "Sirve para ambos. Tanto si vas a un camping organizado como si buscás un spot agreste, saber leer el terreno y elegir bien tu posición es igual de importante. La guía aplica a cualquier situación."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿Cuánto tarda en aplicarse lo que enseña?",
+            "answer": "Con 15-20 minutos de análisis previo ya vas a tener información suficiente para elegir un lugar seguro. En el campo, la evaluación del terreno lleva menos de 5 minutos una vez que sabés qué buscar."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿En qué formato viene la guía?",
+            "answer": "La guía viene en PDF de alta calidad — podés leerla en tu celular, tablet o computadora, y funciona sin internet una vez descargada. Perfecta para llevar al camping."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "¿La garantía de 7 días es real? ¿Cómo pido el reembolso?",
+            "answer": "100% real. Dentro de los 7 días mandás un email a nuestro soporte y te devolvemos el dinero completo sin preguntas. Sin excusas, sin letra chica."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
