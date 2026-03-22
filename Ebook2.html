@@ -709,6 +709,27 @@
             color:var(--red); text-transform:uppercase; letter-spacing:.5px;
         }
 
+        /* ===== ML REPUTATION ===== */
+        .ml-rep-section { background:var(--violet); padding:40px 20px; text-align:center; }
+        .ml-rep-img {
+            display:block;
+            max-width:380px;
+            width:100%;
+            margin:0 auto 16px;
+            border-radius:12px;
+            box-shadow:0 3px 14px rgba(0,0,0,.1);
+        }
+        .ml-live {
+            display:inline-flex; align-items:center; gap:8px;
+            background:#fff3e0; border:1px solid #ff9800; color:#e65100;
+            padding:7px 16px; border-radius:20px;
+            font-family:'Montserrat',sans-serif; font-weight:700; font-size:.82rem;
+        }
+        .ml-live-dot {
+            width:8px; height:8px; border-radius:50%;
+            background:#f44336; animation:blink 1s infinite; flex-shrink:0;
+        }
+
         /* ===== GUARANTEE ===== */
         .guarantee-section { background:var(--cream); color:var(--dark); padding:70px 20px; text-align:center; }
         .guarantee-box {
@@ -841,11 +862,10 @@
             <div class="product-card-body">
                 <div class="product-card-title">Cómo Elegir el Terreno Perfecto y Evitar Inundaciones</div>
                 <div class="product-price-row">
-                    <span class="product-price-old">$20.000</span>
-                    <span class="product-price-new">$9.999</span>
+                    <span class="product-price-old">$30.000</span>
+                    <span class="product-price-new">$14.990</span>
                     <span class="product-off-badge">OFERTA -50% OFF</span>
                 </div>
-                <div class="product-stock"><span class="product-stock-dot"></span> Stock limitado — oferta por tiempo limitado</div>
                 <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="product-cta"><i class="fa-solid fa-bolt"></i> COMPRAR AHORA</a>
             </div>
         </div>
@@ -858,9 +878,9 @@
         <div class="pricing-stars">★★★★★</div>
         <div class="pricing-reviews"><strong>4.8/5</strong> de 892 Reseñas</div>
 
-        <div class="pricing-main-price">$9.999</div>
-        <div class="pricing-old-price">$20.000</div>
-        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $10.001</a>
+        <div class="pricing-main-price">$14.990</div>
+        <div class="pricing-old-price">$30.000</div>
+        <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="pricing-savings-btn"><i class="fa-solid fa-fire"></i> AHORRÁS $15.010</a>
 
         <div class="pricing-countdown">
             <div class="pc-header"><i class="fa-regular fa-bell"></i> Oferta Limitada: ¡Últimas horas para aprovechar el 50% OFF!</div>
@@ -1192,7 +1212,7 @@
 <section style="background:var(--cream);padding:32px 20px;text-align:center;border-top:3px solid var(--pink-light);border-bottom:3px solid var(--pink-light);">
     <div class="container">
         <p style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);margin-bottom:6px;">¿Ya te convenciste?</p>
-        <p style="color:#777;margin-bottom:20px;font-size:.95rem;">La guía completa de terreno por un único pago de <strong style="color:var(--red);">$9.999</strong></p>
+        <p style="color:#777;margin-bottom:20px;font-size:.95rem;">La guía completa de terreno por un único pago de <strong style="color:var(--red);">$14.990</strong></p>
         <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn" style="display:inline-flex;"><i class="fa-solid fa-map-location-dot"></i> QUIERO MI GUÍA DE TERRENO AHORA</a>
         <p style="margin-top:14px;font-size:.8rem;color:#aaa;"><i class="fa-solid fa-shield-halved"></i> Garantía 7 días sin preguntas &nbsp;·&nbsp; <i class="fa-solid fa-bolt"></i> Acceso instantáneo</p>
     </div>
@@ -1233,8 +1253,8 @@
             <div class="faq-a">Es exactamente para vos. La guía te enseña desde cero a leer el terreno con herramientas gratuitas y un método simple que podés aplicar antes de cada salida, sin importar tu experiencia previa.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">¿Las apps que enseña la guía son gratuitas? <span class="arr">▼</span></div>
-            <div class="faq-a">La mayoría sí. Google Earth y Google Maps son completamente gratuitas. Gaia GPS y AllTrails tienen funciones básicas gratuitas suficientes para lo que enseña la guía. PeakFinder tiene un pequeño costo único de alrededor de USD 5.</div>
+            <div class="faq-q">¿Las herramientas que enseña la guía son gratuitas? <span class="arr">▼</span></div>
+            <div class="faq-a">La mayoría sí. Las herramientas principales que usamos son completamente gratuitas y están disponibles para cualquier celular. Algunas tienen versiones premium opcionales, pero con las funciones básicas gratuitas ya tenés todo lo que necesitás para aplicar la guía.</div>
         </div>
         <div class="faq-item">
             <div class="faq-q">¿Sirve para cualquier tipo de camping o solo para agreste? <span class="arr">▼</span></div>
@@ -1242,15 +1262,11 @@
         </div>
         <div class="faq-item">
             <div class="faq-q">¿Cuánto tarda en aplicarse lo que enseña? <span class="arr">▼</span></div>
-            <div class="faq-a">Con 15-20 minutos de análisis previo usando las apps indicadas ya vas a tener información suficiente para elegir un lugar seguro. En el campo, la evaluación del terreno lleva menos de 5 minutos una vez que sabés qué buscar.</div>
+            <div class="faq-a">Con 15-20 minutos de análisis previo ya vas a tener información suficiente para elegir un lugar seguro. En el campo, la evaluación del terreno lleva menos de 5 minutos una vez que sabés qué buscar.</div>
         </div>
         <div class="faq-item">
             <div class="faq-q">¿En qué formato viene la guía? <span class="arr">▼</span></div>
             <div class="faq-a">La guía viene en PDF de alta calidad — podés leerla en tu celular, tablet o computadora, y funciona sin internet una vez descargada. Perfecta para llevar al camping.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">¿Puedo pagar en la moneda de mi país? <span class="arr">▼</span></div>
-            <div class="faq-a">Sí. El precio se cobra en la moneda local de tu país. Si estás en Argentina, son $9.999 pesos argentinos. Si estás en otro país, verás el equivalente en tu moneda al momento del pago. Aceptamos tarjeta, Mercado Pago y otros medios según tu región.</div>
         </div>
         <div class="faq-item">
             <div class="faq-q">¿La garantía de 7 días es real? ¿Cómo pido el reembolso? <span class="arr">▼</span></div>
@@ -1259,6 +1275,17 @@
     </div>
 </section>
 
+<!-- ═══════════════════ ML REPUTATION ═══════════════════ -->
+<div class="ml-rep-section">
+    <div class="container">
+        <img src="image/ML.png" alt="MercadoLíder Platinum - Reputación del vendedor" class="ml-rep-img">
+        <div class="ml-live">
+            <div class="ml-live-dot"></div>
+            <span id="live-count">7</span>&nbsp;personas mirando esto ahora
+        </div>
+    </div>
+</div>
+
 <!-- ═══════════════════ FINAL CTA ═══════════════════ -->
 <section class="final-cta">
     <div class="container">
@@ -1266,9 +1293,9 @@
         <p>"No gana el lugar más lindo. Gana el lugar mejor elegido." Después de más de 4 años acampando, aprendimos que las buenas experiencias no pasan por casualidad — pasan porque tomaste buenas decisiones antes. El riesgo es cero, la garantía lo cubre todo.</p>
         <div class="cta-wrap">
             <a href="https://sinmiedoacampar.com/cart/43132623224966:1" class="cta-btn"><i class="fa-solid fa-map-location-dot"></i> SÍ, QUIERO APRENDER A ELEGIR EL TERRENO PERFECTO</a>
-            <p class="cta-sub light">Solo $9.999 ARS &nbsp;·&nbsp; Acceso en segundos &nbsp;·&nbsp; Garantía 7 días sin preguntas</p>
+            <p class="cta-sub light">Solo $14.990 ARS &nbsp;·&nbsp; Acceso en segundos &nbsp;·&nbsp; Garantía 7 días sin preguntas</p>
         </div>
-        <p style="margin-top:28px;font-size:.85rem;color:rgba(255,255,255,.6)">Seguime en <strong style="color:#fff">@CarpaLovers</strong> para más tips reales de camping</p>
+ 
         <p style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px">www.sinmiedoacampar.com</p>
     </div>
 </section>
@@ -1318,12 +1345,15 @@
 (function () {
     var pool = [4, 5, 6, 7, 8, 10, 11, 17];
     function pickRandom() { return pool[Math.floor(Math.random() * pool.length)]; }
+    var els = [
+        document.getElementById('live-count'),
+        document.getElementById('pricing-live-count')
+    ];
     var cur = pickRandom();
-    var el = document.getElementById('pricing-live-count');
-    if (el) el.textContent = cur;
+    els.forEach(function(el){ if(el) el.textContent = cur; });
     setInterval(function () {
         cur = pickRandom();
-        if (el) el.textContent = cur;
+        els.forEach(function(el){ if(el) el.textContent = cur; });
     }, 4500);
 })();
 
