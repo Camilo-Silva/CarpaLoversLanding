@@ -1,0 +1,114 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-final-cta {
+    background: linear-gradient(135deg, #7a4520, #ad6639);
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .clp-final-cta .clp-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .clp-final-cta h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.3rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .clp-final-cta p {
+    font-size: 1.08rem;
+    color: rgba(255,255,255,.85);
+    margin-bottom: 28px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+  }
+  .clp-final-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #27ae60, #1e9e4f);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 22px 36px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    box-shadow: 0 8px 0 #155a2a;
+    transition: all .15s ease;
+    max-width: 580px;
+    width: 100%;
+  }
+  .clp-final-cta-btn:hover { transform: translateY(3px); box-shadow: 0 5px 0 #155a2a; }
+  .clp-final-cta-sub {
+    font-size: .78rem;
+    color: rgba(255,255,255,.6);
+    margin-top: 14px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  @media (max-width: 768px) { .clp-final-cta h2 { font-size: 1.7rem; } }
+</style>
+
+<section class="clp-final-cta">
+  <div class="clp-container">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.body }}</p>
+    <div style="text-align:center;">
+      <a href="{{ section.settings.cta_url }}" class="clp-final-cta-btn">
+        <i class="fa-solid fa-box-open"></i> {{ section.settings.cta_text }}
+      </a>
+      <p class="clp-final-cta-sub">{{ section.settings.cta_sub }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "El campista completo no improvisa."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Cuerpo",
+      "default": "Con el Pack CarpaLovers tenés el sistema completo: sabés cómo prepararte y sabés exactamente dónde plantar la carpa. El riesgo es cero — la garantía lo cubre todo."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "SÍ, QUIERO EL PACK COMPLETO AHORA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón"
+    },
+    {
+      "type": "text",
+      "id": "cta_sub",
+      "label": "Subtexto bajo el botón",
+      "default": "Solo $21.990 ARS · Acceso en segundos · Garantía 7 días sin preguntas"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA Pack"
+    }
+  ]
+}
+{% endschema %}

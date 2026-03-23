@@ -1,0 +1,88 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-payment-section {
+    background: #fff;
+    padding: 44px 20px;
+    text-align: center;
+    border-top: 1px solid #e8dbd3;
+  }
+  .clp-payment-section .clp-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .clp-payment-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 22px;
+  }
+  .clp-pay-img {
+    display: block;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto 18px;
+  }
+  .clp-ssl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: .78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-top: 14px;
+    font-family: 'Montserrat', sans-serif;
+  }
+</style>
+
+<section class="clp-payment-section">
+  <div class="clp-container">
+    <h3>{{ section.settings.heading }}</h3>
+    {% if section.settings.payment_image != blank %}
+      <img src="{{ section.settings.payment_image | img_url: 'master' }}" alt="Métodos de pago" class="clp-pay-img">
+    {% else %}
+      <img src="{{ 'MetodosPago.png' | asset_url }}" alt="Métodos de pago" class="clp-pay-img">
+    {% endif %}
+    <div>
+      <span class="clp-ssl-badge">
+        <i class="fa-solid fa-lock"></i> {{ section.settings.ssl_text }}
+      </span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Payment Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Métodos de pago"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_image",
+      "label": "Imagen de métodos de pago"
+    },
+    {
+      "type": "text",
+      "id": "ssl_text",
+      "label": "Texto SSL",
+      "default": "Sitio protegido con SSL — Tus datos nunca se comparten con terceros"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Payment Pack"
+    }
+  ]
+}
+{% endschema %}

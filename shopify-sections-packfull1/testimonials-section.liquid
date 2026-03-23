@@ -1,0 +1,406 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-testimonials-section {
+    padding: 70px 0;
+    background: #fed3da;
+    overflow: hidden;
+  }
+  .clp-testimonials-section .clp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+  .clp-section-label-t {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    color: #ad6639;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  .clp-testimonials-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #2a1a0e;
+  }
+  .clp-t-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 0;
+    font-size: .97rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .clp-carousel-wrapper { overflow: hidden; cursor: grab; }
+  .clp-carousel-wrapper.is-dragging { cursor: grabbing; user-select: none; }
+  .clp-carousel-row {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    padding: 20px 10px;
+    animation: clpScrollLeft 38s linear infinite;
+  }
+  .clp-carousel-row--right { animation: clpScrollRight 38s linear infinite; }
+  @keyframes clpScrollLeft  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes clpScrollRight { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+  .clp-carousel-wrapper:hover .clp-carousel-row { animation-play-state: paused; }
+  .clp-t-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #f5d8dc;
+    position: relative;
+    width: 360px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 14px rgba(173,102,57,.08);
+  }
+  .clp-t-card::before {
+    content: '"';
+    position: absolute;
+    top: -8px; left: 18px;
+    font-size: 4.5rem;
+    color: #ad6639;
+    font-family: Georgia, serif;
+    line-height: 1;
+    opacity: .15;
+  }
+  .clp-stars { color: #ffd60a; font-size: 1rem; margin-bottom: 10px; }
+  .clp-t-text {
+    font-size: .93rem;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .clp-t-author { display: flex; align-items: center; gap: 11px; }
+  .clp-t-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+    color: #fff;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .clp-t-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .clp-t-name { font-weight: 700; font-size: .88rem; color: #222; font-family: 'Montserrat', sans-serif; }
+  .clp-t-city { font-size: .78rem; color: #888; font-family: 'Open Sans', sans-serif; }
+  .clp-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 3px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  @media (max-width: 768px) { .clp-t-card { width: 290px; } }
+</style>
+
+<section class="clp-testimonials-section">
+  <div class="clp-container">
+    <div style="text-align:center;">
+      <div class="clp-section-label-t"><i class="fa-solid fa-comments"></i> {{ section.settings.label }}</div>
+      <h2>{{ section.settings.title }}</h2>
+      <p class="clp-t-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+  </div>
+
+  <!-- Fila 1: izquierda -->
+  <div class="clp-carousel-wrapper">
+    <div class="clp-carousel-row">
+      {% assign row1_blocks = section.blocks | where: "type", "testimonial_row1" %}
+      {% for block in row1_blocks %}
+        <div class="clp-t-card" {{ block.shopify_attributes }}>
+          <div class="clp-stars">★★★★★</div>
+          <p class="clp-t-text">&ldquo;{{ block.settings.text }}&rdquo;</p>
+          <div class="clp-t-author">
+            <div class="clp-t-avatar" style="background:{{ block.settings.avatar_color }}">
+              {% if block.settings.avatar_url != blank %}
+                <img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}">
+              {% else %}
+                {{ block.settings.name | slice: 0, 2 | upcase }}
+              {% endif %}
+            </div>
+            <div>
+              <div class="clp-t-name">{{ block.settings.name }}</div>
+              <div class="clp-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="clp-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row1_blocks %}
+        <div class="clp-t-card" aria-hidden="true">
+          <div class="clp-stars">★★★★★</div>
+          <p class="clp-t-text">&ldquo;{{ block.settings.text }}&rdquo;</p>
+          <div class="clp-t-author">
+            <div class="clp-t-avatar" style="background:{{ block.settings.avatar_color }}">
+              {% if block.settings.avatar_url != blank %}
+                <img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}">
+              {% else %}
+                {{ block.settings.name | slice: 0, 2 | upcase }}
+              {% endif %}
+            </div>
+            <div>
+              <div class="clp-t-name">{{ block.settings.name }}</div>
+              <div class="clp-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="clp-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Fila 2: derecha -->
+  <div class="clp-carousel-wrapper">
+    <div class="clp-carousel-row clp-carousel-row--right">
+      {% assign row2_blocks = section.blocks | where: "type", "testimonial_row2" %}
+      {% for block in row2_blocks %}
+        <div class="clp-t-card" {{ block.shopify_attributes }}>
+          <div class="clp-stars">★★★★★</div>
+          <p class="clp-t-text">&ldquo;{{ block.settings.text }}&rdquo;</p>
+          <div class="clp-t-author">
+            <div class="clp-t-avatar" style="background:{{ block.settings.avatar_color }}">
+              {% if block.settings.avatar_url != blank %}
+                <img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}">
+              {% else %}
+                {{ block.settings.name | slice: 0, 2 | upcase }}
+              {% endif %}
+            </div>
+            <div>
+              <div class="clp-t-name">{{ block.settings.name }}</div>
+              <div class="clp-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="clp-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- Duplicado para loop seamless -->
+      {% for block in row2_blocks %}
+        <div class="clp-t-card" aria-hidden="true">
+          <div class="clp-stars">★★★★★</div>
+          <p class="clp-t-text">&ldquo;{{ block.settings.text }}&rdquo;</p>
+          <div class="clp-t-author">
+            <div class="clp-t-avatar" style="background:{{ block.settings.avatar_color }}">
+              {% if block.settings.avatar_url != blank %}
+                <img src="{{ block.settings.avatar_url }}" alt="{{ block.settings.name }}">
+              {% else %}
+                {{ block.settings.name | slice: 0, 2 | upcase }}
+              {% endif %}
+            </div>
+            <div>
+              <div class="clp-t-name">{{ block.settings.name }}</div>
+              <div class="clp-t-city"><i class="fa-solid fa-location-dot"></i> {{ block.settings.city }}</div>
+              <div class="clp-verified">✔ Compra verificada</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta",
+      "default": "Historias reales"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Campistas que Ya Aplican Todo Esto"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Experiencias de quienes acampan con las dos guías — y ya no improvisan más"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_row1",
+      "name": "Testimonio — Fila 1",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto del testimonio"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Marcos R."
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad",
+          "default": "Buenos Aires"
+        },
+        {
+          "type": "text",
+          "id": "avatar_url",
+          "label": "URL foto de perfil"
+        },
+        {
+          "type": "color",
+          "id": "avatar_color",
+          "label": "Color avatar (fallback)",
+          "default": "#ad6639"
+        }
+      ]
+    },
+    {
+      "type": "testimonial_row2",
+      "name": "Testimonio — Fila 2",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto del testimonio"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Carolina V."
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "Ciudad",
+          "default": "Rosario"
+        },
+        {
+          "type": "text",
+          "id": "avatar_url",
+          "label": "URL foto de perfil"
+        },
+        {
+          "type": "color",
+          "id": "avatar_color",
+          "label": "Color avatar (fallback)",
+          "default": "#2d6a4f"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Pack",
+      "blocks": [
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "Leí la guía el viernes, probé armar la carpa en el patio como dice, y el sábado la monté en el camping sin problemas. Mi familia quedó impresionada. Volvimos dos veces ese mes.",
+            "name": "Marcos R.",
+            "city": "Buenos Aires",
+            "avatar_url": "https://randomuser.me/api/portraits/men/32.jpg",
+            "avatar_color": "#ad6639"
+          }
+        },
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "Caímos en una llovizna en Merlo y yo tenía pánico. Apliqué el método de terreno: pisé el suelo, busqué la leve pendiente y observé los cauces. El agua se fue sola y nosotros dormimos secos.",
+            "name": "Santiago R.",
+            "city": "Córdoba",
+            "avatar_url": "https://randomuser.me/api/portraits/men/55.jpg",
+            "avatar_color": "#3d9970"
+          }
+        },
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "El checklist antes de salir es oro puro. Nunca nos olvidamos de nada. Y encima ahora sé exactamente dónde plantar la carpa. Antes elegía el lugar más lindo — ahora elijo el lugar correcto.",
+            "name": "Sofía G.",
+            "city": "Córdoba",
+            "avatar_url": "https://randomuser.me/api/portraits/women/44.jpg",
+            "avatar_color": "#7b2d8b"
+          }
+        },
+        {
+          "type": "testimonial_row1",
+          "settings": {
+            "text": "Llevé las dos guías al celular para el viaje a Bariloche. Fui el único del grupo que evaluó el terreno antes de clavar las estacas. El resto copió mi lógica después. Una experiencia 10 puntos.",
+            "name": "Ezequiel P.",
+            "city": "Neuquén",
+            "avatar_url": "https://randomuser.me/api/portraits/men/41.jpg",
+            "avatar_color": "#e07b00"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Viajé sola por primera vez a los 34 años. El capítulo de seguridad me dio una tranquilidad enorme. Y antes de armar la carpa apliqué el método de terreno — elegí el mejor spot en 10 minutos.",
+            "name": "Carolina V.",
+            "city": "Rosario",
+            "avatar_url": "https://randomuser.me/api/portraits/women/68.jpg",
+            "avatar_color": "#007bc1"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "El tip del cauce seco me voló la cabeza. Íbamos a armar en un lecho de piedra cómodo. Lo descartamos. Esa noche cayó una tormenta y por ese cauce bajó agua. Me salvé por leer esto.",
+            "name": "Rodrigo M.",
+            "city": "Mendoza",
+            "avatar_url": "https://randomuser.me/api/portraits/men/22.jpg",
+            "avatar_color": "#1a1f71"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Las dos guías juntas son el sistema completo. Una te dice cómo ir. La otra te dice exactamente dónde parar. Desde que las tengo, acampar pasó de ser estresante a ser lo más relajante que hago.",
+            "name": "Micaela L.",
+            "city": "Santa Fe",
+            "avatar_url": "https://randomuser.me/api/portraits/women/65.jpg",
+            "avatar_color": "#e63946"
+          }
+        },
+        {
+          "type": "testimonial_row2",
+          "settings": {
+            "text": "Nunca imaginé que una herramienta gratuita podía usarse así. La apliqué en 15 minutos y encontré el único punto elevado del sector. El resto del grupo amaneció con el piso mojado. Nosotros no.",
+            "name": "Luciana V.",
+            "city": "Corrientes",
+            "avatar_url": "https://randomuser.me/api/portraits/women/33.jpg",
+            "avatar_color": "#3d9970"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

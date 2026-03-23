@@ -1,0 +1,403 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-plans-section {
+    background: #cdf3f6;
+    padding: 70px 20px;
+  }
+  .clp-plans-section .clp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .clp-section-label-plans {
+    display: inline-block;
+    background: rgba(173,102,57,.12);
+    color: #ad6639;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  .clp-plans-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #2a1a0e;
+  }
+  .clp-section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 44px;
+    font-size: .97rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .clp-plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.12fr 1fr;
+    gap: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .clp-plan-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 2px solid #dde0e7;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(0,0,0,.07);
+    display: flex;
+    flex-direction: column;
+  }
+  .clp-plan-card--featured {
+    border: 3px solid #ad6639;
+    box-shadow: 0 8px 32px rgba(173,102,57,.22);
+    transform: translateY(-8px);
+    position: relative;
+  }
+  .clp-plan-featured-badge {
+    background: #ad6639;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: .78rem;
+    text-align: center;
+    padding: 8px 0;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+  }
+  .clp-plan-img {
+    width: 100%;
+    display: block;
+    background: #f0ebe6;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+  .clp-plan-body {
+    padding: 22px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .clp-plan-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #2a1a0e;
+    margin-bottom: 10px;
+    line-height: 1.25;
+    min-height: 2.5rem;
+  }
+  .clp-plan-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .clp-plan-price { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.7rem; color: #111; }
+  .clp-plan-price--old { font-size: .88rem; color: #bbb; text-decoration: line-through; }
+  .clp-plan-savings {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .72rem;
+    color: #2d6a4f;
+    background: rgba(61,153,112,.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .clp-plan-features { list-style: none; margin-bottom: 20px; flex: 1; padding: 0; }
+  .clp-plan-features li {
+    font-size: .84rem;
+    color: #444;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.4;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .clp-ico-yes { color: #2d6a4f; flex-shrink: 0; margin-top: 2px; }
+  .clp-ico-no  { color: #ccc; flex-shrink: 0; margin-top: 2px; }
+  .clp-plan-feature-summary {
+    font-weight: 700;
+    color: #1a6e2e;
+    font-size: .88rem;
+    border-bottom: 1px dashed #c3e6cb;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+  .clp-plan-btn {
+    display: block;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: 13px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: all .15s;
+    margin-top: auto;
+  }
+  .clp-plan-btn--outline { border: 2px solid #ad6639; color: #ad6639; }
+  .clp-plan-btn--outline:hover { background: #ad6639; color: #fff; }
+  .clp-plan-btn--solid {
+    background: linear-gradient(180deg, #c97a46, #ad6639);
+    color: #fff;
+    box-shadow: 0 5px 0 #7a4520;
+  }
+  .clp-plan-btn--solid:hover { transform: translateY(2px); box-shadow: 0 3px 0 #7a4520; }
+  @media (max-width: 720px) {
+    .clp-plans-grid { grid-template-columns: 1fr; }
+    .clp-plan-card--featured { transform: none; order: -1; }
+  }
+</style>
+
+<section class="clp-plans-section" id="planes">
+  <div class="clp-container">
+    <div style="text-align:center;">
+      <div class="clp-section-label-plans"><i class="fa-solid fa-tag"></i> {{ section.settings.label }}</div>
+      <h2>{{ section.settings.title }}</h2>
+      <p class="clp-section-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="clp-plans-grid">
+
+      <!-- Ebook 1 -->
+      <div class="clp-plan-card">
+        <img src="{{ 'Ebook.png' | asset_url }}" alt="{{ section.settings.e1_name }}" class="clp-plan-img">
+        <div class="clp-plan-body">
+          <div class="clp-plan-name">{{ section.settings.e1_name }}</div>
+          <div class="clp-plan-price-row">
+            <span class="clp-plan-price">{{ section.settings.e1_price }}</span>
+            <span class="clp-plan-price--old">{{ section.settings.e1_price_old }}</span>
+          </div>
+          <div class="clp-plan-savings">{{ section.settings.e1_savings }}</div>
+          <ul class="clp-plan-features">
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Guía completa de acampe paso a paso</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Checklist de equipo esencial</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 3 Bonos VIP (videos)</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Armado de carpa sin errores</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Guía de guardado correcto en mochila</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 4 campings con salida al mar</li>
+            <li><i class="fa-solid fa-xmark clp-ico-no"></i> Guía de terreno y drenaje</li>
+            <li><i class="fa-solid fa-xmark clp-ico-no"></i> Análisis de terreno con herramientas</li>
+          </ul>
+          <a href="{{ section.settings.e1_url }}" class="clp-plan-btn clp-plan-btn--outline">{{ section.settings.e1_btn }}</a>
+        </div>
+      </div>
+
+      <!-- Pack Completo (destacado) -->
+      <div class="clp-plan-card clp-plan-card--featured">
+        <div class="clp-plan-featured-badge"><i class="fa-solid fa-fire"></i> {{ section.settings.pack_badge }}</div>
+        <img src="{{ 'Ebook3.png' | asset_url }}" alt="{{ section.settings.pack_name }}" class="clp-plan-img">
+        <div class="clp-plan-body">
+          <div class="clp-plan-name">{{ section.settings.pack_name }}</div>
+          <div class="clp-plan-price-row">
+            <span class="clp-plan-price" style="font-size:2rem;color:#ad6639">{{ section.settings.pack_price }}</span>
+            <span class="clp-plan-price--old">{{ section.settings.pack_price_old }}</span>
+          </div>
+          <div class="clp-plan-savings">💰 {{ section.settings.pack_savings }}</div>
+          <ul class="clp-plan-features">
+            <li class="clp-plan-feature-summary"><i class="fa-solid fa-check clp-ico-yes"></i> Todo lo de &ldquo;Guía Rápida para Campista&rdquo;</li>
+            <li class="clp-plan-feature-summary"><i class="fa-solid fa-check clp-ico-yes"></i> Todo lo de &ldquo;Cómo Elegir el Terreno Perfecto&rdquo;</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Guía completa de acampe paso a paso</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Checklist de equipo esencial</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 3 Bonos VIP (videos)</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Armado de carpa sin errores</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Guía de guardado correcto en mochila</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 4 campings con salida al mar</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Guía de terreno y drenaje</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Análisis con herramientas digitales</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Método anti-inundaciones completo</li>
+          </ul>
+          <a href="{{ section.settings.pack_url }}" class="clp-plan-btn clp-plan-btn--solid"><i class="fa-solid fa-box-open"></i> {{ section.settings.pack_btn }}</a>
+        </div>
+      </div>
+
+      <!-- Ebook 2 -->
+      <div class="clp-plan-card">
+        <img src="{{ 'Ebook2.png' | asset_url }}" alt="{{ section.settings.e2_name }}" class="clp-plan-img">
+        <div class="clp-plan-body">
+          <div class="clp-plan-name">{{ section.settings.e2_name }}</div>
+          <div class="clp-plan-price-row">
+            <span class="clp-plan-price">{{ section.settings.e2_price }}</span>
+            <span class="clp-plan-price--old">{{ section.settings.e2_price_old }}</span>
+          </div>
+          <div class="clp-plan-savings">{{ section.settings.e2_savings }}</div>
+          <ul class="clp-plan-features">
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Método de análisis de terreno</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 4 herramientas digitales (gratis)</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> Lectura de cauces y drenaje</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 10 capítulos prácticos</li>
+            <li><i class="fa-solid fa-check clp-ico-yes"></i> 3 Bonos VIP (videos)</li>
+            <li><i class="fa-solid fa-xmark clp-ico-no"></i> Guía completa de acampe</li>
+            <li><i class="fa-solid fa-xmark clp-ico-no"></i> Guía de guardado correcto en mochila</li>
+            <li><i class="fa-solid fa-xmark clp-ico-no"></i> 4 campings con salida al mar</li>
+          </ul>
+          <a href="{{ section.settings.e2_url }}" class="clp-plan-btn clp-plan-btn--outline">{{ section.settings.e2_btn }}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Plans Section Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta",
+      "default": "Elegí tu plan"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "¿Qué Plan Se Adapta a Vos?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Podés llevar una guía sola o aprovechar el Pack Completo y ahorrarte $7.990 hoy"
+    },
+    {
+      "type": "header",
+      "content": "Guía 1 (Ebook 1)"
+    },
+    {
+      "type": "text",
+      "id": "e1_name",
+      "label": "Nombre plan",
+      "default": "Guía Rápida para Campistas"
+    },
+    {
+      "type": "text",
+      "id": "e1_price",
+      "label": "Precio",
+      "default": "$14.990"
+    },
+    {
+      "type": "text",
+      "id": "e1_price_old",
+      "label": "Precio tachado",
+      "default": "$30.000"
+    },
+    {
+      "type": "text",
+      "id": "e1_savings",
+      "label": "Texto ahorro",
+      "default": "Ahorrás $15.010"
+    },
+    {
+      "type": "text",
+      "id": "e1_btn",
+      "label": "Texto botón",
+      "default": "Llevar solo esta guía"
+    },
+    {
+      "type": "url",
+      "id": "e1_url",
+      "label": "URL botón"
+    },
+    {
+      "type": "header",
+      "content": "Pack Completo"
+    },
+    {
+      "type": "text",
+      "id": "pack_badge",
+      "label": "Badge destacado",
+      "default": "Mejor Valor — Pack Completo"
+    },
+    {
+      "type": "text",
+      "id": "pack_name",
+      "label": "Nombre plan",
+      "default": "Pack Completo — Las 2 Guías"
+    },
+    {
+      "type": "text",
+      "id": "pack_price",
+      "label": "Precio",
+      "default": "$21.990"
+    },
+    {
+      "type": "text",
+      "id": "pack_price_old",
+      "label": "Precio tachado",
+      "default": "$29.980"
+    },
+    {
+      "type": "text",
+      "id": "pack_savings",
+      "label": "Texto ahorro",
+      "default": "Ahorrás $7.990 vs comprar por separado"
+    },
+    {
+      "type": "text",
+      "id": "pack_btn",
+      "label": "Texto botón",
+      "default": "QUIERO EL PACK — $21.990"
+    },
+    {
+      "type": "url",
+      "id": "pack_url",
+      "label": "URL botón"
+    },
+    {
+      "type": "header",
+      "content": "Guía 2 (Ebook 2)"
+    },
+    {
+      "type": "text",
+      "id": "e2_name",
+      "label": "Nombre plan",
+      "default": "Cómo Elegir el Terreno Perfecto y Evitar Inundaciones"
+    },
+    {
+      "type": "text",
+      "id": "e2_price",
+      "label": "Precio",
+      "default": "$14.990"
+    },
+    {
+      "type": "text",
+      "id": "e2_price_old",
+      "label": "Precio tachado",
+      "default": "$30.000"
+    },
+    {
+      "type": "text",
+      "id": "e2_savings",
+      "label": "Texto ahorro",
+      "default": "Ahorrás $15.010"
+    },
+    {
+      "type": "text",
+      "id": "e2_btn",
+      "label": "Texto botón",
+      "default": "Llevar solo esta guía"
+    },
+    {
+      "type": "url",
+      "id": "e2_url",
+      "label": "URL botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plans Section Pack"
+    }
+  ]
+}
+{% endschema %}

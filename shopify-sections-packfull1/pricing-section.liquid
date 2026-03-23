@@ -1,0 +1,288 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-pricing-section {
+    background: #f8f2ed;
+    padding: 44px 20px;
+    border-top: 1px solid #e8dbd3;
+  }
+  .clp-pricing-box {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .clp-pricing-stars { color: #f5a623; font-size: 1.2rem; margin-bottom: 4px; }
+  .clp-pricing-reviews { font-size: .85rem; color: #777; margin-bottom: 22px; font-family: 'Open Sans', sans-serif; }
+  .clp-pricing-reviews strong { color: #333; }
+  .clp-pricing-main-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .clp-pricing-old-price { font-size: 1rem; color: #aaa; text-decoration: line-through; margin-bottom: 16px; font-family: 'Open Sans', sans-serif; }
+  .clp-savings-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #00b140, #007d2e);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 13px 28px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 14px rgba(0,177,64,.35);
+    text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .clp-savings-btn:hover { transform: scale(1.06) translateY(-2px); box-shadow: 0 8px 24px rgba(0,177,64,.55); }
+  .clp-pricing-countdown {
+    background: linear-gradient(135deg, #fff8f0, #fdeede);
+    border: 2px solid #e8a87c;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .clp-pc-header { font-size: .85rem; font-weight: 700; color: #7a4520; margin-bottom: 10px; }
+  .clp-pc-digits { display: flex; justify-content: center; gap: 6px; align-items: flex-end; margin-bottom: 10px; }
+  .clp-pc-unit { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .clp-pc-num {
+    background: #7a4520;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    padding: 6px 14px;
+    border-radius: 8px;
+    min-width: 52px;
+    line-height: 1;
+  }
+  .clp-pc-lbl { font-size: .65rem; font-weight: 700; color: #ad6639; text-transform: uppercase; letter-spacing: .5px; }
+  .clp-pc-sep { font-size: 1.8rem; font-weight: 900; color: #ad6639; line-height: 1; padding-bottom: 6px; }
+  .clp-pc-footer { font-size: .75rem; color: #888; font-family: 'Open Sans', sans-serif; }
+  .clp-offer-btn {
+    display: block;
+    border: 2px solid #ad6639;
+    color: #ad6639;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: background .15s, color .15s, transform .18s ease;
+    cursor: pointer;
+  }
+  .clp-offer-btn:hover { background: #ad6639; color: #fff; transform: translateY(-2px); }
+  .clp-trust-list { list-style: none; text-align: left; display: inline-block; margin-bottom: 22px; }
+  .clp-trust-list li { font-size: .88rem; color: #444; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-family: 'Open Sans', sans-serif; }
+  .clp-pricing-live {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: .88rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .clp-pricing-live-dot { width: 10px; height: 10px; border-radius: 50%; background: #3483fa; flex-shrink: 0; }
+  .clp-pricing-urgency {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: .85rem;
+    color: #ad6639;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+</style>
+
+<section class="clp-pricing-section">
+  <div class="clp-pricing-box">
+    <div class="clp-pricing-stars">★★★★★</div>
+    <div class="clp-pricing-reviews"><strong>{{ section.settings.rating }}</strong> de {{ section.settings.reviews_count }} Reseñas Combinadas</div>
+    <div class="clp-pricing-main-price">{{ section.settings.price }}</div>
+    <div class="clp-pricing-old-price">{{ section.settings.price_old }}</div>
+    <a href="{{ section.settings.savings_btn_url }}" class="clp-savings-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.savings_btn_text }}
+    </a>
+
+    <div class="clp-pricing-countdown">
+      <div class="clp-pc-header"><i class="fa-regular fa-bell"></i> {{ section.settings.countdown_label }}</div>
+      <div class="clp-pc-digits">
+        <div class="clp-pc-unit">
+          <span class="clp-pc-num" id="pack-h">01</span>
+          <span class="clp-pc-lbl">horas</span>
+        </div>
+        <span class="clp-pc-sep">:</span>
+        <div class="clp-pc-unit">
+          <span class="clp-pc-num" id="pack-m">00</span>
+          <span class="clp-pc-lbl">minutos</span>
+        </div>
+        <span class="clp-pc-sep">:</span>
+        <div class="clp-pc-unit">
+          <span class="clp-pc-num" id="pack-s">00</span>
+          <span class="clp-pc-lbl">segundos</span>
+        </div>
+      </div>
+      <div class="clp-pc-footer">{{ section.settings.countdown_footer }}</div>
+    </div>
+
+    <a href="{{ section.settings.offer_btn_url }}" class="clp-offer-btn">
+      <i class="fa-solid fa-fire"></i> {{ section.settings.offer_btn_text }}
+    </a>
+
+    <ul class="clp-trust-list">
+      <li><i class="fa-solid fa-bolt" style="color:#f5a623"></i> {{ section.settings.trust_1 }}</li>
+      <li><i class="fa-solid fa-lock" style="color:#555"></i> {{ section.settings.trust_2 }}</li>
+      <li><i class="fa-solid fa-square-check" style="color:#00b140"></i> {{ section.settings.trust_3 }}</li>
+      <li><i class="fa-solid fa-plus" style="color:#ad6639"></i> {{ section.settings.trust_4 }}</li>
+    </ul>
+
+    <div class="clp-pricing-live">
+      <div class="clp-pricing-live-dot"></div>
+      <span><span id="pricing-live-count">10</span> {{ section.settings.live_text }}</span>
+    </div>
+    <div class="clp-pricing-urgency"><i class="fa-solid fa-fire"></i> {{ section.settings.urgency_text }}</div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var KEY = 'cl_countdown_end_pack1';
+  var end = +sessionStorage.getItem(KEY);
+  if (!end || end < Date.now()) {
+    end = Date.now() + (60 * 60) * 1000;
+    sessionStorage.setItem(KEY, end);
+  }
+  function tick() {
+    var diff = Math.max(0, end - Date.now());
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var hEl = document.getElementById('pack-h');
+    var mEl = document.getElementById('pack-m');
+    var sEl = document.getElementById('pack-s');
+    if (hEl) hEl.textContent = String(h).padStart(2, '0');
+    if (mEl) mEl.textContent = String(m).padStart(2, '0');
+    if (sEl) sEl.textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Pricing Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Puntuación",
+      "default": "4.8/5"
+    },
+    {
+      "type": "text",
+      "id": "reviews_count",
+      "label": "Cantidad de reseñas",
+      "default": "2.456"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Precio principal",
+      "default": "$21.990"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado",
+      "default": "$29.980"
+    },
+    {
+      "type": "text",
+      "id": "savings_btn_text",
+      "label": "Texto botón ahorro",
+      "default": "AHORRÁS $7.990 CON EL PACK"
+    },
+    {
+      "type": "url",
+      "id": "savings_btn_url",
+      "label": "URL botón ahorro"
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Label del countdown",
+      "default": "¡Oferta de Pack Limitada: Las 2 guías por precio especial!"
+    },
+    {
+      "type": "text",
+      "id": "countdown_footer",
+      "label": "Pie del countdown",
+      "default": "Después de que el contador llegue a cero, esta oferta desaparecerá."
+    },
+    {
+      "type": "text",
+      "id": "offer_btn_text",
+      "label": "Texto botón oferta",
+      "default": "¡VER OFERTA DEL PACK AHORA!"
+    },
+    {
+      "type": "url",
+      "id": "offer_btn_url",
+      "label": "URL botón oferta"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust item 1 (rayo)",
+      "default": "Acceso inmediato a las 2 guías por mail"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust item 2 (candado)",
+      "default": "Pago seguro mediante Mercado Pago"
+    },
+    {
+      "type": "text",
+      "id": "trust_3",
+      "label": "Trust item 3 (check)",
+      "default": "Garantía de satisfacción 7 días"
+    },
+    {
+      "type": "text",
+      "id": "trust_4",
+      "label": "Trust item 4 (plus)",
+      "default": "Incluye 3 bonos VIP exclusivos"
+    },
+    {
+      "type": "text",
+      "id": "live_text",
+      "label": "Texto live counter",
+      "default": "personas viendo este pack ahora"
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Texto de urgencia",
+      "default": "El precio del pack está a punto de aumentar"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Pack"
+    }
+  ]
+}
+{% endschema %}

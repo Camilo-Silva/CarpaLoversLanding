@@ -1,0 +1,259 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-benefits-section {
+    background: #cdf3f6;
+    padding: 70px 20px;
+  }
+  .clp-benefits-section .clp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .clp-benefits-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #2a1a0e;
+    line-height: 1.2;
+  }
+  .clp-benefits-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 44px;
+    font-size: .97rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .clp-benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .clp-benefit-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    border-left: 4px solid #ad6639;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .clp-benefit-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    user-select: none;
+  }
+  .clp-b-icon { font-size: 1.2rem; color: #ad6639; flex-shrink: 0; }
+  .clp-benefit-card-header h4 {
+    font-size: .95rem;
+    margin: 0;
+    flex: 1;
+    color: #2a1a0e;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .clp-b-arr { font-size: .7rem; color: #ad6639; transition: transform .3s; flex-shrink: 0; }
+  .clp-benefit-card.open .clp-b-arr { transform: rotate(180deg); }
+  .clp-benefit-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .3s ease;
+    padding: 0 18px;
+    font-size: .88rem;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+  }
+  .clp-benefit-card.open .clp-benefit-card-body { max-height: 200px; padding: 0 18px 16px; }
+  .clp-ebook-tag {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-left: 6px;
+    vertical-align: middle;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .clp-tag-ebook1 { background: rgba(173,102,57,.12); color: #7a4520; }
+  .clp-tag-ebook2 { background: rgba(61,153,112,.12); color: #2d6a4f; }
+  @media (max-width: 768px) {
+    .clp-benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="clp-benefits-section">
+  <div class="clp-container">
+    <h2>{{ section.settings.title }}</h2>
+    <p class="clp-benefits-subtitle">{{ section.settings.subtitle }}</p>
+    <div class="clp-benefits-grid">
+      {% for block in section.blocks %}
+        <div class="clp-benefit-card" {{ block.shopify_attributes }}>
+          <div class="clp-benefit-card-header">
+            <span class="clp-b-icon"><i class="fa-solid {{ block.settings.icon }}"></i></span>
+            <h4>
+              {{ block.settings.title }}
+              {% if block.settings.tag == 'ebook1' %}
+                <span class="clp-ebook-tag clp-tag-ebook1">Guía 1</span>
+              {% elsif block.settings.tag == 'ebook2' %}
+                <span class="clp-ebook-tag clp-tag-ebook2">Guía 2</span>
+              {% endif %}
+            </h4>
+            <span class="clp-b-arr">▼</span>
+          </div>
+          <div class="clp-benefit-card-body">{{ block.settings.body }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.clp-benefit-card').forEach(function(card) {
+  card.querySelector('.clp-benefit-card-header').addEventListener('click', function() {
+    card.classList.toggle('open');
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Benefits Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Todo Lo Que Dominás con el Pack Completo"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Los dos pilares del campista que sabe lo que hace — combinados en un sistema completo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono FA",
+          "default": "fa-campground"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Camping Organizado vs. Agreste"
+        },
+        {
+          "type": "select",
+          "id": "tag",
+          "label": "Etiqueta de guía",
+          "options": [
+            { "value": "none",   "label": "Sin etiqueta" },
+            { "value": "ebook1", "label": "Guía 1" },
+            { "value": "ebook2", "label": "Guía 2" }
+          ],
+          "default": "ebook1"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Descripción"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Pack",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-campground",
+            "title": "Camping Organizado vs. Agreste",
+            "tag": "ebook1",
+            "body": "Por qué empezar en campings organizados te salva de los errores más comunes — y exactamente cuándo dar el salto al camping agreste sin miedo."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-map-location-dot",
+            "title": "Análisis de Terreno Antes de Llegar",
+            "tag": "ebook2",
+            "body": "Cómo usar 4 herramientas digitales gratuitas para analizar cualquier terreno desde tu celular antes de salir de casa."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-bag-shopping",
+            "title": "Equipo Esencial que No Puede Faltar",
+            "tag": "ebook1",
+            "body": "Carpa, bolsa de dormir, aislante, cocina portátil, iluminación y ropa en capas. La lista exacta que usamos en cada salida."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-water",
+            "title": "Cauces, Pendientes y Drenaje",
+            "tag": "ebook2",
+            "body": "Cómo identificar lechos secos, leer la pendiente del terreno y elegir el punto elevado que garantiza que el agua nunca entre a tu carpa."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-circle-check",
+            "title": "Checklist + Prueba Antes de Salir",
+            "tag": "ebook1",
+            "body": "Armá la carpa en tu casa antes del viaje, probá el saco de dormir y revisá las baterías. Los pasos que evitan las malas sorpresas."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-toolbox",
+            "title": "Herramientas Digitales Paso a Paso",
+            "tag": "ebook2",
+            "body": "Los expertos ya las usan — son gratuitas y las tenés en el celular. La guía te enseña exactamente cómo aplicarlas para elegir el mejor spot."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-cloud-bolt",
+            "title": "Tormentas, Orientación y Canaletas",
+            "tag": "ebook1",
+            "body": "Cómo elegir terreno con buen drenaje, orientar la carpa al viento, usar lonas extras y cavar canaletas para que el agua nunca entre."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "fa-shield-halved",
+            "title": "Método Mental Anti-Pánico",
+            "tag": "ebook2",
+            "body": "El protocolo de 5 pasos para evaluar cualquier terreno desconocido con calma y confianza — incluso si está lloviendo y el grupo espera tu decisión."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

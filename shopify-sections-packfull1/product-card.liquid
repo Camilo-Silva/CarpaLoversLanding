@@ -1,0 +1,182 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-product-card-section {
+    background: #f8f2ed;
+    padding: 50px 20px;
+  }
+  .clp-product-card-section .clp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .clp-product-card {
+    background: #fff;
+    border: 1px solid #dde0e7;
+    border-radius: 14px;
+    max-width: 460px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.09);
+  }
+  .clp-product-card-img {
+    width: 100%;
+    display: block;
+    background: #eef3fb;
+  }
+  .clp-product-card-body { padding: 22px 24px 28px; }
+  .clp-product-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: #111;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+  .clp-price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .clp-price-old { font-size: .95rem; color: #999; text-decoration: line-through; font-family: 'Open Sans', sans-serif; }
+  .clp-price-new { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.6rem; color: #111; }
+  .clp-off-badge {
+    background: #ad6639;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .clp-product-stock {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .82rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #e65100;
+    margin-bottom: 18px;
+  }
+  .clp-stock-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #f44336;
+    animation: clpBlink 1s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes clpBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .clp-product-cta {
+    display: block;
+    background: linear-gradient(180deg, #1e9e4f, #178040);
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .clp-product-cta:hover { opacity: .88; }
+  @media (max-width: 768px) {
+    .clp-product-card-section { padding: 0 0 32px; }
+    .clp-product-card-section .clp-container { padding: 0; }
+    .clp-product-card { max-width: 100%; border-radius: 0; box-shadow: none; border-left: none; border-right: none; }
+    .clp-product-card-img { border-radius: 0; }
+    .clp-product-card-body { padding: 20px 20px 24px; }
+  }
+</style>
+
+<section class="clp-product-card-section">
+  <div class="clp-container">
+    <div class="clp-product-card">
+      {% if section.settings.product_image != blank %}
+        <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ section.settings.product_title }}" class="clp-product-card-img">
+      {% else %}
+        <img src="{{ 'Ebook3.png' | asset_url }}" alt="{{ section.settings.product_title }}" class="clp-product-card-img">
+      {% endif %}
+      <div class="clp-product-card-body">
+        <div class="clp-product-card-title">{{ section.settings.product_title }}</div>
+        <div class="clp-price-row">
+          <span class="clp-price-old">{{ section.settings.price_old }}</span>
+          <span class="clp-price-new">{{ section.settings.price_new }}</span>
+          <span class="clp-off-badge">{{ section.settings.off_badge }}</span>
+        </div>
+        <div class="clp-product-stock">
+          <div class="clp-stock-dot"></div>
+          {{ section.settings.stock_text }}
+        </div>
+        <a href="{{ section.settings.cta_url }}" class="clp-product-cta">{{ section.settings.cta_text }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Card Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Imagen del producto"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Título del producto",
+      "default": "Pack Completo CarpaLovers — 2 Guías Esenciales"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado",
+      "default": "$29.980"
+    },
+    {
+      "type": "text",
+      "id": "price_new",
+      "label": "Precio oferta",
+      "default": "$21.990"
+    },
+    {
+      "type": "text",
+      "id": "off_badge",
+      "label": "Badge de ahorro",
+      "default": "AHORRÁS $7.990"
+    },
+    {
+      "type": "text",
+      "id": "stock_text",
+      "label": "Texto de stock/urgencia",
+      "default": "Oferta de pack disponible por tiempo limitado"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "VER PLANES Y PRECIOS"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Card Pack"
+    }
+  ]
+}
+{% endschema %}

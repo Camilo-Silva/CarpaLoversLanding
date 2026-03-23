@@ -1,0 +1,153 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .clp-faq-section {
+    padding: 70px 20px;
+    background: #d1ccec;
+  }
+  .clp-faq-section .clp-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .clp-faq-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 38px;
+    color: #2a1a0e;
+  }
+  .clp-faq-item {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc7e0;
+    overflow: hidden;
+  }
+  .clp-faq-q {
+    padding: 17px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .97rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2a1a0e;
+    user-select: none;
+  }
+  .clp-faq-q .clp-arr { transition: transform .3s; font-size: .75rem; color: #ad6639; }
+  .clp-faq-a {
+    padding: 0 22px;
+    font-size: .93rem;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease, padding .3s ease;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+  }
+  .clp-faq-item.open .clp-faq-a { max-height: 400px; padding: 0 22px 18px; }
+  .clp-faq-item.open .clp-arr { transform: rotate(180deg); }
+</style>
+
+<section class="clp-faq-section">
+  <div class="clp-container">
+    <h2><i class="fa-solid fa-circle-question"></i> {{ section.settings.heading }}</h2>
+    {% for block in section.blocks %}
+      <div class="clp-faq-item" {{ block.shopify_attributes }}>
+        <div class="clp-faq-q">{{ block.settings.question }} <span class="clp-arr">▼</span></div>
+        <div class="clp-faq-a">{{ block.settings.answer }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.clp-faq-q').forEach(function(q) {
+  q.addEventListener('click', function() {
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Pack",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Preguntas Frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Pack",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo recibo las guías después de comprar?",
+            "answer": "Inmediatamente después del pago recibís un email con los links de descarga de ambas guías. Acceso instantáneo, 24/7, desde cualquier dispositivo."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo comprar solo una de las dos guías?",
+            "answer": "Sí. Podés llevar la Guía Rápida para Campistas ($14.990) o la Guía de Terreno ($14.990) por separado. Sin embargo, el Pack Completo ($21.990) te ahorra $7.990 y te da el sistema completo."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Sirve si nunca acampé en mi vida?",
+            "answer": "Arrancamos desde cero. La Guía 1 te lleva de la mano en todo el proceso de tu primer acampe. La Guía 2 te enseña a elegir el terreno perfecto desde el inicio."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Y si ya acampé antes, igual me sirve?",
+            "answer": "Sí — y probablemente más. Muchos campistas con experiencia descubren que estaban eligiendo el terreno al azar o cometiendo errores que se podían evitar fácilmente."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿En qué formato vienen las guías?",
+            "answer": "Ambas guías vienen en PDF de alta calidad — podés leerlas en tu celular, tablet, computadora o imprimirlas. Funcionan sin internet una vez descargadas. Los bonos de la Guía 1 incluyen también material en video."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿La garantía de 7 días es real?",
+            "answer": "100% real. Dentro de los 7 días mandás un email a nuestro soporte y te devolvemos el dinero completo sin preguntas. Sin excusas, sin letra chica."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+
+<style>
+  @keyframes clpFloatBounce {
+    0%,100% { transform: translateX(-50%) translateY(0) scale(1); box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    40%      { transform: translateX(-50%) translateY(-6px) scale(1.06); box-shadow: 0 14px 32px rgba(0,0,0,.3); }
+    60%      { transform: translateX(-50%) translateY(-3px) scale(1.03); }
+  }
+  @keyframes clpFloatBounceRight {
+    0%,100% { transform: translateY(0) scale(1); box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    40%      { transform: translateY(-6px) scale(1.06); box-shadow: 0 14px 32px rgba(0,0,0,.3); }
+    60%      { transform: translateY(-3px) scale(1.03); }
+  }
+  .clp-float-cta {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 28px;
+    z-index: 9999;
+    background: linear-gradient(135deg, #1e9e4f, #27ae60);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.35);
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: .5px;
+    align-items: center;
+    gap: 10px;
+    animation: clpFloatBounceRight 2.2s ease-in-out infinite;
+  }
+  .clp-float-cta:hover { animation: none; transform: translateY(-2px) scale(1.04); box-shadow: 0 10px 28px rgba(0,0,0,.4); }
+  @media (max-width: 768px) {
+    .clp-float-cta {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: clpFloatBounce 2.2s ease-in-out infinite;
+    }
+    .clp-float-cta:hover { transform: translateX(-50%) translateY(-2px) scale(1.04); }
+  }
+</style>
+
+<a href="{{ section.settings.cta_url }}" class="clp-float-cta">
+  <i class="fa-solid fa-box-open"></i> {{ section.settings.cta_text }}
+</a>
+
+{% schema %}
+{
+  "name": "Float CTA Pack",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "VER PACK COMPLETO"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL del botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Float CTA Pack"
+    }
+  ]
+}
+{% endschema %}
