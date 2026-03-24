@@ -169,7 +169,11 @@
 
       <!-- Ebook 1 -->
       <div class="clp-plan-card">
-        <img src="{{ 'Ebook.png' | asset_url }}" alt="{{ section.settings.e1_name }}" class="clp-plan-img">
+        {% if section.settings.e1_image != blank %}
+          <img src="{{ section.settings.e1_image | img_url: 'master' }}" alt="{{ section.settings.e1_name }}" class="clp-plan-img">
+        {% else %}
+          <img src="{{ 'Ebook.png' | asset_url }}" alt="{{ section.settings.e1_name }}" class="clp-plan-img">
+        {% endif %}
         <div class="clp-plan-body">
           <div class="clp-plan-name">{{ section.settings.e1_name }}</div>
           <div class="clp-plan-price-row">
@@ -194,7 +198,11 @@
       <!-- Pack Completo (destacado) -->
       <div class="clp-plan-card clp-plan-card--featured">
         <div class="clp-plan-featured-badge"><i class="fa-solid fa-fire"></i> {{ section.settings.pack_badge }}</div>
-        <img src="{{ 'Ebook3.png' | asset_url }}" alt="{{ section.settings.pack_name }}" class="clp-plan-img">
+        {% if section.settings.pack_image != blank %}
+          <img src="{{ section.settings.pack_image | img_url: 'master' }}" alt="{{ section.settings.pack_name }}" class="clp-plan-img">
+        {% else %}
+          <img src="{{ 'Ebook3.png' | asset_url }}" alt="{{ section.settings.pack_name }}" class="clp-plan-img">
+        {% endif %}
         <div class="clp-plan-body">
           <div class="clp-plan-name">{{ section.settings.pack_name }}</div>
           <div class="clp-plan-price-row">
@@ -221,7 +229,11 @@
 
       <!-- Ebook 2 -->
       <div class="clp-plan-card">
-        <img src="{{ 'Ebook2.png' | asset_url }}" alt="{{ section.settings.e2_name }}" class="clp-plan-img">
+        {% if section.settings.e2_image != blank %}
+          <img src="{{ section.settings.e2_image | img_url: 'master' }}" alt="{{ section.settings.e2_name }}" class="clp-plan-img">
+        {% else %}
+          <img src="{{ 'Ebook2.png' | asset_url }}" alt="{{ section.settings.e2_name }}" class="clp-plan-img">
+        {% endif %}
         <div class="clp-plan-body">
           <div class="clp-plan-name">{{ section.settings.e2_name }}</div>
           <div class="clp-plan-price-row">
@@ -310,6 +322,11 @@
       "label": "URL botón"
     },
     {
+      "type": "image_picker",
+      "id": "e1_image",
+      "label": "Imagen del plan"
+    },
+    {
       "type": "header",
       "content": "Pack Completo"
     },
@@ -355,6 +372,11 @@
       "label": "URL botón"
     },
     {
+      "type": "image_picker",
+      "id": "pack_image",
+      "label": "Imagen del plan"
+    },
+    {
       "type": "header",
       "content": "Guía 2 (Ebook 2)"
     },
@@ -392,6 +414,11 @@
       "type": "url",
       "id": "e2_url",
       "label": "URL botón"
+    },
+    {
+      "type": "image_picker",
+      "id": "e2_image",
+      "label": "Imagen del plan"
     }
   ],
   "presets": [

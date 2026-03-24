@@ -34,6 +34,7 @@
     font-family: 'Open Sans', sans-serif;
     line-height: 1.7;
   }
+  .clp-highlight { color: #ad6639; font-weight: 700; }
   @media (max-width: 768px) {
     .clp-guarantee-box { padding: 24px 16px; }
     .clp-guarantee-box h2 { font-size: 1.4rem; }
@@ -45,7 +46,7 @@
     <div class="clp-guarantee-box">
       <div class="clp-g-icon"><i class="fa-solid fa-shield-halved"></i></div>
       <h2>{{ section.settings.heading }}</h2>
-      <p>{{ section.settings.body_1 }}</p>
+      <p>{{ section.settings.body_1_before }} <strong class="clp-highlight">{{ section.settings.body_1_highlight }}</strong>{{ section.settings.body_1_after }}</p>
       <p>{{ section.settings.body_2 }}</p>
     </div>
   </div>
@@ -64,9 +65,21 @@
     },
     {
       "type": "textarea",
-      "id": "body_1",
-      "label": "Párrafo 1",
-      "default": "Probá el Pack 7 días. Si sentís que no te aportó lo que esperabas, te devolvemos el 100% de tus $21.990 sin preguntas — y te quedás con todo el material."
+      "id": "body_1_before",
+      "label": "Párrafo 1 — texto antes del resaltado",
+      "default": "Probá el Pack 7 días. Si sentís que no te aportó lo que esperabas,"
+    },
+    {
+      "type": "text",
+      "id": "body_1_highlight",
+      "label": "Párrafo 1 — frase resaltada (marrón)",
+      "default": "te devolvemos el 100% de tus $21.990 sin preguntas"
+    },
+    {
+      "type": "textarea",
+      "id": "body_1_after",
+      "label": "Párrafo 1 — texto después del resaltado",
+      "default": " — y te quedás con todo el material."
     },
     {
       "type": "textarea",
