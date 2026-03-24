@@ -55,6 +55,44 @@
     line-height: 1.6;
     margin-bottom: 20px;
   }
+  /* === DESGLOSE === */
+  .cl2-upsell-breakdown {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .88rem;
+  }
+  .cl2-upsell-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,.7);
+    padding: 4px 0;
+  }
+  .cl2-upsell-breakdown-row.total {
+    border-top: 1px dashed rgba(255,255,255,.2);
+    margin-top: 6px;
+    padding-top: 10px;
+    color: rgba(255,255,255,.45);
+    font-size: .82rem;
+    text-decoration: line-through;
+  }
+  .cl2-upsell-breakdown-row.pack {
+    border-top: 1px solid rgba(173,102,57,.5);
+    margin-top: 6px;
+    padding-top: 10px;
+    color: #e8a06a;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+  }
+  .cl2-upsell-breakdown-row .label { flex: 1; }
+  .cl2-upsell-breakdown-row .price { font-weight: 700; white-space: nowrap; }
+  .cl2-upsell-breakdown-row.pack .price { font-size: 1.15rem; color: #fff; }
+
   .cl2-upsell-price-row {
     display: flex;
     align-items: center;
@@ -109,6 +147,30 @@
     letter-spacing: .3px;
   }
   .cl2-upsell-btn:hover { transform: translateY(3px); box-shadow: 0 3px 0 #155a2a; }
+  .cl2-upsell-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: #e8a06a;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .88rem;
+    padding: 13px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1px solid rgba(232,160,106,.45);
+    transition: all .15s ease;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  .cl2-upsell-btn-secondary:hover { background: rgba(232,160,106,.1); border-color: #e8a06a; }
+  .cl2-upsell-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .cl2-upsell-note {
     font-family: 'Open Sans', sans-serif;
     font-size: .75rem;
@@ -117,10 +179,12 @@
   }
   @media (max-width: 680px) {
     .cl2-upsell-pack .cl2-upsell-container { flex-direction: column; text-align: center; }
-    .cl2-upsell-img-wrap { width: 150px; margin: 0 auto; }
+    .cl2-upsell-img-wrap { width: calc(100% + 40px); margin: -40px -20px 20px -20px; }
+    .cl2-upsell-img-wrap img { border-radius: 0; width: 100%; }
     .cl2-upsell-price-row { justify-content: center; }
     .cl2-upsell-heading { font-size: 1.35rem; }
     .cl2-upsell-btn { width: 100%; }
+    .cl2-upsell-btn-secondary { width: 100%; }
   }
 </style>
 
@@ -142,6 +206,26 @@
 
       <p class="cl2-upsell-sub">{{ section.settings.body }}</p>
 
+      <!-- Desglose de precios -->
+      <div class="cl2-upsell-breakdown">
+        <div class="cl2-upsell-breakdown-row">
+          <span class="label">📗 {{ section.settings.this_guide_name }}</span>
+          <span class="price">{{ section.settings.this_guide_price }}</span>
+        </div>
+        <div class="cl2-upsell-breakdown-row">
+          <span class="label">📘 {{ section.settings.other_guide_name }}</span>
+          <span class="price">{{ section.settings.other_guide_price }}</span>
+        </div>
+        <div class="cl2-upsell-breakdown-row total">
+          <span class="label">Compradas por separado</span>
+          <span class="price">{{ section.settings.price_old }}</span>
+        </div>
+        <div class="cl2-upsell-breakdown-row pack">
+          <span class="label">🔥 Pack Completo (las 2)</span>
+          <span class="price">{{ section.settings.price_new }}</span>
+        </div>
+      </div>
+
       <div class="cl2-upsell-price-row">
         {% if section.settings.price_sep != blank %}
           <span class="cl2-upsell-price-sep">{{ section.settings.price_sep }}</span>
@@ -155,9 +239,14 @@
         {% endif %}
       </div>
 
-      <a href="{{ section.settings.cta_url }}" class="cl2-upsell-btn">
-        <i class="fa-solid fa-box-open"></i> {{ section.settings.cta_text }}
-      </a>
+      <div class="cl2-upsell-btns">
+        <a href="{{ section.settings.cta_url }}" class="cl2-upsell-btn">
+          <i class="fa-solid fa-box-open"></i> {{ section.settings.cta_text }}
+        </a>
+        <a href="{% if section.settings.other_guide_url != blank %}{{ section.settings.other_guide_url }}{% else %}#{% endif %}" class="cl2-upsell-btn-secondary">
+          <i class="fa-solid fa-book-open"></i> {{ section.settings.other_guide_btn }}
+        </a>
+      </div>
       {% if section.settings.note != blank %}
         <p class="cl2-upsell-note">{{ section.settings.note }}</p>
       {% endif %}
@@ -201,6 +290,34 @@
       "default": "Con el Pack Completo sumás la guía de campamento paso a paso, los 3 Bonos VIP y todo lo de esta guía — por mucho menos que comprarlas por separado."
     },
     {
+      "type": "header",
+      "content": "Desglose de precios"
+    },
+    {
+      "type": "text",
+      "id": "this_guide_name",
+      "label": "Nombre de esta guía",
+      "default": "Cómo Elegir el Terreno Perfecto"
+    },
+    {
+      "type": "text",
+      "id": "this_guide_price",
+      "label": "Precio de esta guía",
+      "default": "$14.990"
+    },
+    {
+      "type": "text",
+      "id": "other_guide_name",
+      "label": "Nombre de la otra guía",
+      "default": "Guía Rápida para Campistas"
+    },
+    {
+      "type": "text",
+      "id": "other_guide_price",
+      "label": "Precio de la otra guía",
+      "default": "$14.990"
+    },
+    {
       "type": "text",
       "id": "price_sep",
       "label": "Texto separador de precios",
@@ -235,6 +352,18 @@
       "id": "cta_url",
       "label": "URL del botón (landing o checkout del Pack)",
       "info": "Puede ser la URL de la landing del Pack o directo al checkout"
+    },
+    {
+      "type": "text",
+      "id": "other_guide_btn",
+      "label": "Texto del botón secundario (otra guía)",
+      "default": "Ver más info sobre la Guía Rápida para Campistas"
+    },
+    {
+      "type": "text",
+      "id": "other_guide_url",
+      "label": "URL del botón secundario (landing de la otra guía)",
+      "info": "Dejá vacío para ocultar el botón"
     },
     {
       "type": "text",
