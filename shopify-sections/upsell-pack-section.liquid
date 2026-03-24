@@ -1,0 +1,252 @@
+<!-- Google Fonts + Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  .cl-upsell-pack {
+    background: linear-gradient(135deg, #2a1a0e, #3d2410);
+    padding: 60px 20px;
+    color: #fff;
+  }
+  .cl-upsell-pack .cl-upsell-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .cl-upsell-img-wrap {
+    flex-shrink: 0;
+    width: 200px;
+  }
+  .cl-upsell-img-wrap img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  }
+  .cl-upsell-body { flex: 1; }
+  .cl-upsell-label {
+    display: inline-block;
+    background: rgba(173,102,57,.25);
+    border: 1px solid #ad6639;
+    color: #e8a06a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 14px;
+  }
+  .cl-upsell-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .cl-upsell-heading span { color: #e8a06a; }
+  .cl-upsell-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .97rem;
+    color: rgba(255,255,255,.75);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .cl-upsell-price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+  }
+  .cl-upsell-price-sep {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .85rem;
+    color: rgba(255,255,255,.45);
+  }
+  .cl-upsell-price-old {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,.4);
+    text-decoration: line-through;
+  }
+  .cl-upsell-price-new {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #fff;
+  }
+  .cl-upsell-savings {
+    background: rgba(61,153,112,.2);
+    border: 1px solid rgba(61,153,112,.5);
+    color: #6ee2a0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .cl-upsell-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #27ae60, #1e9e4f);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    padding: 16px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 6px 0 #155a2a;
+    transition: all .15s ease;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  .cl-upsell-btn:hover { transform: translateY(3px); box-shadow: 0 3px 0 #155a2a; }
+  .cl-upsell-note {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .75rem;
+    color: rgba(255,255,255,.4);
+    margin-top: 10px;
+  }
+  @media (max-width: 680px) {
+    .cl-upsell-pack .cl-upsell-container { flex-direction: column; text-align: center; }
+    .cl-upsell-img-wrap { width: 150px; margin: 0 auto; }
+    .cl-upsell-price-row { justify-content: center; }
+    .cl-upsell-heading { font-size: 1.35rem; }
+    .cl-upsell-btn { width: 100%; }
+  }
+</style>
+
+<section class="cl-upsell-pack">
+  <div class="cl-upsell-container">
+
+    {% if section.settings.pack_image != blank %}
+      <div class="cl-upsell-img-wrap">
+        <img src="{{ section.settings.pack_image | img_url: 'master' }}" alt="{{ section.settings.heading }}">
+      </div>
+    {% endif %}
+
+    <div class="cl-upsell-body">
+      {% if section.settings.label != blank %}
+        <div class="cl-upsell-label"><i class="fa-solid fa-fire"></i> {{ section.settings.label }}</div>
+      {% endif %}
+
+      <h2 class="cl-upsell-heading">{{ section.settings.heading }}<br><span>{{ section.settings.heading_highlight }}</span></h2>
+
+      <p class="cl-upsell-sub">{{ section.settings.body }}</p>
+
+      <div class="cl-upsell-price-row">
+        {% if section.settings.price_sep != blank %}
+          <span class="cl-upsell-price-sep">{{ section.settings.price_sep }}</span>
+        {% endif %}
+        {% if section.settings.price_old != blank %}
+          <span class="cl-upsell-price-old">{{ section.settings.price_old }}</span>
+        {% endif %}
+        <span class="cl-upsell-price-new">{{ section.settings.price_new }}</span>
+        {% if section.settings.savings != blank %}
+          <span class="cl-upsell-savings">{{ section.settings.savings }}</span>
+        {% endif %}
+      </div>
+
+      <a href="{{ section.settings.cta_url }}" class="cl-upsell-btn">
+        <i class="fa-solid fa-box-open"></i> {{ section.settings.cta_text }}
+      </a>
+      {% if section.settings.note != blank %}
+        <p class="cl-upsell-note">{{ section.settings.note }}</p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Upsell Pack Completo",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "pack_image",
+      "label": "Imagen del Pack"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta superior",
+      "default": "Oferta especial"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (línea 1)",
+      "default": "¿Por qué quedarte con una guía"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Título destacado (línea 2, en dorado)",
+      "default": "si podés llevarte las dos?"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Descripción",
+      "default": "Con el Pack Completo sumás la guía de terreno y anti-inundaciones, los 3 Bonos VIP y todo lo de esta guía — por mucho menos que comprarlas por separado."
+    },
+    {
+      "type": "text",
+      "id": "price_sep",
+      "label": "Texto separador de precios",
+      "default": "Hoy solo"
+    },
+    {
+      "type": "text",
+      "id": "price_old",
+      "label": "Precio tachado (suma de las dos guías)",
+      "default": "$29.980"
+    },
+    {
+      "type": "text",
+      "id": "price_new",
+      "label": "Precio del Pack",
+      "default": "$21.990"
+    },
+    {
+      "type": "text",
+      "id": "savings",
+      "label": "Badge de ahorro",
+      "default": "AHORRÁS $7.990"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "QUIERO EL PACK COMPLETO"
+    },
+    {
+      "type": "text",
+      "id": "cta_url",
+      "label": "URL del botón (landing o checkout del Pack)",
+      "info": "Puede ser la URL de la landing del Pack o directo al checkout"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota debajo del botón",
+      "default": "Garantía 7 días sin preguntas · Acceso instantáneo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Upsell Pack Completo"
+    }
+  ]
+}
+{% endschema %}
